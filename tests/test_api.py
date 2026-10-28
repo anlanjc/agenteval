@@ -4,6 +4,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 from agenteval.api import create_app
+from agenteval.api import resolve_dataset
 
 
 @pytest.fixture()
@@ -23,7 +24,7 @@ def test_full_run_lifecycle(client):
     assert resp.status_code == 200
     body = resp.json()
     run_id = body["run_id"]
-    assert body["metrics"]["case_count"] == 10
+    assert body["metrics"]["case_count"] == len(resolve_dataset("builtin:askbi_smoke").cases)
     assert body["metrics"]["success_rate"] == 1.0
 
     # run 列表
@@ -33,7 +34,7 @@ def test_full_run_lifecycle(client):
     # run 详情（含 cases 与 verdict）
     detail = c.get(f"/runs/{run_id}").json()
     assert detail["name"] == "api-smoke"
-    assert len(detail["cases"]) == 10
+    assert len(detail["cases"]) == len(resolve_dataset("builtin:askbi_smoke").cases)
     assert detail["cases"][0]["verdict"]["overall"] == 5.0
 
     # markdown 报告
@@ -50,7 +51,7 @@ def test_full_run_lifecycle(client):
     spans = c.get(f"/spans/{run_id}").json()
     tree = spans["span_tree"]
     assert tree["name"] == "api-smoke"
-    assert len(tree["children"]) == 10
+    assert len(tree["children"]) == len(resolve_dataset("builtin:askbi_smoke").cases)
     case0 = tree["children"][0]
     assert {ch["name"] for ch in case0["children"]} == {"target.call", "judge.score"}
     assert spans["events"]

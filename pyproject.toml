@@ -1,3 +1,7 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "agenteval"
 version = "0.1.0"
@@ -9,6 +13,15 @@ dependencies = [
     "pydantic>=2.6",
     "httpx>=0.27",
 ]
+
+[tool.setuptools]
+# 仓库还有 scripts/tests/docs/evidence/baselines 等顶层目录，flat-layout 自动发现会报
+# Multiple top-level packages；CI 里 pip install -e . 是门禁的安装路径，必须显式声明包
+packages = ["agenteval", "agenteval.adapters", "agenteval.datasets", "agenteval.static"]
+
+[tool.setuptools.package-data]
+"agenteval.datasets" = ["*.jsonl"]
+"agenteval.static" = ["*.html"]
 
 [project.optional-dependencies]
 dev = ["pytest>=8.0"]

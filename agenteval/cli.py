@@ -48,6 +48,7 @@ def _build_judge(args):
 def cmd_run(args) -> int:
     from .report import write_reports
     from .runner import Runner
+    from .trace import TraceStore
 
     dataset = _resolve_dataset(args.dataset)
     if args.limit:
