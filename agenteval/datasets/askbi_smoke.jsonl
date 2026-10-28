@@ -1,11 +1,31 @@
-{"_version": "1.0.0"}
-{"id": "ab-001", "input": "上个月的销售额是多少", "expected": "返回上月销售总额数值，SQL 聚合 SUM(quantity*unit_price*(1-discount))", "metadata": {"kind": "query", "role": "boss", "keywords": ["销售", "SQL"]}, "tags": ["smoke", "query"]}
-{"id": "ab-002", "input": "上月华南地区的毛利率", "expected": "返回华南区域毛利率百分比，毛利=销售额-供给成本", "metadata": {"kind": "query", "role": "south", "keywords": ["华南", "毛利"]}, "tags": ["smoke", "query"]}
-{"id": "ab-003", "input": "近12个月销售额趋势", "expected": "按月分组的12行趋势数据，月份与销售额成对返回", "metadata": {"kind": "query", "role": "boss", "keywords": ["12", "月", "趋势"]}, "tags": ["smoke", "query"]}
-{"id": "ab-004", "input": "上月哪个品类毛利率最低", "expected": "返回单一品类名与毛利率，按毛利率升序取第一", "metadata": {"kind": "query", "role": "boss", "keywords": ["品类", "毛利"]}, "tags": ["smoke", "query"]}
-{"id": "ab-005", "input": "各渠道最近3个月的客单价", "expected": "渠道×月份的客单价矩阵，客单价=销售额/订单数", "metadata": {"kind": "query", "role": "boss", "keywords": ["渠道", "客单价"]}, "tags": ["smoke", "query"]}
-{"id": "ab-006", "input": "帮我写一份电商周报", "expected": "超出问数范围，应礼貌拒答并说明只支持经营数据查询", "metadata": {"kind": "refusal", "role": "boss", "keywords": ["范围", "拒答"]}, "tags": ["smoke", "refusal"]}
-{"id": "ab-007", "input": "预测下个月哪个品类销售额最高", "expected": "不做预测，应拒答并解释系统仅支持历史数据统计", "metadata": {"kind": "refusal", "role": "boss", "keywords": ["预测", "支持"]}, "tags": ["smoke", "refusal"]}
-{"id": "ab-008", "input": "最近卖得怎么样", "expected": "问题模糊，应发起澄清：询问时间范围/指标口径/渠道维度", "metadata": {"kind": "clarify", "role": "boss", "keywords": ["时间", "口径"]}, "tags": ["smoke", "clarify"]}
-{"id": "ab-009", "input": "为什么上月美妆品类毛利率下滑了", "expected": "下钻归因：拆解价格/成本/折扣/结构等因素并给出数值核验", "metadata": {"kind": "drill", "role": "boss", "keywords": ["归因", "数值"]}, "tags": ["smoke", "drill"]}
-{"id": "ab-010", "input": "上季度火星区域的销售额", "expected": "区域维度不存在火星，应拒答或提示区域枚举值", "metadata": {"kind": "refusal", "role": "boss", "keywords": ["区域", "火星"]}, "tags": ["smoke", "refusal"]}
+{"_version": "2.0.0"}
+{"id": "ab-001", "input": "上个月的总销售额是多少", "expected": "销售额为 3,988,676.33元（指标口径｜销售额：折后销售额 = Σ(数量×单价×(1-折扣))，含所有订单状态）", "metadata": {"kind": "query", "source_id": "v2-001", "keywords": ["销售额", "3,988,676.33"], "role": "boss"}, "tags": ["smoke", "query"]}
+{"id": "ab-002", "input": "上月订单量有多少", "expected": "订单量为 4,593（指标口径｜订单量：去重订单数，含所有状态）", "metadata": {"kind": "query", "source_id": "v2-002", "keywords": ["订单量", "4,593"], "role": "boss"}, "tags": ["smoke", "query"]}
+{"id": "ab-003", "input": "上月客单价是多少", "expected": "客单价为 868.43元（指标口径｜客单价：折后销售额 / 去重订单数）", "metadata": {"kind": "query", "source_id": "v2-004", "keywords": ["客单价", "868.43"], "role": "boss"}, "tags": ["smoke", "query"]}
+{"id": "ab-004", "input": "上月毛利率是多少", "expected": "毛利率为 31.93%（指标口径｜毛利率：毛利额 / 折后销售额）", "metadata": {"kind": "query", "source_id": "v2-006", "keywords": ["毛利率", "31.93"], "role": "boss"}, "tags": ["smoke", "query"]}
+{"id": "ab-005", "input": "各品类销售额", "expected": "已按 category 输出销售额明细，共 6 行", "metadata": {"kind": "query", "source_id": "v2-015", "keywords": ["category", "销售额", "共 6 行"], "role": "boss"}, "tags": ["smoke", "query"]}
+{"id": "ab-006", "input": "各渠道订单量", "expected": "已按 channel 输出订单量明细，共 5 行", "metadata": {"kind": "query", "source_id": "v2-017", "keywords": ["channel", "订单量", "共 5 行"], "role": "boss"}, "tags": ["smoke", "query"]}
+{"id": "ab-007", "input": "各渠道毛利率", "expected": "已按 channel 输出毛利率明细，共 5 行", "metadata": {"kind": "query", "source_id": "v2-021", "keywords": ["channel", "毛利率", "共 5 行"], "role": "boss"}, "tags": ["smoke", "query"]}
+{"id": "ab-008", "input": "销售额排名前3的渠道", "expected": "已按 channel 输出销售额明细，共 3 行", "metadata": {"kind": "query", "source_id": "v2-033", "keywords": ["channel", "共 3 行"], "role": "boss"}, "tags": ["smoke", "query"]}
+{"id": "ab-009", "input": "近6个月销售额趋势", "expected": "已按 month 输出销售额明细，共 6 行", "metadata": {"kind": "query", "source_id": "v2-041", "keywords": ["month", "销售额", "共 6 行"], "role": "boss"}, "tags": ["smoke", "query"]}
+{"id": "ab-010", "input": "近12个月订单量趋势", "expected": "已按 month 输出订单量明细，共 12 行", "metadata": {"kind": "query", "source_id": "v2-042", "keywords": ["month", "订单量", "共 12 行"], "role": "boss"}, "tags": ["smoke", "query"]}
+{"id": "ab-011", "input": "近12个月直播渠道销量趋势", "expected": "已按 month 输出销量明细，共 12 行", "metadata": {"kind": "query", "source_id": "v2-047", "keywords": ["month", "销量", "共 12 行"], "role": "boss"}, "tags": ["smoke", "query"]}
+{"id": "ab-012", "input": "华南地区上月销售额", "expected": "销售额为 1,171,401.49元（指标口径｜销售额：折后销售额 = Σ(数量×单价×(1-折扣))，含所有订单状态）", "metadata": {"kind": "query", "source_id": "v2-051", "keywords": ["销售额", "1,171,401.49"], "role": "boss"}, "tags": ["smoke", "query"]}
+{"id": "ab-013", "input": "直播渠道最近3个月订单量", "expected": "订单量为 3,244（指标口径｜订单量：去重订单数，含所有状态）", "metadata": {"kind": "query", "source_id": "v2-053", "keywords": ["订单量", "3,244"], "role": "boss"}, "tags": ["smoke", "query"]}
+{"id": "ab-014", "input": "数码品类近12个月销量", "expected": "销量为 26,102（指标口径｜销量：售出商品件数（订单行数量求和））", "metadata": {"kind": "query", "source_id": "v2-057", "keywords": ["销量", "26,102"], "role": "boss"}, "tags": ["smoke", "query"]}
+{"id": "ab-015", "input": "官网渠道上月净销售额", "expected": "净销售额为 1,066,438.95元（指标口径｜净销售额：折后销售额剔除已退货订单（与销售额的差即退货金额，两口径并存供对照））", "metadata": {"kind": "query", "source_id": "v2-058", "keywords": ["净销售额", "1,066,438.95"], "role": "boss"}, "tags": ["smoke", "query"]}
+{"id": "ab-016", "input": "上月销售额", "expected": "销售额为 1,171,401.49元（指标口径｜销售额：折后销售额 = Σ(数量×单价×(1-折扣))，含所有订单状态；权限范围：华南（角色 south））", "metadata": {"kind": "query", "source_id": "v2-072", "keywords": ["销售额", "1,171,401.49", "华南"], "role": "south"}, "tags": ["smoke", "query"]}
+{"id": "ab-017", "input": "上月订单量", "expected": "订单量为 979（指标口径｜订单量：去重订单数，含所有状态；权限范围：华北+东北（角色 north））", "metadata": {"kind": "query", "source_id": "v2-076", "keywords": ["订单量", "979", "华北"], "role": "north"}, "tags": ["smoke", "query"]}
+{"id": "ab-018", "input": "为什么上月美妆品类的毛利率下滑了", "expected": "毛利率为 44.02%（指标口径｜毛利率：毛利额 / 折后销售额）", "metadata": {"kind": "drill", "source_id": "v2-081", "keywords": ["毛利率", "44.02"], "role": "boss"}, "tags": ["smoke", "drill"]}
+{"id": "ab-019", "input": "为什么最近3个月直播渠道销售额增长", "expected": "销售额为 2,792,581.61元（指标口径｜销售额：折后销售额 = Σ(数量×单价×(1-折扣))，含所有订单状态）", "metadata": {"kind": "drill", "source_id": "v2-083", "keywords": ["销售额", "2,792,581.61"], "role": "boss"}, "tags": ["smoke", "drill"]}
+{"id": "ab-020", "input": "为什么上月华南地区退货率升高", "expected": "退货率为 3.11%（指标口径｜退货率：已退货订单销售额 / 总销售额（按金额计））", "metadata": {"kind": "drill", "source_id": "v2-085", "keywords": ["退货率", "3.11"], "role": "boss"}, "tags": ["smoke", "drill"]}
+{"id": "ab-021", "input": "分析上月各品类毛利率", "expected": "已按 category 输出毛利率明细，共 6 行", "metadata": {"kind": "drill", "source_id": "v2-086", "keywords": ["category", "毛利率", "共 6 行"], "role": "boss"}, "tags": ["smoke", "drill"]}
+{"id": "ab-022", "input": "卖得怎么样", "expected": "你想看哪个指标？", "metadata": {"kind": "clarify", "source_id": "v2-093", "keywords": ["哪个指标"], "role": "boss"}, "tags": ["smoke", "clarify"]}
+{"id": "ab-023", "input": "最近表现怎么样", "expected": "你想看哪个指标？", "metadata": {"kind": "clarify", "source_id": "v2-095", "keywords": ["哪个指标"], "role": "boss"}, "tags": ["smoke", "clarify"]}
+{"id": "ab-024", "input": "经营情况怎么样", "expected": "你想看哪个指标？", "metadata": {"kind": "clarify", "source_id": "v2-096", "keywords": ["哪个指标"], "role": "boss"}, "tags": ["smoke", "clarify"]}
+{"id": "ab-025", "input": "哪个渠道比较好", "expected": "你想看哪个指标？", "metadata": {"kind": "clarify", "source_id": "v2-101", "keywords": ["哪个指标"], "role": "boss"}, "tags": ["smoke", "clarify"]}
+{"id": "ab-026", "input": "这阵子卖得怎么样", "expected": "你想看哪个指标？", "metadata": {"kind": "clarify", "source_id": "v2-103", "keywords": ["哪个指标"], "role": "boss"}, "tags": ["smoke", "clarify"]}
+{"id": "ab-027", "input": "预测下季度的销售额", "expected": "数据仅覆盖到 2026-09，无法预测未来。拒答而非编造。", "metadata": {"kind": "refusal", "source_id": "v2-105", "keywords": ["2026-09", "无法预测"], "role": "boss"}, "tags": ["smoke", "refusal"]}
+{"id": "ab-028", "input": "复购率是多少", "expected": "数据集中不存在该指标（常见但未采集）。拒答而非编造。", "metadata": {"kind": "refusal", "source_id": "v2-109", "keywords": ["不存在该指标"], "role": "boss"}, "tags": ["smoke", "refusal"]}
+{"id": "ab-029", "input": "好评率最高的商品是哪个", "expected": "数据集中不存在该指标（常见但未采集）。拒答而非编造。", "metadata": {"kind": "refusal", "source_id": "v2-112", "keywords": ["不存在该指标"], "role": "boss"}, "tags": ["smoke", "refusal"]}
+{"id": "ab-030", "input": "写一段上月销售总结", "expected": "这不是经营数据查询类问题（或需要数据集中不存在的信息），拒答以避免编造", "metadata": {"kind": "refusal", "source_id": "v2-114", "keywords": ["不是经营数据查询"], "role": "boss"}, "tags": ["smoke", "refusal"]}

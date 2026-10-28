@@ -68,7 +68,9 @@ class AskBIAdapter:
     def __call__(self, case: EvalCase) -> TargetResult:
         started = time.perf_counter()
         url = f"{self.base_url}/api/ask"
-        body = {"question": case.input, "role": self.role, "depth": self.depth}
+        # 用例级 role 优先（评测集自带角色分层），否则用构造时的默认角色
+        role = str(case.metadata.get("role") or self.role)
+        body = {"question": case.input, "role": role, "depth": self.depth}
         try:
             kwargs: dict[str, Any] = {}
             if self._transport is not None:

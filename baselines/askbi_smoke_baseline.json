@@ -1,0 +1,891 @@
+{
+  "run_id": "caab2b0175bc4f55",
+  "name": "smoke30-askbi-freshgen",
+  "dataset": "askbi_smoke",
+  "dataset_version": "2.0.0",
+  "target": "askbi",
+  "judge": "mock",
+  "created_at": 1793226278.4116635,
+  "metrics": {
+    "case_count": 30,
+    "error_count": 0,
+    "success_rate": 1.0,
+    "judge_pass_rate": 1.0,
+    "judge_mean": 4.7067,
+    "latency_p50_ms": 801.68,
+    "latency_p95_ms": 1148.48,
+    "total_tokens": 754
+  },
+  "cases": [
+    {
+      "case_id": "ab-001",
+      "input": "上个月的总销售额是多少",
+      "output": "销售额为 3,988,676.33元（指标口径｜销售额：折后销售额 = Σ(数量×单价×(1-折扣))，含所有订单状态）",
+      "expected": "销售额为 3,988,676.33元（指标口径｜销售额：折后销售额 = Σ(数量×单价×(1-折扣))，含所有订单状态）",
+      "error": null,
+      "latency_ms": 890.78,
+      "verdict": {
+        "case_id": "ab-001",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 3.0
+        },
+        "overall": 4.6,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=False",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "answer_kind": "answer",
+        "task_id": "94babdc9f660",
+        "upstream_latency_ms": 78.4
+      }
+    },
+    {
+      "case_id": "ab-002",
+      "input": "上月订单量有多少",
+      "output": "订单量为 4,593（指标口径｜订单量：去重订单数，含所有状态）",
+      "expected": "订单量为 4,593（指标口径｜订单量：去重订单数，含所有状态）",
+      "error": null,
+      "latency_ms": 817.74,
+      "verdict": {
+        "case_id": "ab-002",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 3.0
+        },
+        "overall": 4.6,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=False",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "answer_kind": "answer",
+        "task_id": "07bcab81db11",
+        "upstream_latency_ms": 45.0
+      }
+    },
+    {
+      "case_id": "ab-003",
+      "input": "上月客单价是多少",
+      "output": "客单价为 868.43元（指标口径｜客单价：折后销售额 / 去重订单数）",
+      "expected": "客单价为 868.43元（指标口径｜客单价：折后销售额 / 去重订单数）",
+      "error": null,
+      "latency_ms": 859.15,
+      "verdict": {
+        "case_id": "ab-003",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 3.0
+        },
+        "overall": 4.6,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=False",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "answer_kind": "answer",
+        "task_id": "bc7995d5a218",
+        "upstream_latency_ms": 48.6
+      }
+    },
+    {
+      "case_id": "ab-004",
+      "input": "上月毛利率是多少",
+      "output": "毛利率为 31.93%（指标口径｜毛利率：毛利额 / 折后销售额）",
+      "expected": "毛利率为 31.93%（指标口径｜毛利率：毛利额 / 折后销售额）",
+      "error": null,
+      "latency_ms": 872.22,
+      "verdict": {
+        "case_id": "ab-004",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "answer_kind": "answer",
+        "task_id": "3065076c4421",
+        "upstream_latency_ms": 45.4
+      }
+    },
+    {
+      "case_id": "ab-005",
+      "input": "各品类销售额",
+      "output": "已按 category 输出销售额明细，共 6 行",
+      "expected": "已按 category 输出销售额明细，共 6 行",
+      "error": null,
+      "latency_ms": 803.77,
+      "verdict": {
+        "case_id": "ab-005",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 3.0
+        },
+        "overall": 4.6,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=False",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "answer_kind": "answer",
+        "task_id": "d05d1aec0881",
+        "upstream_latency_ms": 48.9
+      }
+    },
+    {
+      "case_id": "ab-006",
+      "input": "各渠道订单量",
+      "output": "已按 channel 输出订单量明细，共 5 行",
+      "expected": "已按 channel 输出订单量明细，共 5 行",
+      "error": null,
+      "latency_ms": 797.45,
+      "verdict": {
+        "case_id": "ab-006",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 3.0
+        },
+        "overall": 4.6,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=False",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "answer_kind": "answer",
+        "task_id": "5bb32718a519",
+        "upstream_latency_ms": 53.9
+      }
+    },
+    {
+      "case_id": "ab-007",
+      "input": "各渠道毛利率",
+      "output": "已按 channel 输出毛利率明细，共 5 行",
+      "expected": "已按 channel 输出毛利率明细，共 5 行",
+      "error": null,
+      "latency_ms": 815.97,
+      "verdict": {
+        "case_id": "ab-007",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 3.0
+        },
+        "overall": 4.6,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=False",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "answer_kind": "answer",
+        "task_id": "037840c05635",
+        "upstream_latency_ms": 56.6
+      }
+    },
+    {
+      "case_id": "ab-008",
+      "input": "销售额排名前3的渠道",
+      "output": "已按 channel 输出销售额明细，共 3 行",
+      "expected": "已按 channel 输出销售额明细，共 3 行",
+      "error": null,
+      "latency_ms": 848.48,
+      "verdict": {
+        "case_id": "ab-008",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 3.0
+        },
+        "overall": 4.6,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=False",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "answer_kind": "answer",
+        "task_id": "8c9d7fc48c40",
+        "upstream_latency_ms": 50.1
+      }
+    },
+    {
+      "case_id": "ab-009",
+      "input": "近6个月销售额趋势",
+      "output": "已按 month 输出销售额明细，共 6 行",
+      "expected": "已按 month 输出销售额明细，共 6 行",
+      "error": null,
+      "latency_ms": 1181.52,
+      "verdict": {
+        "case_id": "ab-009",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 3.0
+        },
+        "overall": 4.6,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=False",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "answer_kind": "answer",
+        "task_id": "bbee7c16add3",
+        "upstream_latency_ms": 396.3
+      }
+    },
+    {
+      "case_id": "ab-010",
+      "input": "近12个月订单量趋势",
+      "output": "已按 month 输出订单量明细，共 12 行",
+      "expected": "已按 month 输出订单量明细，共 12 行",
+      "error": null,
+      "latency_ms": 1155.92,
+      "verdict": {
+        "case_id": "ab-010",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 3.0
+        },
+        "overall": 4.6,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=False",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "answer_kind": "answer",
+        "task_id": "c011219b9438",
+        "upstream_latency_ms": 397.5
+      }
+    },
+    {
+      "case_id": "ab-011",
+      "input": "近12个月直播渠道销量趋势",
+      "output": "已按 month 输出销量明细，共 12 行",
+      "expected": "已按 month 输出销量明细，共 12 行",
+      "error": null,
+      "latency_ms": 1014.85,
+      "verdict": {
+        "case_id": "ab-011",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 3.0
+        },
+        "overall": 4.6,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=False",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "answer_kind": "answer",
+        "task_id": "5c619dac0a8f",
+        "upstream_latency_ms": 260.3
+      }
+    },
+    {
+      "case_id": "ab-012",
+      "input": "华南地区上月销售额",
+      "output": "销售额为 1,171,401.49元（指标口径｜销售额：折后销售额 = Σ(数量×单价×(1-折扣))，含所有订单状态）",
+      "expected": "销售额为 1,171,401.49元（指标口径｜销售额：折后销售额 = Σ(数量×单价×(1-折扣))，含所有订单状态）",
+      "error": null,
+      "latency_ms": 808.28,
+      "verdict": {
+        "case_id": "ab-012",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "answer_kind": "answer",
+        "task_id": "da2287fe874f",
+        "upstream_latency_ms": 38.1
+      }
+    },
+    {
+      "case_id": "ab-013",
+      "input": "直播渠道最近3个月订单量",
+      "output": "订单量为 3,244（指标口径｜订单量：去重订单数，含所有状态）",
+      "expected": "订单量为 3,244（指标口径｜订单量：去重订单数，含所有状态）",
+      "error": null,
+      "latency_ms": 798.66,
+      "verdict": {
+        "case_id": "ab-013",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 3.0
+        },
+        "overall": 4.6,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=False",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "answer_kind": "answer",
+        "task_id": "dce6e801834a",
+        "upstream_latency_ms": 36.5
+      }
+    },
+    {
+      "case_id": "ab-014",
+      "input": "数码品类近12个月销量",
+      "output": "销量为 26,102（指标口径｜销量：售出商品件数（订单行数量求和））",
+      "expected": "销量为 26,102（指标口径｜销量：售出商品件数（订单行数量求和））",
+      "error": null,
+      "latency_ms": 793.99,
+      "verdict": {
+        "case_id": "ab-014",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 3.0
+        },
+        "overall": 4.6,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=False",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "answer_kind": "answer",
+        "task_id": "5d7e3f9fe624",
+        "upstream_latency_ms": 44.5
+      }
+    },
+    {
+      "case_id": "ab-015",
+      "input": "官网渠道上月净销售额",
+      "output": "净销售额为 1,066,438.95元（指标口径｜净销售额：折后销售额剔除已退货订单（与销售额的差即退货金额，两口径并存供对照））",
+      "expected": "净销售额为 1,066,438.95元（指标口径｜净销售额：折后销售额剔除已退货订单（与销售额的差即退货金额，两口径并存供对照））",
+      "error": null,
+      "latency_ms": 799.59,
+      "verdict": {
+        "case_id": "ab-015",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 3.0
+        },
+        "overall": 4.6,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=False",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "answer_kind": "answer",
+        "task_id": "2ce84e9e560b",
+        "upstream_latency_ms": 37.8
+      }
+    },
+    {
+      "case_id": "ab-016",
+      "input": "上月销售额",
+      "output": "销售额为 1,171,401.49元（指标口径｜销售额：折后销售额 = Σ(数量×单价×(1-折扣))，含所有订单状态；权限范围：华南（角色 south））",
+      "expected": "销售额为 1,171,401.49元（指标口径｜销售额：折后销售额 = Σ(数量×单价×(1-折扣))，含所有订单状态；权限范围：华南（角色 south））",
+      "error": null,
+      "latency_ms": 790.86,
+      "verdict": {
+        "case_id": "ab-016",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "answer_kind": "answer",
+        "task_id": "c8e589b227ed",
+        "upstream_latency_ms": 36.6
+      }
+    },
+    {
+      "case_id": "ab-017",
+      "input": "上月订单量",
+      "output": "订单量为 979（指标口径｜订单量：去重订单数，含所有状态；权限范围：华北+东北（角色 north））",
+      "expected": "订单量为 979（指标口径｜订单量：去重订单数，含所有状态；权限范围：华北+东北（角色 north））",
+      "error": null,
+      "latency_ms": 796.61,
+      "verdict": {
+        "case_id": "ab-017",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 3.0
+        },
+        "overall": 4.6,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=False",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "answer_kind": "answer",
+        "task_id": "51ccb13bd6bb",
+        "upstream_latency_ms": 38.3
+      }
+    },
+    {
+      "case_id": "ab-018",
+      "input": "为什么上月美妆品类的毛利率下滑了",
+      "output": "毛利率为 44.02%（指标口径｜毛利率：毛利额 / 折后销售额）",
+      "expected": "毛利率为 44.02%（指标口径｜毛利率：毛利额 / 折后销售额）",
+      "error": null,
+      "latency_ms": 1053.18,
+      "verdict": {
+        "case_id": "ab-018",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 3.0
+        },
+        "overall": 4.6,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=False",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "answer_kind": "answer",
+        "task_id": "69c944d89abc",
+        "upstream_latency_ms": 287.2
+      }
+    },
+    {
+      "case_id": "ab-019",
+      "input": "为什么最近3个月直播渠道销售额增长",
+      "output": "销售额为 2,792,581.61元（指标口径｜销售额：折后销售额 = Σ(数量×单价×(1-折扣))，含所有订单状态）",
+      "expected": "销售额为 2,792,581.61元（指标口径｜销售额：折后销售额 = Σ(数量×单价×(1-折扣))，含所有订单状态）",
+      "error": null,
+      "latency_ms": 999.51,
+      "verdict": {
+        "case_id": "ab-019",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "answer_kind": "answer",
+        "task_id": "b45c4dcc7125",
+        "upstream_latency_ms": 250.0
+      }
+    },
+    {
+      "case_id": "ab-020",
+      "input": "为什么上月华南地区退货率升高",
+      "output": "退货率为 3.11%（指标口径｜退货率：已退货订单销售额 / 总销售额（按金额计））",
+      "expected": "退货率为 3.11%（指标口径｜退货率：已退货订单销售额 / 总销售额（按金额计））",
+      "error": null,
+      "latency_ms": 1048.95,
+      "verdict": {
+        "case_id": "ab-020",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 3.0
+        },
+        "overall": 4.6,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=False",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "answer_kind": "answer",
+        "task_id": "eaa3c7735f2b",
+        "upstream_latency_ms": 277.4
+      }
+    },
+    {
+      "case_id": "ab-021",
+      "input": "分析上月各品类毛利率",
+      "output": "已按 category 输出毛利率明细，共 6 行",
+      "expected": "已按 category 输出毛利率明细，共 6 行",
+      "error": null,
+      "latency_ms": 1139.39,
+      "verdict": {
+        "case_id": "ab-021",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 3.0
+        },
+        "overall": 4.6,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=False",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "answer_kind": "answer",
+        "task_id": "cf1716982897",
+        "upstream_latency_ms": 371.6
+      }
+    },
+    {
+      "case_id": "ab-022",
+      "input": "卖得怎么样",
+      "output": "你想看哪个指标？",
+      "expected": "你想看哪个指标？",
+      "error": null,
+      "latency_ms": 756.18,
+      "verdict": {
+        "case_id": "ab-022",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 3.0
+        },
+        "overall": 4.6,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=False",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "answer_kind": "clarify",
+        "task_id": "115e8d03e6e4",
+        "upstream_latency_ms": 3.2
+      }
+    },
+    {
+      "case_id": "ab-023",
+      "input": "最近表现怎么样",
+      "output": "你想看哪个指标？",
+      "expected": "你想看哪个指标？",
+      "error": null,
+      "latency_ms": 750.7,
+      "verdict": {
+        "case_id": "ab-023",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 3.0
+        },
+        "overall": 4.6,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=False",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "answer_kind": "clarify",
+        "task_id": "988114d49673",
+        "upstream_latency_ms": 3.9
+      }
+    },
+    {
+      "case_id": "ab-024",
+      "input": "经营情况怎么样",
+      "output": "你想看哪个指标？",
+      "expected": "你想看哪个指标？",
+      "error": null,
+      "latency_ms": 757.13,
+      "verdict": {
+        "case_id": "ab-024",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 3.0
+        },
+        "overall": 4.6,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=False",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "answer_kind": "clarify",
+        "task_id": "8d9fef505545",
+        "upstream_latency_ms": 2.9
+      }
+    },
+    {
+      "case_id": "ab-025",
+      "input": "哪个渠道比较好",
+      "output": "你想看哪个指标？",
+      "expected": "你想看哪个指标？",
+      "error": null,
+      "latency_ms": 774.85,
+      "verdict": {
+        "case_id": "ab-025",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 3.0
+        },
+        "overall": 4.6,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=False",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "answer_kind": "clarify",
+        "task_id": "5b3ff36edd48",
+        "upstream_latency_ms": 3.9
+      }
+    },
+    {
+      "case_id": "ab-026",
+      "input": "这阵子卖得怎么样",
+      "output": "你想看哪个指标？",
+      "expected": "你想看哪个指标？",
+      "error": null,
+      "latency_ms": 769.58,
+      "verdict": {
+        "case_id": "ab-026",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 3.0
+        },
+        "overall": 4.6,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=False",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "answer_kind": "clarify",
+        "task_id": "3cad9aa65109",
+        "upstream_latency_ms": 3.6
+      }
+    },
+    {
+      "case_id": "ab-027",
+      "input": "预测下季度的销售额",
+      "output": "数据仅覆盖到 2026-09，无法预测未来。拒答而非编造。",
+      "expected": "数据仅覆盖到 2026-09，无法预测未来。拒答而非编造。",
+      "error": null,
+      "latency_ms": 758.4,
+      "verdict": {
+        "case_id": "ab-027",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "answer_kind": "refusal",
+        "task_id": "b9c9015142bb",
+        "upstream_latency_ms": 3.6
+      }
+    },
+    {
+      "case_id": "ab-028",
+      "input": "复购率是多少",
+      "output": "数据集中不存在该指标（常见但未采集）。拒答而非编造。",
+      "expected": "数据集中不存在该指标（常见但未采集）。拒答而非编造。",
+      "error": null,
+      "latency_ms": 750.82,
+      "verdict": {
+        "case_id": "ab-028",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "answer_kind": "refusal",
+        "task_id": "ae682eb0dd63",
+        "upstream_latency_ms": 3.3
+      }
+    },
+    {
+      "case_id": "ab-029",
+      "input": "好评率最高的商品是哪个",
+      "output": "数据集中不存在该指标（常见但未采集）。拒答而非编造。",
+      "expected": "数据集中不存在该指标（常见但未采集）。拒答而非编造。",
+      "error": null,
+      "latency_ms": 758.43,
+      "verdict": {
+        "case_id": "ab-029",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "answer_kind": "refusal",
+        "task_id": "c35c1506775a",
+        "upstream_latency_ms": 3.5
+      }
+    },
+    {
+      "case_id": "ab-030",
+      "input": "写一段上月销售总结",
+      "output": "这不是经营数据查询类问题（或需要数据集中不存在的信息），拒答以避免编造",
+      "expected": "这不是经营数据查询类问题（或需要数据集中不存在的信息），拒答以避免编造",
+      "error": null,
+      "latency_ms": 763.68,
+      "verdict": {
+        "case_id": "ab-030",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "answer_kind": "refusal",
+        "task_id": "61c578065eb8",
+        "upstream_latency_ms": 3.2
+      }
+    }
+  ]
+}
