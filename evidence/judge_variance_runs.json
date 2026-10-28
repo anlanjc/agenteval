@@ -1,0 +1,2547 @@
+{
+ "phase1": {
+  "runs": [
+   {
+    "run": 1,
+    "rows": [
+     {
+      "case_id": "c-01",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-02",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-03",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-04",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-05",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-06",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-07",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-08",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-09",
+      "golden": "pass",
+      "overall": 4.8,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 4.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-10",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-11",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-12",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-13",
+      "golden": "pass",
+      "overall": 4.5,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 4.0,
+       "format": 4.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-14",
+      "golden": "pass",
+      "overall": 4.8,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 4.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-15",
+      "golden": "pass",
+      "overall": 4.8,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 4.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-16",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-17",
+      "golden": "pass",
+      "overall": 4.8,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 4.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-18",
+      "golden": "pass",
+      "overall": 4.8,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 4.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-19",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-20",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-21",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-22",
+      "golden": "pass",
+      "overall": 4.3,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 4.0,
+       "format": 3.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-23",
+      "golden": "pass",
+      "overall": 4.1,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 4.0,
+       "format": 2.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-24",
+      "golden": "pass",
+      "overall": 4.4,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 2.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-25",
+      "golden": "fail",
+      "overall": 4.0,
+      "scores": {
+       "correctness": 3.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-26",
+      "golden": "fail",
+      "overall": 2.6,
+      "scores": {
+       "correctness": 1.0,
+       "faithfulness": 5.0,
+       "format": 3.0
+      },
+      "passed": false,
+      "error": null
+     },
+     {
+      "case_id": "c-27",
+      "golden": "fail",
+      "overall": 2.6,
+      "scores": {
+       "correctness": 1.0,
+       "faithfulness": 5.0,
+       "format": 3.0
+      },
+      "passed": false,
+      "error": null
+     },
+     {
+      "case_id": "c-28",
+      "golden": "fail",
+      "overall": 1.4,
+      "scores": {
+       "correctness": 1.0,
+       "faithfulness": 1.0,
+       "format": 3.0
+      },
+      "passed": false,
+      "error": null
+     },
+     {
+      "case_id": "c-29",
+      "golden": "fail",
+      "overall": 1.0,
+      "scores": {
+       "correctness": 1.0,
+       "faithfulness": 1.0,
+       "format": 1.0
+      },
+      "passed": false,
+      "error": null
+     },
+     {
+      "case_id": "c-30",
+      "golden": "fail",
+      "overall": 1.4,
+      "scores": {
+       "correctness": 1.0,
+       "faithfulness": 1.0,
+       "format": 3.0
+      },
+      "passed": false,
+      "error": null
+     }
+    ],
+    "accuracy": 0.9667,
+    "kappa": 0.8889,
+    "confusion": {
+     "fail->fail": 5,
+     "fail->pass": 1,
+     "pass->fail": 0,
+     "pass->pass": 24
+    },
+    "preds": {
+     "c-01": "pass",
+     "c-02": "pass",
+     "c-03": "pass",
+     "c-04": "pass",
+     "c-05": "pass",
+     "c-06": "pass",
+     "c-07": "pass",
+     "c-08": "pass",
+     "c-09": "pass",
+     "c-10": "pass",
+     "c-11": "pass",
+     "c-12": "pass",
+     "c-13": "pass",
+     "c-14": "pass",
+     "c-15": "pass",
+     "c-16": "pass",
+     "c-17": "pass",
+     "c-18": "pass",
+     "c-19": "pass",
+     "c-20": "pass",
+     "c-21": "pass",
+     "c-22": "pass",
+     "c-23": "pass",
+     "c-24": "pass",
+     "c-25": "pass",
+     "c-26": "fail",
+     "c-27": "fail",
+     "c-28": "fail",
+     "c-29": "fail",
+     "c-30": "fail"
+    }
+   },
+   {
+    "run": 2,
+    "rows": [
+     {
+      "case_id": "c-01",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-02",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-03",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-04",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-05",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-06",
+      "golden": "pass",
+      "overall": 4.8,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 4.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-07",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-08",
+      "golden": "pass",
+      "overall": 4.3,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 4.0,
+       "format": 3.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-09",
+      "golden": "pass",
+      "overall": 4.8,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 4.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-10",
+      "golden": "pass",
+      "overall": 4.8,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 4.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-11",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-12",
+      "golden": "pass",
+      "overall": 4.8,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 4.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-13",
+      "golden": "pass",
+      "overall": 4.8,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 4.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-14",
+      "golden": "pass",
+      "overall": 4.8,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 4.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-15",
+      "golden": "pass",
+      "overall": 4.8,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 4.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-16",
+      "golden": "pass",
+      "overall": 4.8,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 4.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-17",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-18",
+      "golden": "pass",
+      "overall": 4.8,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 4.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-19",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-20",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-21",
+      "golden": "pass",
+      "overall": 4.6,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 3.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-22",
+      "golden": "pass",
+      "overall": 4.3,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 4.0,
+       "format": 3.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-23",
+      "golden": "pass",
+      "overall": 4.6,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 3.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-24",
+      "golden": "pass",
+      "overall": 4.8,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 4.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-25",
+      "golden": "fail",
+      "overall": 4.0,
+      "scores": {
+       "correctness": 3.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-26",
+      "golden": "fail",
+      "overall": 1.9,
+      "scores": {
+       "correctness": 1.0,
+       "faithfulness": 4.0,
+       "format": 1.0
+      },
+      "passed": false,
+      "error": null
+     },
+     {
+      "case_id": "c-27",
+      "golden": "fail",
+      "overall": 2.6,
+      "scores": {
+       "correctness": 1.0,
+       "faithfulness": 5.0,
+       "format": 3.0
+      },
+      "passed": false,
+      "error": null
+     },
+     {
+      "case_id": "c-28",
+      "golden": "fail",
+      "overall": 1.4,
+      "scores": {
+       "correctness": 1.0,
+       "faithfulness": 1.0,
+       "format": 3.0
+      },
+      "passed": false,
+      "error": null
+     },
+     {
+      "case_id": "c-29",
+      "golden": "fail",
+      "overall": 1.0,
+      "scores": {
+       "correctness": 1.0,
+       "faithfulness": 1.0,
+       "format": 1.0
+      },
+      "passed": false,
+      "error": null
+     },
+     {
+      "case_id": "c-30",
+      "golden": "fail",
+      "overall": 1.6,
+      "scores": {
+       "correctness": 1.0,
+       "faithfulness": 1.0,
+       "format": 4.0
+      },
+      "passed": false,
+      "error": null
+     }
+    ],
+    "accuracy": 0.9667,
+    "kappa": 0.8889,
+    "confusion": {
+     "fail->fail": 5,
+     "fail->pass": 1,
+     "pass->fail": 0,
+     "pass->pass": 24
+    },
+    "preds": {
+     "c-01": "pass",
+     "c-02": "pass",
+     "c-03": "pass",
+     "c-04": "pass",
+     "c-05": "pass",
+     "c-06": "pass",
+     "c-07": "pass",
+     "c-08": "pass",
+     "c-09": "pass",
+     "c-10": "pass",
+     "c-11": "pass",
+     "c-12": "pass",
+     "c-13": "pass",
+     "c-14": "pass",
+     "c-15": "pass",
+     "c-16": "pass",
+     "c-17": "pass",
+     "c-18": "pass",
+     "c-19": "pass",
+     "c-20": "pass",
+     "c-21": "pass",
+     "c-22": "pass",
+     "c-23": "pass",
+     "c-24": "pass",
+     "c-25": "pass",
+     "c-26": "fail",
+     "c-27": "fail",
+     "c-28": "fail",
+     "c-29": "fail",
+     "c-30": "fail"
+    }
+   },
+   {
+    "run": 3,
+    "rows": [
+     {
+      "case_id": "c-01",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-02",
+      "golden": "pass",
+      "overall": 4.8,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 4.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-03",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-04",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-05",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-06",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-07",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-08",
+      "golden": "pass",
+      "overall": 4.8,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 4.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-09",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-10",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-11",
+      "golden": "pass",
+      "overall": 4.8,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 4.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-12",
+      "golden": "pass",
+      "overall": 4.8,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 4.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-13",
+      "golden": "pass",
+      "overall": 4.8,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 4.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-14",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-15",
+      "golden": "pass",
+      "overall": 4.8,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 4.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-16",
+      "golden": "pass",
+      "overall": 4.8,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 4.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-17",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-18",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-19",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-20",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-21",
+      "golden": "pass",
+      "overall": 4.8,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 4.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-22",
+      "golden": "pass",
+      "overall": 4.6,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 3.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-23",
+      "golden": "pass",
+      "overall": 3.8,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 3.0,
+       "format": 2.0
+      },
+      "passed": false,
+      "error": null
+     },
+     {
+      "case_id": "c-24",
+      "golden": "pass",
+      "overall": 4.4,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 2.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-25",
+      "golden": "fail",
+      "overall": 4.0,
+      "scores": {
+       "correctness": 3.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-26",
+      "golden": "fail",
+      "overall": 2.2,
+      "scores": {
+       "correctness": 1.0,
+       "faithfulness": 5.0,
+       "format": 1.0
+      },
+      "passed": false,
+      "error": null
+     },
+     {
+      "case_id": "c-27",
+      "golden": "fail",
+      "overall": 2.1,
+      "scores": {
+       "correctness": 1.0,
+       "faithfulness": 4.0,
+       "format": 2.0
+      },
+      "passed": false,
+      "error": null
+     },
+     {
+      "case_id": "c-28",
+      "golden": "fail",
+      "overall": 1.4,
+      "scores": {
+       "correctness": 1.0,
+       "faithfulness": 1.0,
+       "format": 3.0
+      },
+      "passed": false,
+      "error": null
+     },
+     {
+      "case_id": "c-29",
+      "golden": "fail",
+      "overall": 1.0,
+      "scores": {
+       "correctness": 1.0,
+       "faithfulness": 1.0,
+       "format": 1.0
+      },
+      "passed": false,
+      "error": null
+     },
+     {
+      "case_id": "c-30",
+      "golden": "fail",
+      "overall": 1.6,
+      "scores": {
+       "correctness": 1.0,
+       "faithfulness": 1.0,
+       "format": 4.0
+      },
+      "passed": false,
+      "error": null
+     }
+    ],
+    "accuracy": 0.9333,
+    "kappa": 0.7917,
+    "confusion": {
+     "fail->fail": 5,
+     "fail->pass": 1,
+     "pass->fail": 1,
+     "pass->pass": 23
+    },
+    "preds": {
+     "c-01": "pass",
+     "c-02": "pass",
+     "c-03": "pass",
+     "c-04": "pass",
+     "c-05": "pass",
+     "c-06": "pass",
+     "c-07": "pass",
+     "c-08": "pass",
+     "c-09": "pass",
+     "c-10": "pass",
+     "c-11": "pass",
+     "c-12": "pass",
+     "c-13": "pass",
+     "c-14": "pass",
+     "c-15": "pass",
+     "c-16": "pass",
+     "c-17": "pass",
+     "c-18": "pass",
+     "c-19": "pass",
+     "c-20": "pass",
+     "c-21": "pass",
+     "c-22": "pass",
+     "c-23": "fail",
+     "c-24": "pass",
+     "c-25": "pass",
+     "c-26": "fail",
+     "c-27": "fail",
+     "c-28": "fail",
+     "c-29": "fail",
+     "c-30": "fail"
+    }
+   },
+   {
+    "run": 4,
+    "rows": [
+     {
+      "case_id": "c-01",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-02",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-03",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-04",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-05",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-06",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-07",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-08",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-09",
+      "golden": "pass",
+      "overall": 4.8,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 4.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-10",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-11",
+      "golden": "pass",
+      "overall": 4.6,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 3.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-12",
+      "golden": "pass",
+      "overall": 4.6,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 3.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-13",
+      "golden": "pass",
+      "overall": 4.6,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 3.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-14",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-15",
+      "golden": "pass",
+      "overall": 4.8,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 4.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-16",
+      "golden": "pass",
+      "overall": 4.8,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 4.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-17",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-18",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-19",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-20",
+      "golden": "pass",
+      "overall": 4.8,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 4.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-21",
+      "golden": "pass",
+      "overall": 4.8,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 4.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-22",
+      "golden": "pass",
+      "overall": 4.6,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 3.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-23",
+      "golden": "pass",
+      "overall": 4.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 3.0,
+       "format": 3.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-24",
+      "golden": "pass",
+      "overall": 4.6,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 3.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-25",
+      "golden": "fail",
+      "overall": 4.0,
+      "scores": {
+       "correctness": 3.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-26",
+      "golden": "fail",
+      "overall": 1.8,
+      "scores": {
+       "correctness": 1.0,
+       "faithfulness": 3.0,
+       "format": 2.0
+      },
+      "passed": false,
+      "error": null
+     },
+     {
+      "case_id": "c-27",
+      "golden": "fail",
+      "overall": 2.6,
+      "scores": {
+       "correctness": 1.0,
+       "faithfulness": 5.0,
+       "format": 3.0
+      },
+      "passed": false,
+      "error": null
+     },
+     {
+      "case_id": "c-28",
+      "golden": "fail",
+      "overall": 1.4,
+      "scores": {
+       "correctness": 1.0,
+       "faithfulness": 1.0,
+       "format": 3.0
+      },
+      "passed": false,
+      "error": null
+     },
+     {
+      "case_id": "c-29",
+      "golden": "fail",
+      "overall": 1.2,
+      "scores": {
+       "correctness": 1.0,
+       "faithfulness": 1.0,
+       "format": 2.0
+      },
+      "passed": false,
+      "error": null
+     },
+     {
+      "case_id": "c-30",
+      "golden": "fail",
+      "overall": 1.6,
+      "scores": {
+       "correctness": 1.0,
+       "faithfulness": 1.0,
+       "format": 4.0
+      },
+      "passed": false,
+      "error": null
+     }
+    ],
+    "accuracy": 0.9667,
+    "kappa": 0.8889,
+    "confusion": {
+     "fail->fail": 5,
+     "fail->pass": 1,
+     "pass->fail": 0,
+     "pass->pass": 24
+    },
+    "preds": {
+     "c-01": "pass",
+     "c-02": "pass",
+     "c-03": "pass",
+     "c-04": "pass",
+     "c-05": "pass",
+     "c-06": "pass",
+     "c-07": "pass",
+     "c-08": "pass",
+     "c-09": "pass",
+     "c-10": "pass",
+     "c-11": "pass",
+     "c-12": "pass",
+     "c-13": "pass",
+     "c-14": "pass",
+     "c-15": "pass",
+     "c-16": "pass",
+     "c-17": "pass",
+     "c-18": "pass",
+     "c-19": "pass",
+     "c-20": "pass",
+     "c-21": "pass",
+     "c-22": "pass",
+     "c-23": "pass",
+     "c-24": "pass",
+     "c-25": "pass",
+     "c-26": "fail",
+     "c-27": "fail",
+     "c-28": "fail",
+     "c-29": "fail",
+     "c-30": "fail"
+    }
+   },
+   {
+    "run": 5,
+    "rows": [
+     {
+      "case_id": "c-01",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-02",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-03",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-04",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-05",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-06",
+      "golden": "pass",
+      "overall": 4.8,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 4.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-07",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-08",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-09",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-10",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-11",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-12",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-13",
+      "golden": "pass",
+      "overall": 4.6,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 3.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-14",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-15",
+      "golden": "pass",
+      "overall": 4.8,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 4.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-16",
+      "golden": "pass",
+      "overall": 4.8,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 4.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-17",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-18",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-19",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-20",
+      "golden": "pass",
+      "overall": 5.0,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-21",
+      "golden": "pass",
+      "overall": 4.8,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 4.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-22",
+      "golden": "pass",
+      "overall": 4.4,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 2.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-23",
+      "golden": "pass",
+      "overall": 3.8,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 3.0,
+       "format": 2.0
+      },
+      "passed": false,
+      "error": null
+     },
+     {
+      "case_id": "c-24",
+      "golden": "pass",
+      "overall": 4.6,
+      "scores": {
+       "correctness": 5.0,
+       "faithfulness": 5.0,
+       "format": 3.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-25",
+      "golden": "fail",
+      "overall": 4.0,
+      "scores": {
+       "correctness": 3.0,
+       "faithfulness": 5.0,
+       "format": 5.0
+      },
+      "passed": true,
+      "error": null
+     },
+     {
+      "case_id": "c-26",
+      "golden": "fail",
+      "overall": 1.5,
+      "scores": {
+       "correctness": 1.0,
+       "faithfulness": 2.0,
+       "format": 2.0
+      },
+      "passed": false,
+      "error": null
+     },
+     {
+      "case_id": "c-27",
+      "golden": "fail",
+      "overall": 2.6,
+      "scores": {
+       "correctness": 1.0,
+       "faithfulness": 5.0,
+       "format": 3.0
+      },
+      "passed": false,
+      "error": null
+     },
+     {
+      "case_id": "c-28",
+      "golden": "fail",
+      "overall": 1.4,
+      "scores": {
+       "correctness": 1.0,
+       "faithfulness": 1.0,
+       "format": 3.0
+      },
+      "passed": false,
+      "error": null
+     },
+     {
+      "case_id": "c-29",
+      "golden": "fail",
+      "overall": 1.0,
+      "scores": {
+       "correctness": 1.0,
+       "faithfulness": 1.0,
+       "format": 1.0
+      },
+      "passed": false,
+      "error": null
+     },
+     {
+      "case_id": "c-30",
+      "golden": "fail",
+      "overall": 1.6,
+      "scores": {
+       "correctness": 1.0,
+       "faithfulness": 1.0,
+       "format": 4.0
+      },
+      "passed": false,
+      "error": null
+     }
+    ],
+    "accuracy": 0.9333,
+    "kappa": 0.7917,
+    "confusion": {
+     "fail->fail": 5,
+     "fail->pass": 1,
+     "pass->fail": 1,
+     "pass->pass": 23
+    },
+    "preds": {
+     "c-01": "pass",
+     "c-02": "pass",
+     "c-03": "pass",
+     "c-04": "pass",
+     "c-05": "pass",
+     "c-06": "pass",
+     "c-07": "pass",
+     "c-08": "pass",
+     "c-09": "pass",
+     "c-10": "pass",
+     "c-11": "pass",
+     "c-12": "pass",
+     "c-13": "pass",
+     "c-14": "pass",
+     "c-15": "pass",
+     "c-16": "pass",
+     "c-17": "pass",
+     "c-18": "pass",
+     "c-19": "pass",
+     "c-20": "pass",
+     "c-21": "pass",
+     "c-22": "pass",
+     "c-23": "fail",
+     "c-24": "pass",
+     "c-25": "pass",
+     "c-26": "fail",
+     "c-27": "fail",
+     "c-28": "fail",
+     "c-29": "fail",
+     "c-30": "fail"
+    }
+   }
+  ],
+  "pairwise": [
+   {
+    "runs": "1vs2",
+    "kappa": 1.0
+   },
+   {
+    "runs": "1vs3",
+    "kappa": 0.8889
+   },
+   {
+    "runs": "1vs4",
+    "kappa": 1.0
+   },
+   {
+    "runs": "1vs5",
+    "kappa": 0.8889
+   },
+   {
+    "runs": "2vs3",
+    "kappa": 0.8889
+   },
+   {
+    "runs": "2vs4",
+    "kappa": 1.0
+   },
+   {
+    "runs": "2vs5",
+    "kappa": 0.8889
+   },
+   {
+    "runs": "3vs4",
+    "kappa": 0.8889
+   },
+   {
+    "runs": "3vs5",
+    "kappa": 1.0
+   },
+   {
+    "runs": "4vs5",
+    "kappa": 0.8889
+   }
+  ],
+  "volatility": {
+   "c-01": {
+    "std": 0.0,
+    "range": 0.0,
+    "mean": 5.0
+   },
+   "c-02": {
+    "std": 0.0894,
+    "range": 0.2,
+    "mean": 4.96
+   },
+   "c-03": {
+    "std": 0.0,
+    "range": 0.0,
+    "mean": 5.0
+   },
+   "c-04": {
+    "std": 0.0,
+    "range": 0.0,
+    "mean": 5.0
+   },
+   "c-05": {
+    "std": 0.0,
+    "range": 0.0,
+    "mean": 5.0
+   },
+   "c-06": {
+    "std": 0.1095,
+    "range": 0.2,
+    "mean": 4.92
+   },
+   "c-07": {
+    "std": 0.0,
+    "range": 0.0,
+    "mean": 5.0
+   },
+   "c-08": {
+    "std": 0.3033,
+    "range": 0.7,
+    "mean": 4.82
+   },
+   "c-09": {
+    "std": 0.1095,
+    "range": 0.2,
+    "mean": 4.88
+   },
+   "c-10": {
+    "std": 0.0894,
+    "range": 0.2,
+    "mean": 4.96
+   },
+   "c-11": {
+    "std": 0.1789,
+    "range": 0.4,
+    "mean": 4.88
+   },
+   "c-12": {
+    "std": 0.1673,
+    "range": 0.4,
+    "mean": 4.84
+   },
+   "c-13": {
+    "std": 0.1342,
+    "range": 0.3,
+    "mean": 4.66
+   },
+   "c-14": {
+    "std": 0.1095,
+    "range": 0.2,
+    "mean": 4.92
+   },
+   "c-15": {
+    "std": 0.0,
+    "range": 0.0,
+    "mean": 4.8
+   },
+   "c-16": {
+    "std": 0.0894,
+    "range": 0.2,
+    "mean": 4.84
+   },
+   "c-17": {
+    "std": 0.0894,
+    "range": 0.2,
+    "mean": 4.96
+   },
+   "c-18": {
+    "std": 0.1095,
+    "range": 0.2,
+    "mean": 4.92
+   },
+   "c-19": {
+    "std": 0.0,
+    "range": 0.0,
+    "mean": 5.0
+   },
+   "c-20": {
+    "std": 0.0894,
+    "range": 0.2,
+    "mean": 4.96
+   },
+   "c-21": {
+    "std": 0.1414,
+    "range": 0.4,
+    "mean": 4.8
+   },
+   "c-22": {
+    "std": 0.1517,
+    "range": 0.3,
+    "mean": 4.44
+   },
+   "c-23": {
+    "std": 0.3286,
+    "range": 0.8,
+    "mean": 4.06
+   },
+   "c-24": {
+    "std": 0.1673,
+    "range": 0.4,
+    "mean": 4.56
+   },
+   "c-25": {
+    "std": 0.0,
+    "range": 0.0,
+    "mean": 4.0
+   },
+   "c-26": {
+    "std": 0.4183,
+    "range": 1.1,
+    "mean": 2.0
+   },
+   "c-27": {
+    "std": 0.2236,
+    "range": 0.5,
+    "mean": 2.5
+   },
+   "c-28": {
+    "std": 0.0,
+    "range": 0.0,
+    "mean": 1.4
+   },
+   "c-29": {
+    "std": 0.0894,
+    "range": 0.2,
+    "mean": 1.04
+   },
+   "c-30": {
+    "std": 0.0894,
+    "range": 0.2,
+    "mean": 1.56
+   }
+  },
+  "flip_cases": [
+   "c-23"
+  ],
+  "majority_kappa": 0.8889,
+  "bootstrap_ci": [
+   0.6154,
+   1.0
+  ]
+ },
+ "phase2": [
+  {
+   "case_id": "c-01",
+   "golden": "pass",
+   "overall_normal": 5.0,
+   "overall_flipped": 5.0,
+   "delta": 0.0
+  },
+  {
+   "case_id": "c-02",
+   "golden": "pass",
+   "overall_normal": 5.0,
+   "overall_flipped": 5.0,
+   "delta": 0.0
+  },
+  {
+   "case_id": "c-03",
+   "golden": "pass",
+   "overall_normal": 5.0,
+   "overall_flipped": 4.8,
+   "delta": -0.2
+  },
+  {
+   "case_id": "c-04",
+   "golden": "pass",
+   "overall_normal": 5.0,
+   "overall_flipped": 5.0,
+   "delta": 0.0
+  },
+  {
+   "case_id": "c-05",
+   "golden": "pass",
+   "overall_normal": 5.0,
+   "overall_flipped": 4.8,
+   "delta": -0.2
+  },
+  {
+   "case_id": "c-06",
+   "golden": "pass",
+   "overall_normal": 4.8,
+   "overall_flipped": 5.0,
+   "delta": 0.2
+  },
+  {
+   "case_id": "c-07",
+   "golden": "pass",
+   "overall_normal": 5.0,
+   "overall_flipped": 4.8,
+   "delta": -0.2
+  },
+  {
+   "case_id": "c-08",
+   "golden": "pass",
+   "overall_normal": 5.0,
+   "overall_flipped": 4.6,
+   "delta": -0.4
+  },
+  {
+   "case_id": "c-09",
+   "golden": "pass",
+   "overall_normal": 5.0,
+   "overall_flipped": 5.0,
+   "delta": 0.0
+  },
+  {
+   "case_id": "c-10",
+   "golden": "pass",
+   "overall_normal": 5.0,
+   "overall_flipped": 4.8,
+   "delta": -0.2
+  },
+  {
+   "case_id": "c-11",
+   "golden": "pass",
+   "overall_normal": 5.0,
+   "overall_flipped": 4.8,
+   "delta": -0.2
+  },
+  {
+   "case_id": "c-12",
+   "golden": "pass",
+   "overall_normal": 5.0,
+   "overall_flipped": 5.0,
+   "delta": 0.0
+  },
+  {
+   "case_id": "c-13",
+   "golden": "pass",
+   "overall_normal": 4.6,
+   "overall_flipped": 4.6,
+   "delta": 0.0
+  },
+  {
+   "case_id": "c-14",
+   "golden": "pass",
+   "overall_normal": 5.0,
+   "overall_flipped": 5.0,
+   "delta": 0.0
+  },
+  {
+   "case_id": "c-15",
+   "golden": "pass",
+   "overall_normal": 4.8,
+   "overall_flipped": 4.6,
+   "delta": -0.2
+  },
+  {
+   "case_id": "c-16",
+   "golden": "pass",
+   "overall_normal": 4.8,
+   "overall_flipped": 5.0,
+   "delta": 0.2
+  },
+  {
+   "case_id": "c-17",
+   "golden": "pass",
+   "overall_normal": 5.0,
+   "overall_flipped": 5.0,
+   "delta": 0.0
+  },
+  {
+   "case_id": "c-18",
+   "golden": "pass",
+   "overall_normal": 5.0,
+   "overall_flipped": 4.8,
+   "delta": -0.2
+  },
+  {
+   "case_id": "c-19",
+   "golden": "pass",
+   "overall_normal": 5.0,
+   "overall_flipped": 5.0,
+   "delta": 0.0
+  },
+  {
+   "case_id": "c-20",
+   "golden": "pass",
+   "overall_normal": 5.0,
+   "overall_flipped": 4.8,
+   "delta": -0.2
+  },
+  {
+   "case_id": "c-21",
+   "golden": "pass",
+   "overall_normal": 4.8,
+   "overall_flipped": 4.8,
+   "delta": 0.0
+  },
+  {
+   "case_id": "c-22",
+   "golden": "pass",
+   "overall_normal": 4.4,
+   "overall_flipped": 3.6,
+   "delta": -0.8
+  },
+  {
+   "case_id": "c-23",
+   "golden": "pass",
+   "overall_normal": 3.8,
+   "overall_flipped": 4.4,
+   "delta": 0.6
+  },
+  {
+   "case_id": "c-24",
+   "golden": "pass",
+   "overall_normal": 4.6,
+   "overall_flipped": 4.4,
+   "delta": -0.2
+  },
+  {
+   "case_id": "c-25",
+   "golden": "fail",
+   "overall_normal": 4.0,
+   "overall_flipped": 4.0,
+   "delta": 0.0
+  },
+  {
+   "case_id": "c-26",
+   "golden": "fail",
+   "overall_normal": 1.5,
+   "overall_flipped": 2.1,
+   "delta": 0.6
+  },
+  {
+   "case_id": "c-27",
+   "golden": "fail",
+   "overall_normal": 2.6,
+   "overall_flipped": 2.6,
+   "delta": 0.0
+  },
+  {
+   "case_id": "c-28",
+   "golden": "fail",
+   "overall_normal": 1.4,
+   "overall_flipped": 1.4,
+   "delta": 0.0
+  },
+  {
+   "case_id": "c-29",
+   "golden": "fail",
+   "overall_normal": 1.0,
+   "overall_flipped": 1.2,
+   "delta": 0.2
+  },
+  {
+   "case_id": "c-30",
+   "golden": "fail",
+   "overall_normal": 1.6,
+   "overall_flipped": 1.8,
+   "delta": 0.2
+  }
+ ],
+ "phase3": [
+  {
+   "case_id": "c-01",
+   "input": "杭州公积金租房提取每月最多能提多少",
+   "a_is_good": true,
+   "choice_normal": "A",
+   "choice_flipped": "B",
+   "picked_good_normal": true,
+   "picked_good_flipped": true,
+   "consistent": true
+  },
+  {
+   "case_id": "c-02",
+   "input": "北京租房提取公积金每月限额是多少",
+   "a_is_good": false,
+   "choice_normal": "B",
+   "choice_flipped": "A",
+   "picked_good_normal": true,
+   "picked_good_flipped": true,
+   "consistent": true
+  },
+  {
+   "case_id": "c-03",
+   "input": "上海家庭买首套房公积金贷款最高额度",
+   "a_is_good": true,
+   "choice_normal": "A",
+   "choice_flipped": "B",
+   "picked_good_normal": true,
+   "picked_good_flipped": true,
+   "consistent": true
+  },
+  {
+   "case_id": "c-04",
+   "input": "公积金异地转移接续多久办完",
+   "a_is_good": false,
+   "choice_normal": "B",
+   "choice_flipped": "A",
+   "picked_good_normal": true,
+   "picked_good_flipped": true,
+   "consistent": true
+  },
+  {
+   "case_id": "c-05",
+   "input": "杭州和北京租房提取限额对比",
+   "a_is_good": true,
+   "choice_normal": "A",
+   "choice_flipped": "B",
+   "picked_good_normal": true,
+   "picked_good_flipped": true,
+   "consistent": true
+  },
+  {
+   "case_id": "c-11",
+   "input": "离职后公积金怎么提取",
+   "a_is_good": false,
+   "choice_normal": "B",
+   "choice_flipped": "A",
+   "picked_good_normal": true,
+   "picked_good_flipped": true,
+   "consistent": true
+  },
+  {
+   "case_id": "c-12",
+   "input": "杭州公积金贷款额度怎么算",
+   "a_is_good": true,
+   "choice_normal": "A",
+   "choice_flipped": "B",
+   "picked_good_normal": true,
+   "picked_good_flipped": true,
+   "consistent": true
+  },
+  {
+   "case_id": "c-14",
+   "input": "上月订单量是多少",
+   "a_is_good": false,
+   "choice_normal": "B",
+   "choice_flipped": "A",
+   "picked_good_normal": true,
+   "picked_good_flipped": true,
+   "consistent": true
+  },
+  {
+   "case_id": "c-19",
+   "input": "上海公积金缴存基数上限",
+   "a_is_good": true,
+   "choice_normal": "A",
+   "choice_flipped": "A",
+   "picked_good_normal": true,
+   "picked_good_flipped": false,
+   "consistent": false
+  },
+  {
+   "case_id": "c-20",
+   "input": "上月新客数与客单价",
+   "a_is_good": false,
+   "choice_normal": "B",
+   "choice_flipped": "A",
+   "picked_good_normal": true,
+   "picked_good_flipped": true,
+   "consistent": true
+  }
+ ]
+}

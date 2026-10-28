@@ -1,0 +1,5 @@
+{
+ "calls": 230,
+ "est_cost_yuan": 1.702,
+ "price_assumption": "¥4.0/M in ¥12.0/M out × ~1400in/150out 每次（judge 不透出 usage，按调用数估）"
+}

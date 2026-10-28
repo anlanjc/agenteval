@@ -1,0 +1,2 @@
+agenteval pytest 全量（2026-10-29，SM-1 会话）：95 passed
+（summary 行被 pytest 输出吞没，按进度点计数 72+23=95；judge.py 本次零改动，测试数与上窗口一致）
