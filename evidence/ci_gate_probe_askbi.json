@@ -1,0 +1,1046 @@
+[
+ {
+  "id": "v2-001",
+  "kind": "query",
+  "role": "boss",
+  "q": "上个月的总销售额是多少",
+  "out": "销售额为 3,988,676.33元（指标口径｜销售额：折后销售额 = Σ(数量×单价×(1-折扣))，含所有订单状态）",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-002",
+  "kind": "query",
+  "role": "boss",
+  "q": "上月订单量有多少",
+  "out": "订单量为 4,593（指标口径｜订单量：去重订单数，含所有状态）",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-003",
+  "kind": "query",
+  "role": "boss",
+  "q": "上个月一共卖了多少件商品",
+  "out": "销量为 17,387（指标口径｜销量：售出商品件数（订单行数量求和））",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-004",
+  "kind": "query",
+  "role": "boss",
+  "q": "上月客单价是多少",
+  "out": "客单价为 868.43元（指标口径｜客单价：折后销售额 / 去重订单数）",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-005",
+  "kind": "query",
+  "role": "boss",
+  "q": "上个月的毛利额",
+  "out": "毛利额为 1,273,550.74元（指标口径｜毛利额：折后销售额 − 供货成本（数量×单件供货成本））",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-006",
+  "kind": "query",
+  "role": "boss",
+  "q": "上月毛利率是多少",
+  "out": "毛利率为 31.93%（指标口径｜毛利率：毛利额 / 折后销售额）",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-007",
+  "kind": "query",
+  "role": "boss",
+  "q": "上个月的退货率",
+  "out": "退货率为 2.86%（指标口径｜退货率：已退货订单销售额 / 总销售额（按金额计））",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-008",
+  "kind": "query",
+  "role": "boss",
+  "q": "上月有多少购买客户",
+  "out": "购买客户数为 4,106（指标口径｜购买客户数：期间内有成交的去重客户数）",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-009",
+  "kind": "query",
+  "role": "boss",
+  "q": "最近3个月销售额是多少",
+  "out": "销售额为 12,021,555.04元（指标口径｜销售额：折后销售额 = Σ(数量×单价×(1-折扣))，含所有订单状态）",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-010",
+  "kind": "query",
+  "role": "boss",
+  "q": "最近6个月的订单量",
+  "out": "订单量为 28,027（指标口径｜订单量：去重订单数，含所有状态）",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-011",
+  "kind": "query",
+  "role": "boss",
+  "q": "最近12个月的客单价",
+  "out": "客单价为 876.68元（指标口径｜客单价：折后销售额 / 去重订单数）",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-012",
+  "kind": "query",
+  "role": "boss",
+  "q": "2024年10月到2025年3月的销售额",
+  "out": "销售额为 21,303,945.59元（指标口径｜销售额：折后销售额 = Σ(数量×单价×(1-折扣))，含所有订单状态）",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-013",
+  "kind": "query",
+  "role": "boss",
+  "q": "上月净销售额是多少",
+  "out": "净销售额为 3,874,674.11元（指标口径｜净销售额：折后销售额剔除已退货订单（与销售额的差即退货金额，两口径并存供对照））",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-014",
+  "kind": "query",
+  "role": "boss",
+  "q": "全部时间内总销售额",
+  "out": "销售额为 91,917,479.90元（指标口径｜销售额：折后销售额 = Σ(数量×单价×(1-折扣))，含所有订单状态）",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-015",
+  "kind": "query",
+  "role": "boss",
+  "q": "各品类销售额",
+  "out": "已按 category 输出销售额明细，共 6 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-016",
+  "kind": "query",
+  "role": "boss",
+  "q": "各大区毛利率",
+  "out": "已按 region 输出毛利率明细，共 7 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-017",
+  "kind": "query",
+  "role": "boss",
+  "q": "各渠道订单量",
+  "out": "已按 channel 输出订单量明细，共 5 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-018",
+  "kind": "query",
+  "role": "boss",
+  "q": "各会员等级客单价",
+  "out": "已按 member_level 输出客单价明细，共 4 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-019",
+  "kind": "query",
+  "role": "boss",
+  "q": "各品类退货率",
+  "out": "已按 category 输出退货率明细，共 6 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-020",
+  "kind": "query",
+  "role": "boss",
+  "q": "各大区销售额",
+  "out": "已按 region 输出销售额明细，共 7 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-021",
+  "kind": "query",
+  "role": "boss",
+  "q": "各渠道毛利率",
+  "out": "已按 channel 输出毛利率明细，共 5 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-022",
+  "kind": "query",
+  "role": "boss",
+  "q": "各细分品类销量",
+  "out": "已按 subcategory 输出销量明细，共 21 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-023",
+  "kind": "query",
+  "role": "boss",
+  "q": "各城市销售额",
+  "out": "已按 city 输出销售额明细，共 23 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-024",
+  "kind": "query",
+  "role": "boss",
+  "q": "各省份订单量",
+  "out": "已按 province 输出订单量明细，共 22 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-025",
+  "kind": "query",
+  "role": "boss",
+  "q": "上月各品类净销售额",
+  "out": "已按 category 输出净销售额明细，共 6 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-026",
+  "kind": "query",
+  "role": "boss",
+  "q": "最近3个月各渠道销售额",
+  "out": "已按 channel 输出销售额明细，共 5 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-027",
+  "kind": "query",
+  "role": "boss",
+  "q": "各品类毛利额",
+  "out": "已按 category 输出毛利额明细，共 6 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-028",
+  "kind": "query",
+  "role": "boss",
+  "q": "各会员等级购买客户数",
+  "out": "已按 member_level 输出购买客户数明细，共 4 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-029",
+  "kind": "query",
+  "role": "boss",
+  "q": "各城市毛利率",
+  "out": "已按 city 输出毛利率明细，共 23 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-030",
+  "kind": "query",
+  "role": "boss",
+  "q": "最近6个月各品类退货率",
+  "out": "已按 category 输出退货率明细，共 6 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-031",
+  "kind": "query",
+  "role": "boss",
+  "q": "销售额最高的品类",
+  "out": "已按 category 输出销售额明细，共 6 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-032",
+  "kind": "query",
+  "role": "boss",
+  "q": "哪个大区订单量最多",
+  "out": "已按 region 输出订单量明细，共 7 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-033",
+  "kind": "query",
+  "role": "boss",
+  "q": "销售额排名前3的渠道",
+  "out": "已按 channel 输出销售额明细，共 3 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-034",
+  "kind": "query",
+  "role": "boss",
+  "q": "退货率最高的品类",
+  "out": "已按 category 输出退货率明细，共 6 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-035",
+  "kind": "query",
+  "role": "boss",
+  "q": "客单价最低的会员等级",
+  "out": "已按 member_level 输出客单价明细，共 4 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-036",
+  "kind": "query",
+  "role": "boss",
+  "q": "销量前5的细分品类",
+  "out": "已按 subcategory 输出销量明细，共 5 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-037",
+  "kind": "query",
+  "role": "boss",
+  "q": "毛利率最差的大区",
+  "out": "已按 region 输出毛利率明细，共 7 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-038",
+  "kind": "query",
+  "role": "boss",
+  "q": "购买客户数最多的城市",
+  "out": "已按 city 输出购买客户数明细，共 23 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-039",
+  "kind": "query",
+  "role": "boss",
+  "q": "上月销售额前3的品类",
+  "out": "已按 category 输出销售额明细，共 3 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-040",
+  "kind": "query",
+  "role": "boss",
+  "q": "最近3个月销售额最高的渠道",
+  "out": "已按 channel 输出销售额明细，共 5 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-041",
+  "kind": "query",
+  "role": "boss",
+  "q": "近6个月销售额趋势",
+  "out": "已按 month 输出销售额明细，共 6 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-042",
+  "kind": "query",
+  "role": "boss",
+  "q": "近12个月订单量趋势",
+  "out": "已按 month 输出订单量明细，共 12 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-043",
+  "kind": "query",
+  "role": "boss",
+  "q": "近3个月毛利率走势",
+  "out": "已按 month 输出毛利率明细，共 3 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-044",
+  "kind": "query",
+  "role": "boss",
+  "q": "近12个月客单价趋势",
+  "out": "已按 month 输出客单价明细，共 12 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-045",
+  "kind": "query",
+  "role": "boss",
+  "q": "近6个月美妆品类销售额趋势",
+  "out": "已按 month 输出销售额明细，共 6 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-046",
+  "kind": "query",
+  "role": "boss",
+  "q": "近6个月华南地区退货率趋势",
+  "out": "已按 month 输出退货率明细，共 6 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-047",
+  "kind": "query",
+  "role": "boss",
+  "q": "近12个月直播渠道销量趋势",
+  "out": "已按 month 输出销量明细，共 12 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-048",
+  "kind": "query",
+  "role": "boss",
+  "q": "近3个月黑卡会员客单价趋势",
+  "out": "已按 month 输出客单价明细，共 3 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-049",
+  "kind": "query",
+  "role": "boss",
+  "q": "近6个月销售额逐月走势",
+  "out": "已按 month 输出销售额明细，共 6 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-050",
+  "kind": "query",
+  "role": "boss",
+  "q": "近6个月各渠道销售额趋势",
+  "out": "已按 month×channel 输出销售额明细，共 30 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-051",
+  "kind": "query",
+  "role": "boss",
+  "q": "华南地区上月销售额",
+  "out": "销售额为 1,171,401.49元（指标口径｜销售额：折后销售额 = Σ(数量×单价×(1-折扣))，含所有订单状态）",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-052",
+  "kind": "query",
+  "role": "boss",
+  "q": "美妆品类上月毛利率",
+  "out": "毛利率为 44.02%（指标口径｜毛利率：毛利额 / 折后销售额）",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-053",
+  "kind": "query",
+  "role": "boss",
+  "q": "直播渠道最近3个月订单量",
+  "out": "订单量为 3,244（指标口径｜订单量：去重订单数，含所有状态）",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-054",
+  "kind": "query",
+  "role": "boss",
+  "q": "黑卡会员上月客单价",
+  "out": "客单价为 931.83元（指标口径｜客单价：折后销售额 / 去重订单数）",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-055",
+  "kind": "query",
+  "role": "boss",
+  "q": "食品品类最近6个月退货率",
+  "out": "退货率为 3.21%（指标口径｜退货率：已退货订单销售额 / 总销售额（按金额计））",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-056",
+  "kind": "query",
+  "role": "boss",
+  "q": "华东地区上月毛利额",
+  "out": "毛利额为 325,161.21元（指标口径｜毛利额：折后销售额 − 供货成本（数量×单件供货成本））",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-057",
+  "kind": "query",
+  "role": "boss",
+  "q": "数码品类近12个月销量",
+  "out": "销量为 26,102（指标口径｜销量：售出商品件数（订单行数量求和））",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-058",
+  "kind": "query",
+  "role": "boss",
+  "q": "官网渠道上月净销售额",
+  "out": "净销售额为 1,066,438.95元（指标口径｜净销售额：折后销售额剔除已退货订单（与销售额的差即退货金额，两口径并存供对照））",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-059",
+  "kind": "query",
+  "role": "boss",
+  "q": "银卡会员最近3个月购买客户数",
+  "out": "购买客户数为 2,492（指标口径｜购买客户数：期间内有成交的去重客户数）",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-060",
+  "kind": "query",
+  "role": "boss",
+  "q": "西南地区近6个月订单量",
+  "out": "订单量为 2,432（指标口径｜订单量：去重订单数，含所有状态）",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-061",
+  "kind": "query",
+  "role": "boss",
+  "q": "家居品类上月销售额",
+  "out": "销售额为 717,363.62元（指标口径｜销售额：折后销售额 = Σ(数量×单价×(1-折扣))，含所有订单状态）",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-062",
+  "kind": "query",
+  "role": "boss",
+  "q": "搜索渠道上月毛利率",
+  "out": "毛利率为 32.05%（指标口径｜毛利率：毛利额 / 折后销售额）",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-063",
+  "kind": "query",
+  "role": "boss",
+  "q": "东北地区上月退货率",
+  "out": "退货率为 2.83%（指标口径｜退货率：已退货订单销售额 / 总销售额（按金额计））",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-064",
+  "kind": "query",
+  "role": "boss",
+  "q": "运动品类近3个月客单价",
+  "out": "客单价为 708.16元（指标口径｜客单价：折后销售额 / 去重订单数）",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-065",
+  "kind": "query",
+  "role": "boss",
+  "q": "2024年10月到12月的销售额",
+  "out": "销售额为 11,743,608.34元（指标口径｜销售额：折后销售额 = Σ(数量×单价×(1-折扣))，含所有订单状态）",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-066",
+  "kind": "query",
+  "role": "boss",
+  "q": "2025年1月至2025年6月各品类销售额",
+  "out": "已按 category 输出销售额明细，共 6 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-067",
+  "kind": "query",
+  "role": "boss",
+  "q": "2025年7月到9月的毛利率",
+  "out": "毛利率为 33.62%（指标口径｜毛利率：毛利额 / 折后销售额）",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-068",
+  "kind": "query",
+  "role": "boss",
+  "q": "2024-10至2025-09的订单量",
+  "out": "订单量为 48,840（指标口径｜订单量：去重订单数，含所有状态）",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-069",
+  "kind": "query",
+  "role": "boss",
+  "q": "上月美妆品类的净销售额",
+  "out": "净销售额为 228,370.50元（指标口径｜净销售额：折后销售额剔除已退货订单（与销售额的差即退货金额，两口径并存供对照））",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-070",
+  "kind": "query",
+  "role": "boss",
+  "q": "上月华南地区净销售额",
+  "out": "净销售额为 1,135,020.51元（指标口径｜净销售额：折后销售额剔除已退货订单（与销售额的差即退货金额，两口径并存供对照））",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-071",
+  "kind": "query",
+  "role": "south",
+  "q": "上月各品类销售额",
+  "out": "已按 category 输出销售额明细，共 6 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-072",
+  "kind": "query",
+  "role": "south",
+  "q": "上月销售额",
+  "out": "销售额为 1,171,401.49元（指标口径｜销售额：折后销售额 = Σ(数量×单价×(1-折扣))，含所有订单状态；权限范围：华南（角色 south））",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-073",
+  "kind": "query",
+  "role": "south",
+  "q": "上月各渠道毛利率",
+  "out": "已按 channel 输出毛利率明细，共 5 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-074",
+  "kind": "query",
+  "role": "south",
+  "q": "最近3个月各品类退货率",
+  "out": "已按 category 输出退货率明细，共 6 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-075",
+  "kind": "query",
+  "role": "north",
+  "q": "上月各品类销售额",
+  "out": "已按 category 输出销售额明细，共 6 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-076",
+  "kind": "query",
+  "role": "north",
+  "q": "上月订单量",
+  "out": "订单量为 979（指标口径｜订单量：去重订单数，含所有状态；权限范围：华北+东北（角色 north））",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-077",
+  "kind": "query",
+  "role": "north",
+  "q": "上月各会员等级客单价",
+  "out": "已按 member_level 输出客单价明细，共 4 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-078",
+  "kind": "query",
+  "role": "north",
+  "q": "最近6个月各渠道销售额趋势",
+  "out": "已按 month×channel 输出销售额明细，共 30 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-079",
+  "kind": "query",
+  "role": "south",
+  "q": "上月毛利率",
+  "out": "毛利率为 31.65%（指标口径｜毛利率：毛利额 / 折后销售额；权限范围：华南（角色 south））",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-080",
+  "kind": "query",
+  "role": "north",
+  "q": "上月净销售额",
+  "out": "净销售额为 814,820.36元（指标口径｜净销售额：折后销售额剔除已退货订单（与销售额的差即退货金额，两口径并存供对照）；权限范围：华北+东北（角色 north））",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-081",
+  "kind": "drill",
+  "role": "boss",
+  "q": "为什么上月美妆品类的毛利率下滑了",
+  "out": "毛利率为 44.02%（指标口径｜毛利率：毛利额 / 折后销售额）",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-082",
+  "kind": "drill",
+  "role": "boss",
+  "q": "上个月整体毛利率为什么下滑",
+  "out": "毛利率为 31.93%（指标口径｜毛利率：毛利额 / 折后销售额）",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-083",
+  "kind": "drill",
+  "role": "boss",
+  "q": "为什么最近3个月直播渠道销售额增长",
+  "out": "销售额为 2,792,581.61元（指标口径｜销售额：折后销售额 = Σ(数量×单价×(1-折扣))，含所有订单状态）",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-084",
+  "kind": "drill",
+  "role": "boss",
+  "q": "最近6个月数码品类销售额为什么增长",
+  "out": "销售额为 10,649,065.70元（指标口径｜销售额：折后销售额 = Σ(数量×单价×(1-折扣))，含所有订单状态）",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-085",
+  "kind": "drill",
+  "role": "boss",
+  "q": "为什么上月华南地区退货率升高",
+  "out": "退货率为 3.11%（指标口径｜退货率：已退货订单销售额 / 总销售额（按金额计））",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-086",
+  "kind": "drill",
+  "role": "boss",
+  "q": "分析上月各品类毛利率",
+  "out": "已按 category 输出毛利率明细，共 6 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-087",
+  "kind": "drill",
+  "role": "boss",
+  "q": "对比最近6个月各渠道的销售额变化",
+  "out": "已按 month×channel 输出销售额明细，共 30 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-088",
+  "kind": "drill",
+  "role": "boss",
+  "q": "为什么上月官网渠道的客单价波动",
+  "out": "客单价为 899.58元（指标口径｜客单价：折后销售额 / 去重订单数）",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-089",
+  "kind": "drill",
+  "role": "boss",
+  "q": "归因一下最近3个月各大区销售额的变化",
+  "out": "已按 month×region 输出销售额明细，共 21 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-090",
+  "kind": "drill",
+  "role": "boss",
+  "q": "上月退货率为什么上升",
+  "out": "退货率为 2.86%（指标口径｜退货率：已退货订单销售额 / 总销售额（按金额计））",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-091",
+  "kind": "drill",
+  "role": "boss",
+  "q": "为什么各会员等级的客单价不同",
+  "out": "已按 member_level 输出客单价明细，共 4 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-092",
+  "kind": "drill",
+  "role": "boss",
+  "q": "分析一下上月各渠道的销售额结构",
+  "out": "已按 channel 输出销售额明细，共 5 行",
+  "err": null,
+  "answer_kind": "answer"
+ },
+ {
+  "id": "v2-093",
+  "kind": "clarify",
+  "role": "boss",
+  "q": "卖得怎么样",
+  "out": "你想看哪个指标？",
+  "err": null,
+  "answer_kind": "clarify"
+ },
+ {
+  "id": "v2-094",
+  "kind": "clarify",
+  "role": "boss",
+  "q": "上个月卖得怎么样",
+  "out": "你想看哪个指标？",
+  "err": null,
+  "answer_kind": "clarify"
+ },
+ {
+  "id": "v2-095",
+  "kind": "clarify",
+  "role": "boss",
+  "q": "最近表现怎么样",
+  "out": "你想看哪个指标？",
+  "err": null,
+  "answer_kind": "clarify"
+ },
+ {
+  "id": "v2-096",
+  "kind": "clarify",
+  "role": "boss",
+  "q": "经营情况怎么样",
+  "out": "你想看哪个指标？",
+  "err": null,
+  "answer_kind": "clarify"
+ },
+ {
+  "id": "v2-097",
+  "kind": "clarify",
+  "role": "boss",
+  "q": "帮我看看情况",
+  "out": "你想看哪个指标？",
+  "err": null,
+  "answer_kind": "clarify"
+ },
+ {
+  "id": "v2-098",
+  "kind": "clarify",
+  "role": "boss",
+  "q": "哪个卖得好",
+  "out": "你想看哪个指标？",
+  "err": null,
+  "answer_kind": "clarify"
+ },
+ {
+  "id": "v2-099",
+  "kind": "clarify",
+  "role": "boss",
+  "q": "最近三个月表现如何",
+  "out": "你想看哪个指标？",
+  "err": null,
+  "answer_kind": "clarify"
+ },
+ {
+  "id": "v2-100",
+  "kind": "clarify",
+  "role": "boss",
+  "q": "分析一下销售情况",
+  "out": "你想看哪个指标？",
+  "err": null,
+  "answer_kind": "clarify"
+ },
+ {
+  "id": "v2-101",
+  "kind": "clarify",
+  "role": "boss",
+  "q": "哪个渠道比较好",
+  "out": "你想看哪个指标？",
+  "err": null,
+  "answer_kind": "clarify"
+ },
+ {
+  "id": "v2-102",
+  "kind": "clarify",
+  "role": "boss",
+  "q": "上个月华南的情况怎么样",
+  "out": "你想看哪个指标？",
+  "err": null,
+  "answer_kind": "clarify"
+ },
+ {
+  "id": "v2-103",
+  "kind": "clarify",
+  "role": "boss",
+  "q": "这阵子卖得怎么样",
+  "out": "你想看哪个指标？",
+  "err": null,
+  "answer_kind": "clarify"
+ },
+ {
+  "id": "v2-104",
+  "kind": "clarify",
+  "role": "boss",
+  "q": "数据整体怎么样",
+  "out": "你想看哪个指标？",
+  "err": null,
+  "answer_kind": "clarify"
+ },
+ {
+  "id": "v2-105",
+  "kind": "refusal",
+  "role": "boss",
+  "q": "预测下季度的销售额",
+  "out": "数据仅覆盖到 2026-09，无法预测未来。拒答而非编造。",
+  "err": null,
+  "answer_kind": "refusal"
+ },
+ {
+  "id": "v2-106",
+  "kind": "refusal",
+  "role": "boss",
+  "q": "明年销售额会怎样",
+  "out": "数据仅覆盖到 2026-09，无法预测未来。拒答而非编造。",
+  "err": null,
+  "answer_kind": "refusal"
+ },
+ {
+  "id": "v2-107",
+  "kind": "refusal",
+  "role": "boss",
+  "q": "下个月哪个品类会卖得最好",
+  "out": "数据仅覆盖到 2026-09，无法预测未来。拒答而非编造。",
+  "err": null,
+  "answer_kind": "refusal"
+ },
+ {
+  "id": "v2-108",
+  "kind": "refusal",
+  "role": "boss",
+  "q": "预计最近的销售趋势",
+  "out": "数据仅覆盖到 2026-09，无法预测未来。拒答而非编造。",
+  "err": null,
+  "answer_kind": "refusal"
+ },
+ {
+  "id": "v2-109",
+  "kind": "refusal",
+  "role": "boss",
+  "q": "复购率是多少",
+  "out": "数据集中不存在该指标（常见但未采集）。拒答而非编造。",
+  "err": null,
+  "answer_kind": "refusal"
+ },
+ {
+  "id": "v2-110",
+  "kind": "refusal",
+  "role": "boss",
+  "q": "客户满意度怎么样",
+  "out": "数据集中不存在该指标（常见但未采集）。拒答而非编造。",
+  "err": null,
+  "answer_kind": "refusal"
+ },
+ {
+  "id": "v2-111",
+  "kind": "refusal",
+  "role": "boss",
+  "q": "上月留存率多少",
+  "out": "数据集中不存在该指标（常见但未采集）。拒答而非编造。",
+  "err": null,
+  "answer_kind": "refusal"
+ },
+ {
+  "id": "v2-112",
+  "kind": "refusal",
+  "role": "boss",
+  "q": "好评率最高的商品是哪个",
+  "out": "数据集中不存在该指标（常见但未采集）。拒答而非编造。",
+  "err": null,
+  "answer_kind": "refusal"
+ },
+ {
+  "id": "v2-113",
+  "kind": "refusal",
+  "role": "boss",
+  "q": "投诉量上个月有多少",
+  "out": "数据集中不存在该指标（常见但未采集）。拒答而非编造。",
+  "err": null,
+  "answer_kind": "refusal"
+ },
+ {
+  "id": "v2-114",
+  "kind": "refusal",
+  "role": "boss",
+  "q": "写一段上月销售总结",
+  "out": "这不是经营数据查询类问题（或需要数据集中不存在的信息），拒答以避免编造",
+  "err": null,
+  "answer_kind": "refusal"
+ },
+ {
+  "id": "v2-115",
+  "kind": "refusal",
+  "role": "boss",
+  "q": "推荐几个值得投入的方向",
+  "out": "这不是经营数据查询类问题（或需要数据集中不存在的信息），拒答以避免编造",
+  "err": null,
+  "answer_kind": "refusal"
+ },
+ {
+  "id": "v2-116",
+  "kind": "refusal",
+  "role": "boss",
+  "q": "评价一下上月的表现",
+  "out": "这不是经营数据查询类问题（或需要数据集中不存在的信息），拒答以避免编造",
+  "err": null,
+  "answer_kind": "refusal"
+ }
+]

@@ -3,3 +3,8 @@ __pycache__/
 *.pyc
 *.db
 .agenteval/.judge_variance_ledger.json
+.tmp_askbi/
+.tmp_pc/
+.tmp_ci_venv/
+.agenteval_smoke_tmp/
+agenteval.egg-info/

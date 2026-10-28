@@ -70,10 +70,10 @@ python -m venv .venv
 .venv/Scripts/python -m pip install -i https://pypi.org/simple/ -r requirements.txt
 ```
 
-跑测试（不依赖网络与任何付费 API，71 个用例）：
+跑测试（不依赖网络与任何付费 API，104 个用例）：
 
 ```bash
-.venv/Scripts/python -m pytest tests/        # 71 passed
+.venv/Scripts/python -m pytest tests/        # 104 passed
 ```
 
 mock 模式自评测（judge 校准 + 回归门禁演示，产出 `.agenteval/selfeval/` 下的全部产物）：
@@ -120,10 +120,27 @@ export AGENTEVAL_LLM_MODEL=qwen-plus
 接同工作区的两个 Agent 项目（只读对接，绝不修改它们；测试用 MockTransport 模拟其响应）：
 
 ```bash
-python -m agenteval run --dataset agenteval/datasets/policy_compass_smoke.jsonl \
-    --target http --base-url http://127.0.0.1:8001   # policy-compass POST /api/chat
-# askbi 走 SSE：agenteval/adapters/askbi.py 解析 /api/ask 的 final 事件
+python -m agenteval run --dataset builtin:policy_compass_smoke \
+    --target http --adapter policy_compass --base-url http://127.0.0.1:8001  # POST /api/chat
+# askbi 走 SSE：agenteval/adapters/askbi.py 解析 /api/ask 的 final 事件（role 可按用例透传）
 ```
+
+## CI 跨项目回归门禁（真集成，2026-10-29）
+
+**评测平台不是孤岛**：askbi 与 policy-compass 的 GitHub Actions 已各自接入 `eval-gate`
+job——起主项目 mock 模式服务 → agenteval 打真 HTTP 跑 30 条 smoke → gate 对比仓库内基线
+→ 任一正确性指标劣化即 exit 1 挡合并，全链路零 API key：
+
+```yaml
+# 主项目 .github/workflows/ci.yml 的门禁 step（完整 job 见两项目仓库与 docs/ci_integration.md）
+- run: bash agenteval/scripts/ci_gate.sh askbi http://127.0.0.1:8000 \
+      agenteval/baselines/askbi_smoke_baseline.json   # FAIL → exit 1 拦截合并
+```
+
+- `scripts/ci_gate.sh`：run→gate 一键门禁（时延阈值默认放大，正确性指标是信号）。
+- `scripts/ci_fault_demo.py`：门禁有效性演示——注入 8 条用例劣化 → FAIL(exit 1) → 修复 → PASS(exit 0)，双项目实测。
+- 前提：agenteval 推送到与主项目同 owner 的 GitHub。集成文档：`docs/ci_integration.md`；
+  证据（确定性验证 + FAIL/PASS 全记录 + 红线 pytest）：`evidence/ci_gate_demo.md`。
 
 ## 评测结果（mock 模式，数字为真实运行产出）
 
@@ -162,12 +179,16 @@ judge_mean                   5        3.91       -1.09       0.3  FAIL
 门禁结论: FAIL ❌ 存在超阈值回归，禁止合入      → 退出码 1（CI 拦截）
 ```
 
-### ③ 冒烟数据集（内置，各 10 条）
+### ③ 冒烟数据集（内置，v2.0.0 各 30 条，对齐两主项目各自 v2 评测集的代表性子集）
 
-| 数据集 | 对接 | 成功率 | judge 通过率 | 说明 |
+| 数据集 | 对接 | 分层 | 成功率 | judge 通过率 |
 | --- | --- | --- | --- | --- |
-| `builtin:policy_compass_smoke` | policy-compass `POST /api/chat` 契约 | 100% | 100% | 政策金额对比/流程/拒答类问题 |
-| `builtin:askbi_smoke` | askbi `POST /api/ask` SSE 契约 | 100% | 100% | SQL 问数/拒答/澄清/下钻归因类问题 |
+| `builtin:askbi_smoke` v2 | askbi `POST /api/ask` SSE（支持 per-case role） | query17/drill4/clarify5/refusal4（含 south/north 行级权限） | 100% | 100%（judge_mean 4.707） |
+| `builtin:policy_compass_smoke` v2 | policy-compass `POST /api/chat` | fact11/compare4/calc4/refuse4/timeliness3/slang3/multi1 | 100% | 100%（judge_mean 4.760） |
+
+v1 的 10 条从未对活服务验证过（真打过去只有 10% 通过）；v2 是先全量探测主项目 v2 评测集
+（askbi 116 / policy-compass 90 条），再用真实输出构建并用例级断言 keywords 的产物，
+30/30 双项目实测。构建与确定性验证过程见 `evidence/ci_gate_demo.md` §1-2。
 
 ## 设计取舍：自研 vs 套平台
 
@@ -202,7 +223,7 @@ judge_mean                   5        3.91       -1.09       0.3  FAIL
 - A：评测产出 JSON 报告；gate 对比 baseline/current，指标方向感知（成功率/judge 均分
   越高越好，P95 时延越低越好），阈值可按指标覆盖；劣化即非零退出码。
 - R：演示中 8/30 注入错误输出 → judge 均分 5.00→4.32、通过率 100%→73%，门禁 exit 1 拦截；
-  健康变更 exit 0 放行。接 GitHub Actions 只需两行。
+  健康变更 exit 0 放行。**现已真接**：两个主项目的 GitHub Actions 各有 eval-gate job（见上节）。
 
 **S3 · "评测数字能信吗？"——case 级 trace 让每个分数可回放**
 - S：评测只给一个总分，面试官会问"错在哪"。
@@ -227,11 +248,13 @@ agenteval/
 │   ├── mockagent.py      #   确定性 mock 被测 Agent
 │   ├── selfeval.py       #   mock 模式自评测（校准 + 门禁演示的入口）
 │   ├── cli.py            #   run / gate / report / calibrate
-│   ├── adapters/         #   policy_compass.py、askbi.py（HTTP 契约对接）
-│   ├── datasets/         #   两份 smoke JSONL（各 10 条）
+│   ├── adapters/         #   policy_compass.py、askbi.py（HTTP 契约对接，askbi 支持 per-case role）
+│   ├── datasets/         #   两份 smoke JSONL（v2.0.0 各 30 条，对齐主项目 v2 评测集）
 │   └── static/index.html #   单文件观测台
-├── docs/TAKEOVER.md      # 接手指南：白板重写清单 + 必做实验 + 扩展方向
-├── tests/                # 71 个测试，全部离线
+├── baselines/            #   门禁基线（30/30 PASS 的 RunReport，与数据集版本配套）
+├── scripts/              #   ci_gate.sh（CI 门禁入口）/ ci_fault_demo.py / build_smoke_v2.py / judge_variance.py
+├── docs/                 #   PROJECT_BOOK / TAKEOVER / adr / ci_integration
+├── tests/                #   104 个测试，全部离线
 └── .agenteval/           # 运行产物（store.db / runs.db / reports/ / selfeval/）
 ```
 

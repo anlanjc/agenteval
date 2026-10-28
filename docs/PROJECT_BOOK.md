@@ -7,9 +7,9 @@
 
 ## 0. 一页定位
 
-**是什么**：自研的 Agent 评测与可观测平台——数据集版本化、评测 runner、LLM-as-judge **校准**、CI 回归门禁、τ-bench 式用户模拟器、trace 落库、**多版本对比评测**。80 项 pytest 全绿；mock 全链路零成本可复现，真模型数字已升级（真 judge 校准 kappa 0.5455 见 §5）。
+**是什么**：自研的 Agent 评测与可观测平台——数据集版本化、评测 runner、LLM-as-judge **校准**、CI 回归门禁、τ-bench 式用户模拟器、trace 落库、**多版本对比评测**。104 项 pytest 全绿；mock 全链路零成本可复现，真模型数字已升级（真 judge 校准 kappa 0.5455 见 §5）。
 
-**回答哪道面试必答题**：2026 面经"eval pipeline 怎么搭"成必问、"你说优化了，优化了多少怎么测"是追问焦点、腾讯/小红书 JD 明写"评测体系/质量建设"。这个仓库是这三道题的**平台级答案**，且已接入 policy-compass/askbi 的 smoke 适配器——它评测的是我自己的项目。
+**回答哪道面试必答题**：2026 面经"eval pipeline 怎么搭"成必问、"你说优化了，优化了多少怎么测"是追问焦点、腾讯/小红书 JD 明写"评测体系/质量建设"。这个仓库是这三道题的**平台级答案**，且已真接 policy-compass/askbi 的 GitHub Actions 回归门禁（eval-gate job：mock 服务 → 30 条 smoke 打真 HTTP → gate exit 1 挡合并，零 key）——它评测的是我自己的项目，且 CI 会自动拦回归。
 
 **组合叙事**：两个主项目（会做）+ 本平台（**会量化**）——"会做+会测"的分水岭叙事（面经原话"Demo 玩家 vs 工程玩家"）。
 
@@ -87,4 +87,5 @@ flowchart LR
 ## 6. 边界与演进
 
 - 校准集规模/同源性（见上）；真 judge 未做阈值扫描二轮；POST /runs 同步执行（长评测需队列）；观测台无鉴权；askbi 适配器只解析 final/error 帧。
+- CI 门禁生效前提：agenteval 推送到与主项目同 owner 的 GitHub（yml 已就位）；门禁判的是 mock 口径下行为回归，语义等价的措辞变化会误报（keyword judge 已知边界，重出基线即可，见 docs/ci_integration.md §5）。
 - 下一版三条：真 judge 二轮校准（阈值扫描+rubric 修订）→ 评测并发执行 → Langfuse 格式导出。

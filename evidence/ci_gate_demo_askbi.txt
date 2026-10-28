@@ -1,0 +1,32 @@
+$ python scripts/ci_fault_demo.py --adapter askbi --base-url http://127.0.0.1:8801 --baseline baselines/askbi_smoke_baseline.json
+=== 阶段一：注入 8 条用例劣化（3 error + 5 wrong-output）===
+  run: cases=30 errors=3 success=90.00% judge_pass=73.33% judge_mean=4.333
+  gate 对比基线：
+metric                baseline     current       delta        阈值  结果
+--------------------------------------------------------------------
+success_rate                 1         0.9        -0.1      0.02  FAIL
+judge_pass_rate              1      0.7333     -0.2667      0.05  FAIL
+judge_mean               4.707       4.333     -0.3734       0.3  FAIL
+latency_p95_ms            1148        1048        -101     1e+06  ok
+latency_p50_ms           801.7       779.6      -22.09     1e+06  ok
+error_count                  0           3          +3         0  FAIL
+--------------------------------------------------------------------
+门禁结论: FAIL ❌ 存在超阈值回归，禁止合入
+  gate 退出码 = 1（预期 1 = 拦截合入）
+=== 阶段二：移除故障注入（= 主项目修复）后复跑 ===
+  run: cases=30 errors=0 success=100.00% judge_pass=100.00% judge_mean=4.707
+  gate 对比基线：
+metric                baseline     current       delta        阈值  结果
+--------------------------------------------------------------------
+success_rate                 1           1          +0      0.02  ok
+judge_pass_rate              1           1          +0      0.05  ok
+judge_mean               4.707       4.707          +0       0.3  ok
+latency_p95_ms            1148        1117      -31.12     1e+06  ok
+latency_p50_ms           801.7       797.1       -4.55     1e+06  ok
+error_count                  0           0          +0         0  ok
+--------------------------------------------------------------------
+门禁结论: PASS ✅ 当前报告未触发任何回归阈值
+  gate 退出码 = 0（预期 0 = 放行）
+=== 演示结论 ===
+  通过：门禁对 8 条劣化全部拦截(FAIL)，修复后放行(PASS)
+exit=0
