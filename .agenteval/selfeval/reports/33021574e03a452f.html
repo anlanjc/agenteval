@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<title>agenteval 报告 · current-degraded</title>
+<style>
+  :root { --bg:#0f1420; --card:#171e2e; --line:#26304a; --fg:#dbe4f5; --muted:#8b97b0;
+          --ok:#3ecf8e; --bad:#ff6b6b; --accent:#5b8cff; }
+  * { box-sizing: border-box; }
+  body { margin:0; padding:24px; background:var(--bg); color:var(--fg);
+         font: 14px/1.6 "Segoe UI", "Microsoft YaHei", sans-serif; }
+  h1 { font-size:20px; margin:0 0 4px; }
+  h2 { font-size:16px; margin:28px 0 10px; color:var(--accent); }
+  .sub { color:var(--muted); margin-bottom:20px; }
+  .cards { display:flex; gap:14px; flex-wrap:wrap; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:10px;
+          padding:14px 18px; min-width:140px; }
+  .card .k { color:var(--muted); font-size:12px; }
+  .card .v { font-size:22px; font-weight:600; margin-top:2px; }
+  .ok { color:var(--ok); } .bad { color:var(--bad); }
+  table { border-collapse:collapse; width:100%; background:var(--card);
+          border:1px solid var(--line); border-radius:10px; overflow:hidden; }
+  th, td { padding:8px 12px; border-bottom:1px solid var(--line); text-align:left;
+           vertical-align:top; }
+  th { background:#1b2438; color:var(--muted); font-weight:500; }
+  tr:last-child td { border-bottom:none; }
+  tr.fail-row { background:rgba(255,107,107,.08); }
+  tr.fail-row td:first-child { border-left:3px solid var(--bad); }
+  pre { background:#0b101c; border:1px solid var(--line); border-radius:8px;
+        padding:10px 14px; overflow:auto; white-space:pre-wrap; word-break:break-all; }
+  code { background:#0b101c; padding:1px 5px; border-radius:4px; }
+</style>
+</head>
+<body>
+<h1>评测报告：current-degraded</h1>
+<div class="sub">run <code>33021574e03a452f</code> · dataset selfeval-mock v1.0.0 · target mock_agent · judge mock</div>
+
+<h2>指标总览</h2>
+<div class="cards">
+  <div class="card"><div class="k">成功率</div><div class="v">100.0%</div></div>
+  <div class="card"><div class="k">judge 通过率</div><div class="v">73.3%</div></div>
+  <div class="card"><div class="k">judge 均分</div><div class="v">4.32</div></div>
+  <div class="card"><div class="k">时延 P50 / P95</div><div class="v">0 / 0 ms</div></div>
+  <div class="card"><div class="k">错误 / 用例</div><div class="v">0 / 30</div></div>
+  <div class="card"><div class="k">估算 tokens</div><div class="v">3389</div></div>
+</div>
+
+<h2>Case 明细</h2>
+<table>
+<thead><tr><th>case</th><th>结果</th><th>judge 均分</th><th>时延 ms</th><th>错误 / 理由</th></tr></thead>
+<tbody>
+<tr class=""><td>c-01</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-02</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-03</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-04</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-05</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-06</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-07</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-08</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-09</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-10</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-11</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-12</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-13</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-14</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class="fail-row"><td>c-15</td><td><span class="bad">FAIL</span></td><td>3.0</td><td>0</td><td>关键词命中=0.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-16</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class="fail-row"><td>c-17</td><td><span class="bad">FAIL</span></td><td>2.1</td><td>0</td><td>关键词命中=0.0, 捏造数字=[&#x27;1029&#x27;], 格式标记=True</td></tr>
+<tr class="fail-row"><td>c-18</td><td><span class="bad">FAIL</span></td><td>3.0</td><td>0</td><td>关键词命中=0.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class="fail-row"><td>c-19</td><td><span class="bad">FAIL</span></td><td>2.1</td><td>0</td><td>关键词命中=0.0, 捏造数字=[&#x27;37548&#x27;], 格式标记=True</td></tr>
+<tr class=""><td>c-20</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-21</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-22</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-23</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-24</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class="fail-row"><td>c-25</td><td><span class="bad">FAIL</span></td><td>2.1</td><td>0</td><td>关键词命中=0.2, 捏造数字=[&#x27;1005&#x27;, &#x27;1014&#x27;, &#x27;1029&#x27;, &#x27;1099&#x27;], 格式标记=True</td></tr>
+<tr class="fail-row"><td>c-26</td><td><span class="bad">FAIL</span></td><td>3.0</td><td>0</td><td>关键词命中=0.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-27</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class="fail-row"><td>c-28</td><td><span class="bad">FAIL</span></td><td>2.1</td><td>0</td><td>关键词命中=0.0, 捏造数字=[&#x27;1119&#x27;], 格式标记=True</td></tr>
+<tr class=""><td>c-29</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class="fail-row"><td>c-30</td><td><span class="bad">FAIL</span></td><td>2.1</td><td>0</td><td>关键词命中=0.0, 捏造数字=[&#x27;1099&#x27;, &#x27;1119&#x27;], 格式标记=True</td></tr>
+</tbody>
+</table>
+
+<h2>失败 Case（8）</h2>
+<pre>【c-15】
+输入: 租房提取需要什么材料
+期望: 需无房证明与身份证，线上办理免提交纸质材料
+实际: 结论：该问题答复为 略，请以最新公告为准。</pre>
+<pre>【c-17】
+输入: 公积金贷款最长年限
+期望: 公积金贷款最长年限为30年
+实际: 结论：该问题答复为 1029，请以最新公告为准。</pre>
+<pre>【c-18】
+输入: 上月退货率是多少
+期望: 上月退货率为3.8%，环比持平
+实际: 结论：该问题答复为 略，请以最新公告为准。</pre>
+<pre>【c-19】
+输入: 上海公积金缴存基数上限
+期望: 上海公积金月缴存基数上限为36549元
+实际: 结论：该问题答复为 37548，请以最新公告为准。</pre>
+<pre>【c-25】
+输入: 杭州公积金贷款条件有哪些
+期望: 杭州公积金贷款：余额倍数15、缴存满6个月、最长30年、利率2.85%、最高100万
+实际: 结论：该问题答复为 1014、1005、1029、略、1099，请以最新公告为准。</pre>
+<pre>【c-26】
+输入: 上月各区域销售额分布
+期望: 华东42.1%、华南28.6%、华北18.3%
+实际: 结论：该问题答复为 略，请以最新公告为准。</pre>
+<pre>【c-28】
+输入: 北京公积金贷款最高额度
+期望: 北京公积金贷款最高额度为120万
+实际: 结论：该问题答复为 1119，请以最新公告为准。</pre>
+<pre>【c-30】
+输入: 对比上海和北京首套房公积金贷款额度
+期望: 上海家庭最高100万，北京最高120万
+实际: 结论：该问题答复为 1099、1119，请以最新公告为准。</pre>
+</body>
+</html>

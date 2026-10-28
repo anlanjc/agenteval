@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<title>agenteval 报告 · current-healthy</title>
+<style>
+  :root { --bg:#0f1420; --card:#171e2e; --line:#26304a; --fg:#dbe4f5; --muted:#8b97b0;
+          --ok:#3ecf8e; --bad:#ff6b6b; --accent:#5b8cff; }
+  * { box-sizing: border-box; }
+  body { margin:0; padding:24px; background:var(--bg); color:var(--fg);
+         font: 14px/1.6 "Segoe UI", "Microsoft YaHei", sans-serif; }
+  h1 { font-size:20px; margin:0 0 4px; }
+  h2 { font-size:16px; margin:28px 0 10px; color:var(--accent); }
+  .sub { color:var(--muted); margin-bottom:20px; }
+  .cards { display:flex; gap:14px; flex-wrap:wrap; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:10px;
+          padding:14px 18px; min-width:140px; }
+  .card .k { color:var(--muted); font-size:12px; }
+  .card .v { font-size:22px; font-weight:600; margin-top:2px; }
+  .ok { color:var(--ok); } .bad { color:var(--bad); }
+  table { border-collapse:collapse; width:100%; background:var(--card);
+          border:1px solid var(--line); border-radius:10px; overflow:hidden; }
+  th, td { padding:8px 12px; border-bottom:1px solid var(--line); text-align:left;
+           vertical-align:top; }
+  th { background:#1b2438; color:var(--muted); font-weight:500; }
+  tr:last-child td { border-bottom:none; }
+  tr.fail-row { background:rgba(255,107,107,.08); }
+  tr.fail-row td:first-child { border-left:3px solid var(--bad); }
+  pre { background:#0b101c; border:1px solid var(--line); border-radius:8px;
+        padding:10px 14px; overflow:auto; white-space:pre-wrap; word-break:break-all; }
+  code { background:#0b101c; padding:1px 5px; border-radius:4px; }
+</style>
+</head>
+<body>
+<h1>评测报告：current-healthy</h1>
+<div class="sub">run <code>5c5c347df16249ac</code> · dataset selfeval-mock v1.0.0 · target mock_agent · judge mock</div>
+
+<h2>指标总览</h2>
+<div class="cards">
+  <div class="card"><div class="k">成功率</div><div class="v">100.0%</div></div>
+  <div class="card"><div class="k">judge 通过率</div><div class="v">100.0%</div></div>
+  <div class="card"><div class="k">judge 均分</div><div class="v">5.00</div></div>
+  <div class="card"><div class="k">时延 P50 / P95</div><div class="v">0 / 0 ms</div></div>
+  <div class="card"><div class="k">错误 / 用例</div><div class="v">0 / 30</div></div>
+  <div class="card"><div class="k">估算 tokens</div><div class="v">3601</div></div>
+</div>
+
+<h2>Case 明细</h2>
+<table>
+<thead><tr><th>case</th><th>结果</th><th>judge 均分</th><th>时延 ms</th><th>错误 / 理由</th></tr></thead>
+<tbody>
+<tr class=""><td>c-01</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-02</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-03</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-04</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-05</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-06</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-07</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-08</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-09</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-10</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-11</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-12</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-13</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-14</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-15</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-16</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-17</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-18</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-19</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-20</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-21</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-22</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-23</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-24</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-25</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-26</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-27</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-28</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-29</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+<tr class=""><td>c-30</td><td><span class="ok">PASS</span></td><td>5.0</td><td>0</td><td>关键词命中=1.0, 捏造数字=[], 格式标记=True</td></tr>
+</tbody>
+</table>
+
+<h2>失败 Case（0）</h2>
+<div class="sub">无失败 case 🎉</div>
+</body>
+</html>

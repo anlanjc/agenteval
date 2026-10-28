@@ -1,0 +1,301 @@
+{
+  "run_id": "5401d6cb2f444417",
+  "name": "cli-degraded",
+  "dataset": "askbi_smoke",
+  "dataset_version": "1.0.0",
+  "target": "mock_agent",
+  "judge": "mock",
+  "created_at": 1793039138.3827884,
+  "metrics": {
+    "case_count": 10,
+    "error_count": 0,
+    "success_rate": 1.0,
+    "judge_pass_rate": 0.5,
+    "judge_mean": 3.91,
+    "latency_p50_ms": 0.0,
+    "latency_p95_ms": 0.01,
+    "total_tokens": 410
+  },
+  "cases": [
+    {
+      "case_id": "ab-001",
+      "input": "上个月的销售额是多少",
+      "output": "结论：该问题答复为 略、略，请以最新公告为准。",
+      "expected": "返回上月销售总额数值，SQL 聚合 SUM(quantity*unit_price*(1-discount))",
+      "error": null,
+      "latency_ms": 0.02,
+      "verdict": {
+        "case_id": "ab-001",
+        "scores": {
+          "correctness": 1.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 3.0,
+        "passed": false,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=0.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": false,
+      "golden": null,
+      "meta": {
+        "mock": true,
+        "degraded": true
+      }
+    },
+    {
+      "case_id": "ab-002",
+      "input": "上月华南地区的毛利率",
+      "output": "结论：返回华南区域毛利率百分比，毛利=销售额-供给成本\n要点覆盖：华南、毛利。\n以上信息已核验，- 办理渠道见官方线上入口。",
+      "expected": "返回华南区域毛利率百分比，毛利=销售额-供给成本",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "ab-002",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "mock": true,
+        "degraded": false
+      }
+    },
+    {
+      "case_id": "ab-003",
+      "input": "近12个月销售额趋势",
+      "output": "结论：该问题答复为 1011、略、略，请以最新公告为准。",
+      "expected": "按月分组的12行趋势数据，月份与销售额成对返回",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "ab-003",
+        "scores": {
+          "correctness": 1.0,
+          "faithfulness": 2.0,
+          "format": 5.0
+        },
+        "overall": 2.1,
+        "passed": false,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=0.0, 捏造数字=['1011'], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": false,
+      "golden": null,
+      "meta": {
+        "mock": true,
+        "degraded": true
+      }
+    },
+    {
+      "case_id": "ab-004",
+      "input": "上月哪个品类毛利率最低",
+      "output": "结论：返回单一品类名与毛利率，按毛利率升序取第一\n要点覆盖：品类、毛利。\n以上信息已核验，- 办理渠道见官方线上入口。",
+      "expected": "返回单一品类名与毛利率，按毛利率升序取第一",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "ab-004",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "mock": true,
+        "degraded": false
+      }
+    },
+    {
+      "case_id": "ab-005",
+      "input": "各渠道最近3个月的客单价",
+      "output": "结论：渠道×月份的客单价矩阵，客单价=销售额/订单数\n要点覆盖：渠道、客单价。\n以上信息已核验，- 办理渠道见官方线上入口。",
+      "expected": "渠道×月份的客单价矩阵，客单价=销售额/订单数",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "ab-005",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "mock": true,
+        "degraded": false
+      }
+    },
+    {
+      "case_id": "ab-006",
+      "input": "帮我写一份电商周报",
+      "output": "结论：该问题答复为 略、略，请以最新公告为准。",
+      "expected": "超出问数范围，应礼貌拒答并说明只支持经营数据查询",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "ab-006",
+        "scores": {
+          "correctness": 1.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 3.0,
+        "passed": false,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=0.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": false,
+      "golden": null,
+      "meta": {
+        "mock": true,
+        "degraded": true
+      }
+    },
+    {
+      "case_id": "ab-007",
+      "input": "预测下个月哪个品类销售额最高",
+      "output": "结论：该问题答复为 略、略，请以最新公告为准。",
+      "expected": "不做预测，应拒答并解释系统仅支持历史数据统计",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "ab-007",
+        "scores": {
+          "correctness": 1.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 3.0,
+        "passed": false,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=0.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": false,
+      "golden": null,
+      "meta": {
+        "mock": true,
+        "degraded": true
+      }
+    },
+    {
+      "case_id": "ab-008",
+      "input": "最近卖得怎么样",
+      "output": "结论：问题模糊，应发起澄清：询问时间范围/指标口径/渠道维度\n要点覆盖：时间、口径。\n以上信息已核验，- 办理渠道见官方线上入口。",
+      "expected": "问题模糊，应发起澄清：询问时间范围/指标口径/渠道维度",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "ab-008",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "mock": true,
+        "degraded": false
+      }
+    },
+    {
+      "case_id": "ab-009",
+      "input": "为什么上月美妆品类毛利率下滑了",
+      "output": "结论：下钻归因：拆解价格/成本/折扣/结构等因素并给出数值核验\n要点覆盖：归因、数值。\n以上信息已核验，- 办理渠道见官方线上入口。",
+      "expected": "下钻归因：拆解价格/成本/折扣/结构等因素并给出数值核验",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "ab-009",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "mock": true,
+        "degraded": false
+      }
+    },
+    {
+      "case_id": "ab-010",
+      "input": "上季度火星区域的销售额",
+      "output": "结论：该问题答复为 略、略，请以最新公告为准。",
+      "expected": "区域维度不存在火星，应拒答或提示区域枚举值",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "ab-010",
+        "scores": {
+          "correctness": 1.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 3.0,
+        "passed": false,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=0.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": false,
+      "golden": null,
+      "meta": {
+        "mock": true,
+        "degraded": true
+      }
+    }
+  ]
+}

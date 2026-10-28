@@ -1,0 +1,156 @@
+{
+  "judge": "mock",
+  "threshold": 4.0,
+  "samples": [
+    {
+      "case_id": "c-01",
+      "golden": "pass",
+      "overall": 5.0
+    },
+    {
+      "case_id": "c-02",
+      "golden": "pass",
+      "overall": 5.0
+    },
+    {
+      "case_id": "c-03",
+      "golden": "pass",
+      "overall": 5.0
+    },
+    {
+      "case_id": "c-04",
+      "golden": "pass",
+      "overall": 5.0
+    },
+    {
+      "case_id": "c-05",
+      "golden": "pass",
+      "overall": 5.0
+    },
+    {
+      "case_id": "c-06",
+      "golden": "pass",
+      "overall": 5.0
+    },
+    {
+      "case_id": "c-07",
+      "golden": "pass",
+      "overall": 5.0
+    },
+    {
+      "case_id": "c-08",
+      "golden": "pass",
+      "overall": 5.0
+    },
+    {
+      "case_id": "c-09",
+      "golden": "pass",
+      "overall": 5.0
+    },
+    {
+      "case_id": "c-10",
+      "golden": "pass",
+      "overall": 5.0
+    },
+    {
+      "case_id": "c-11",
+      "golden": "pass",
+      "overall": 5.0
+    },
+    {
+      "case_id": "c-12",
+      "golden": "pass",
+      "overall": 5.0
+    },
+    {
+      "case_id": "c-13",
+      "golden": "pass",
+      "overall": 5.0
+    },
+    {
+      "case_id": "c-14",
+      "golden": "pass",
+      "overall": 5.0
+    },
+    {
+      "case_id": "c-15",
+      "golden": "pass",
+      "overall": 5.0
+    },
+    {
+      "case_id": "c-16",
+      "golden": "pass",
+      "overall": 5.0
+    },
+    {
+      "case_id": "c-17",
+      "golden": "pass",
+      "overall": 5.0
+    },
+    {
+      "case_id": "c-18",
+      "golden": "pass",
+      "overall": 5.0
+    },
+    {
+      "case_id": "c-19",
+      "golden": "pass",
+      "overall": 5.0
+    },
+    {
+      "case_id": "c-20",
+      "golden": "pass",
+      "overall": 5.0
+    },
+    {
+      "case_id": "c-21",
+      "golden": "pass",
+      "overall": 5.0
+    },
+    {
+      "case_id": "c-22",
+      "golden": "pass",
+      "overall": 4.4
+    },
+    {
+      "case_id": "c-23",
+      "golden": "pass",
+      "overall": 4.4
+    },
+    {
+      "case_id": "c-24",
+      "golden": "pass",
+      "overall": 4.4
+    },
+    {
+      "case_id": "c-25",
+      "golden": "fail",
+      "overall": 3.5
+    },
+    {
+      "case_id": "c-26",
+      "golden": "fail",
+      "overall": 3.0
+    },
+    {
+      "case_id": "c-27",
+      "golden": "fail",
+      "overall": 3.0
+    },
+    {
+      "case_id": "c-28",
+      "golden": "fail",
+      "overall": 2.1
+    },
+    {
+      "case_id": "c-29",
+      "golden": "fail",
+      "overall": 2.1
+    },
+    {
+      "case_id": "c-30",
+      "golden": "fail",
+      "overall": 5.0
+    }
+  ]
+}

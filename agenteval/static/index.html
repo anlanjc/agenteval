@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<title>agenteval 观测台</title>
+<style>
+  :root { --bg:#0f1420; --card:#171e2e; --line:#26304a; --fg:#dbe4f5; --muted:#8b97b0;
+          --ok:#3ecf8e; --bad:#ff6b6b; --accent:#5b8cff; }
+  * { box-sizing:border-box; }
+  body { margin:0; padding:22px; background:var(--bg); color:var(--fg);
+         font:14px/1.6 "Segoe UI","Microsoft YaHei",sans-serif; }
+  h1 { font-size:19px; margin:0 0 2px; } h2 { font-size:15px; color:var(--accent); margin:24px 0 8px; }
+  .sub { color:var(--muted); margin-bottom:16px; }
+  button { background:var(--accent); color:#fff; border:none; border-radius:6px;
+           padding:6px 14px; cursor:pointer; font-size:13px; }
+  button.ghost { background:transparent; border:1px solid var(--line); color:var(--muted); }
+  table { border-collapse:collapse; width:100%; background:var(--card); border:1px solid var(--line); }
+  th,td { padding:7px 11px; border-bottom:1px solid var(--line); text-align:left; }
+  th { background:#1b2438; color:var(--muted); font-weight:500; }
+  tr:hover td { background:#1c2540; cursor:pointer; }
+  .ok { color:var(--ok); } .bad { color:var(--bad); } .muted { color:var(--muted); }
+  .cards { display:flex; gap:12px; flex-wrap:wrap; margin:10px 0; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:10px 16px; }
+  .card .k { color:var(--muted); font-size:12px; } .card .v { font-size:19px; font-weight:600; }
+  span.tree { display:block; padding-left:0; }
+  .span-node { padding:2px 0 2px 18px; border-left:1px dashed var(--line); margin-left:6px; }
+  .span-node.err { border-left:1px solid var(--bad); }
+  .span-name { color:var(--accent); } .span-meta { color:var(--muted); font-size:12px; }
+</style>
+</head>
+<body>
+<h1>agenteval 观测台</h1>
+<div class="sub">自研 Agent 评测与可观测平台 · 数据来自本地 API（/runs、/spans）</div>
+<button onclick="newRun()">触发一次评测（mock target + mock judge）</button>
+<span id="msg" class="muted"></span>
+
+<h2>评测 Runs</h2>
+<table id="runs">
+<thead><tr><th>run_id</th><th>名称</th><th>数据集</th><th>target</th><th>judge</th>
+<th>成功率</th><th>judge 均分</th><th>P95 ms</th><th>时间</th></tr></thead>
+<tbody></tbody>
+</table>
+
+<h2>Run 详情 <span id="cur-run" class="muted"></span></h2>
+<div id="detail" class="muted">点击上方任一行查看。</div>
+
+<h2>Span 树</h2>
+<div id="tree" class="muted">选中 run 后展示。</div>
+
+<script>
+async function j(url, opts) { const r = await fetch(url, opts); if (!r.ok) throw new Error(await r.text()); return r.json(); }
+
+async function refresh() {
+  try {
+    const runs = await j('/runs');
+    const tb = document.querySelector('#runs tbody');
+    tb.innerHTML = '';
+    for (const r of runs) {
+      const tr = document.createElement('tr');
+      tr.onclick = () => showRun(r.run_id);
+      tr.innerHTML = `<td><code>${r.run_id}</code></td><td>${r.name}</td><td>${r.dataset}</td>
+        <td>${r.target}</td><td>${r.judge}</td>
+        <td>${(r.metrics.success_rate*100).toFixed(0)}%</td>
+        <td>${r.metrics.judge_mean.toFixed(2)}</td>
+        <td>${r.metrics.latency_p95_ms.toFixed(0)}</td>
+        <td class="muted">${new Date(r.created_at*1000).toLocaleString()}</td>`;
+      tb.appendChild(tr);
+    }
+    document.getElementById('msg').textContent = `共 ${runs.length} 个 run`;
+  } catch (e) { document.getElementById('msg').textContent = '加载失败: ' + e.message; }
+}
+
+async function showRun(id) {
+  document.getElementById('cur-run').textContent = id;
+  const d = await j('/runs/' + id);
+  const m = d.metrics;
+  const fails = d.cases.filter(c => !c.passed).length;
+  document.getElementById('detail').innerHTML = `
+    <div class="cards">
+      <div class="card"><div class="k">成功率</div><div class="v">${(m.success_rate*100).toFixed(1)}%</div></div>
+      <div class="card"><div class="k">judge 通过率</div><div class="v">${(m.judge_pass_rate*100).toFixed(1)}%</div></div>
+      <div class="card"><div class="k">judge 均分</div><div class="v">${m.judge_mean.toFixed(2)}</div></div>
+      <div class="card"><div class="k">失败 case</div><div class="v ${fails?'bad':'ok'}">${fails} / ${m.case_count}</div></div>
+    </div>
+    <table><thead><tr><th>case</th><th>结果</th><th>均分</th><th>输出（截断）</th></tr></thead><tbody>
+    ${d.cases.map(c => `<tr><td>${c.case_id}</td>
+      <td class="${c.passed?'ok':'bad'}">${c.passed?'PASS':'FAIL'}</td>
+      <td>${c.verdict ? c.verdict.overall : '-'}</td>
+      <td class="muted">${(c.error || c.output || '').slice(0,80)}</td></tr>`).join('')}
+    </tbody></table>
+    <p><a href="/runs/${id}/report?format=html" target="_blank">查看完整 HTML 报告</a></p>`;
+  const s = await j('/spans/' + id);
+  document.getElementById('tree').innerHTML =
+    `<div class="muted">run ${s.run_id} · ${s.duration_ms.toFixed(0)}ms · tokens≈${s.total_tokens}</div>` +
+    renderNode(s.span_tree);
+}
+
+function renderNode(node) {
+  if (!node) return '<div class="muted">（无 span）</div>';
+  const cls = node.status === 'error' ? 'span-node err' : 'span-node';
+  let html = `<div class="${cls}">
+    <span class="span-name">${node.name}</span>
+    <span class="span-meta"> ${node.duration_ms.toFixed(1)}ms ${node.error ? '· <span class=bad>'+node.error+'</span>' : ''}</span>`;
+  for (const ch of (node.children || [])) html += renderNode(ch);
+  return html + '</div>';
+}
+
+async function newRun() {
+  document.getElementById('msg').textContent = '评测中…';
+  try {
+    const res = await j('/runs', { method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ name:'ui-run', dataset:'builtin:policy_compass_smoke',
+                             target:{type:'mock'}, judge:'mock' }) });
+    document.getElementById('msg').textContent = '完成: ' + res.run_id;
+    await refresh();
+    await showRun(res.run_id);
+  } catch (e) { document.getElementById('msg').textContent = '失败: ' + e.message; }
+}
+
+refresh();
+</script>
+</body>
+</html>

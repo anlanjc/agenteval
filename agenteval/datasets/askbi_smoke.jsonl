@@ -1,0 +1,11 @@
+{"_version": "1.0.0"}
+{"id": "ab-001", "input": "上个月的销售额是多少", "expected": "返回上月销售总额数值，SQL 聚合 SUM(quantity*unit_price*(1-discount))", "metadata": {"kind": "query", "role": "boss", "keywords": ["销售", "SQL"]}, "tags": ["smoke", "query"]}
+{"id": "ab-002", "input": "上月华南地区的毛利率", "expected": "返回华南区域毛利率百分比，毛利=销售额-供给成本", "metadata": {"kind": "query", "role": "south", "keywords": ["华南", "毛利"]}, "tags": ["smoke", "query"]}
+{"id": "ab-003", "input": "近12个月销售额趋势", "expected": "按月分组的12行趋势数据，月份与销售额成对返回", "metadata": {"kind": "query", "role": "boss", "keywords": ["12", "月", "趋势"]}, "tags": ["smoke", "query"]}
+{"id": "ab-004", "input": "上月哪个品类毛利率最低", "expected": "返回单一品类名与毛利率，按毛利率升序取第一", "metadata": {"kind": "query", "role": "boss", "keywords": ["品类", "毛利"]}, "tags": ["smoke", "query"]}
+{"id": "ab-005", "input": "各渠道最近3个月的客单价", "expected": "渠道×月份的客单价矩阵，客单价=销售额/订单数", "metadata": {"kind": "query", "role": "boss", "keywords": ["渠道", "客单价"]}, "tags": ["smoke", "query"]}
+{"id": "ab-006", "input": "帮我写一份电商周报", "expected": "超出问数范围，应礼貌拒答并说明只支持经营数据查询", "metadata": {"kind": "refusal", "role": "boss", "keywords": ["范围", "拒答"]}, "tags": ["smoke", "refusal"]}
+{"id": "ab-007", "input": "预测下个月哪个品类销售额最高", "expected": "不做预测，应拒答并解释系统仅支持历史数据统计", "metadata": {"kind": "refusal", "role": "boss", "keywords": ["预测", "支持"]}, "tags": ["smoke", "refusal"]}
+{"id": "ab-008", "input": "最近卖得怎么样", "expected": "问题模糊，应发起澄清：询问时间范围/指标口径/渠道维度", "metadata": {"kind": "clarify", "role": "boss", "keywords": ["时间", "口径"]}, "tags": ["smoke", "clarify"]}
+{"id": "ab-009", "input": "为什么上月美妆品类毛利率下滑了", "expected": "下钻归因：拆解价格/成本/折扣/结构等因素并给出数值核验", "metadata": {"kind": "drill", "role": "boss", "keywords": ["归因", "数值"]}, "tags": ["smoke", "drill"]}
+{"id": "ab-010", "input": "上季度火星区域的销售额", "expected": "区域维度不存在火星，应拒答或提示区域枚举值", "metadata": {"kind": "refusal", "role": "boss", "keywords": ["区域", "火星"]}, "tags": ["smoke", "refusal"]}

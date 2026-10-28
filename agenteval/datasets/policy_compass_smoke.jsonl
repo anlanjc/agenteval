@@ -1,0 +1,11 @@
+{"_version": "1.0.0"}
+{"id": "pc-001", "input": "杭州公积金租房提取每个月最多能提多少", "expected": "杭州无房职工租房提取每月最高2000元，一年最高24000元", "metadata": {"city": "杭州", "domain": "公积金", "keywords": ["2000"]}, "tags": ["smoke", "policy"]}
+{"id": "pc-002", "input": "北京租房提取公积金每月限额是多少", "expected": "北京租房提取每月最高2000元，季度集中支付", "metadata": {"city": "北京", "domain": "公积金", "keywords": ["2000"]}, "tags": ["smoke", "policy"]}
+{"id": "pc-003", "input": "夫妻双方都在上海缴存公积金，买首套房最多能贷款多少", "expected": "上海家庭首套房公积金贷款最高额度100万", "metadata": {"city": "上海", "domain": "公积金", "keywords": ["100万"]}, "tags": ["smoke", "policy"]}
+{"id": "pc-004", "input": "公积金异地转移接续一般多少个工作日能办完", "expected": "全国异地转移接续一般11个工作日内办结", "metadata": {"city": "全国", "domain": "公积金", "keywords": ["11"]}, "tags": ["smoke", "policy"]}
+{"id": "pc-005", "input": "对比杭州和北京的租房提取公积金月限额", "expected": "杭州和北京租房提取每月限额均为2000元，两地一致", "metadata": {"city": "杭州/北京", "domain": "公积金", "type": "compare", "keywords": ["2000", "杭州", "北京"]}, "tags": ["smoke", "compare"]}
+{"id": "pc-006", "input": "离职后公积金账户里的钱怎么取出来", "expected": "离职提取需满足封存满6个月且未再缴存等条件，可全额销户提取", "metadata": {"city": "全国", "domain": "公积金", "type": "process", "keywords": ["销户", "封存"]}, "tags": ["smoke", "policy"]}
+{"id": "pc-007", "input": "杭州公积金贷款额度按什么方法计算", "expected": "按账户余额一定倍数、缴存基数、贷款成数三者取最低计算", "metadata": {"city": "杭州", "domain": "公积金", "type": "process", "keywords": ["余额", "倍数"]}, "tags": ["smoke", "policy"]}
+{"id": "pc-008", "input": "租房提取公积金需要准备哪些材料", "expected": "需身份证、婚姻状况证明、无房证明等材料，线上可免提交", "metadata": {"city": "全国", "domain": "公积金", "type": "process", "keywords": ["无房", "材料"]}, "tags": ["smoke", "process"]}
+{"id": "pc-009", "input": "杭州社保断缴三个月影响买房落户吗", "expected": "该问题超出公积金政策知识库范围，应拒答并引导用户咨询社保部门", "metadata": {"city": "杭州", "domain": "社保", "expect_refusal": true, "keywords": ["超出", "社保"]}, "tags": ["smoke", "refusal"]}
+{"id": "pc-010", "input": "上海公积金缴存基数上限现在是多少", "expected": "上海公积金月缴存基数上限为36549元", "metadata": {"city": "上海", "domain": "公积金", "keywords": ["36549"]}, "tags": ["smoke", "policy"]}

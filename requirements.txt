@@ -1,0 +1,7 @@
+# 依赖控制在最小集；安装必须加官方源（用户默认清华源 403）：
+#   pip install -i https://pypi.org/simple/ -r requirements.txt
+fastapi>=0.110
+uvicorn>=0.29
+pydantic>=2.6
+httpx>=0.27
+pytest>=8.0

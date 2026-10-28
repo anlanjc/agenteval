@@ -1,0 +1,861 @@
+{
+  "run_id": "67edf7605d304593",
+  "name": "baseline",
+  "dataset": "selfeval-mock",
+  "dataset_version": "1.0.0",
+  "target": "mock_agent",
+  "judge": "mock",
+  "created_at": 1793039112.631071,
+  "metrics": {
+    "case_count": 30,
+    "error_count": 0,
+    "success_rate": 1.0,
+    "judge_pass_rate": 1.0,
+    "judge_mean": 5.0,
+    "latency_p50_ms": 0.0,
+    "latency_p95_ms": 0.0,
+    "total_tokens": 3601
+  },
+  "cases": [
+    {
+      "case_id": "c-01",
+      "input": "杭州公积金租房提取每月最多能提多少",
+      "output": "结论：杭州无房职工租房提取每月最高2000元\n要点覆盖：2000。\n以上信息已核验，- 办理渠道见官方线上入口。",
+      "expected": "杭州无房职工租房提取每月最高2000元",
+      "error": null,
+      "latency_ms": 0.01,
+      "verdict": {
+        "case_id": "c-01",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": "pass",
+      "meta": {
+        "mock": true,
+        "degraded": false
+      }
+    },
+    {
+      "case_id": "c-02",
+      "input": "北京租房提取公积金每月限额是多少",
+      "output": "结论：北京租房提取每月最高2000元\n要点覆盖：2000。\n以上信息已核验，- 办理渠道见官方线上入口。",
+      "expected": "北京租房提取每月最高2000元",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "c-02",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": "pass",
+      "meta": {
+        "mock": true,
+        "degraded": false
+      }
+    },
+    {
+      "case_id": "c-03",
+      "input": "上海家庭买首套房公积金贷款最高额度",
+      "output": "结论：上海家庭首套房公积金贷款最高100万\n要点覆盖：100。\n以上信息已核验，- 办理渠道见官方线上入口。",
+      "expected": "上海家庭首套房公积金贷款最高100万",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "c-03",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": "pass",
+      "meta": {
+        "mock": true,
+        "degraded": false
+      }
+    },
+    {
+      "case_id": "c-04",
+      "input": "公积金异地转移接续多久办完",
+      "output": "结论：全国异地转移接续一般11个工作日内办结\n要点覆盖：11。\n以上信息已核验，- 办理渠道见官方线上入口。",
+      "expected": "全国异地转移接续一般11个工作日内办结",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "c-04",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": "pass",
+      "meta": {
+        "mock": true,
+        "degraded": false
+      }
+    },
+    {
+      "case_id": "c-05",
+      "input": "杭州和北京租房提取限额对比",
+      "output": "结论：杭州与北京租房提取每月限额均为2000元\n要点覆盖：2000。\n以上信息已核验，- 办理渠道见官方线上入口。",
+      "expected": "杭州与北京租房提取每月限额均为2000元",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "c-05",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": "pass",
+      "meta": {
+        "mock": true,
+        "degraded": false
+      }
+    },
+    {
+      "case_id": "c-06",
+      "input": "上个月店铺销售额是多少",
+      "output": "结论：上月销售总额为358万元，环比增长12%\n要点覆盖：358、12。\n以上信息已核验，- 办理渠道见官方线上入口。",
+      "expected": "上月销售总额为358万元，环比增长12%",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "c-06",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": "pass",
+      "meta": {
+        "mock": true,
+        "degraded": false
+      }
+    },
+    {
+      "case_id": "c-07",
+      "input": "上月华南地区毛利率",
+      "output": "结论：上月华南毛利率为23.5%\n要点覆盖：23.5。\n以上信息已核验，- 办理渠道见官方线上入口。",
+      "expected": "上月华南毛利率为23.5%",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "c-07",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": "pass",
+      "meta": {
+        "mock": true,
+        "degraded": false
+      }
+    },
+    {
+      "case_id": "c-08",
+      "input": "近12个月销售额趋势",
+      "output": "结论：近12个月销售额按月聚合共12行数据\n要点覆盖：12。\n以上信息已核验，- 办理渠道见官方线上入口。",
+      "expected": "近12个月销售额按月聚合共12行数据",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "c-08",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": "pass",
+      "meta": {
+        "mock": true,
+        "degraded": false
+      }
+    },
+    {
+      "case_id": "c-09",
+      "input": "上月哪个品类毛利率最低",
+      "output": "结论：上月美妆品类毛利率最低，为15.2%\n要点覆盖：15.2。\n以上信息已核验，- 办理渠道见官方线上入口。",
+      "expected": "上月美妆品类毛利率最低，为15.2%",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "c-09",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": "pass",
+      "meta": {
+        "mock": true,
+        "degraded": false
+      }
+    },
+    {
+      "case_id": "c-10",
+      "input": "各渠道最近3个月客单价",
+      "output": "结论：各渠道近3个月客单价为186元\n要点覆盖：186、3。\n以上信息已核验，- 办理渠道见官方线上入口。",
+      "expected": "各渠道近3个月客单价为186元",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "c-10",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": "pass",
+      "meta": {
+        "mock": true,
+        "degraded": false
+      }
+    },
+    {
+      "case_id": "c-11",
+      "input": "离职后公积金怎么提取",
+      "output": "结论：离职提取需账户封存满6个月且未再缴存\n要点覆盖：6。\n以上信息已核验，- 办理渠道见官方线上入口。",
+      "expected": "离职提取需账户封存满6个月且未再缴存",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "c-11",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": "pass",
+      "meta": {
+        "mock": true,
+        "degraded": false
+      }
+    },
+    {
+      "case_id": "c-12",
+      "input": "杭州公积金贷款额度怎么算",
+      "output": "结论：按账户余额15倍、缴存基数、贷款成数三者取低\n要点覆盖：15。\n以上信息已核验，- 办理渠道见官方线上入口。",
+      "expected": "按账户余额15倍、缴存基数、贷款成数三者取低",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "c-12",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": "pass",
+      "meta": {
+        "mock": true,
+        "degraded": false
+      }
+    },
+    {
+      "case_id": "c-13",
+      "input": "上月美妆品类毛利率为什么下滑",
+      "output": "结论：美妆毛利率下滑归因：折扣率上升4.3个百分点\n要点覆盖：4.3。\n以上信息已核验，- 办理渠道见官方线上入口。",
+      "expected": "美妆毛利率下滑归因：折扣率上升4.3个百分点",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "c-13",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": "pass",
+      "meta": {
+        "mock": true,
+        "degraded": false
+      }
+    },
+    {
+      "case_id": "c-14",
+      "input": "上月订单量是多少",
+      "output": "结论：上月订单量为12560单\n要点覆盖：12560。\n以上信息已核验，- 办理渠道见官方线上入口。",
+      "expected": "上月订单量为12560单",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "c-14",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": "pass",
+      "meta": {
+        "mock": true,
+        "degraded": false
+      }
+    },
+    {
+      "case_id": "c-15",
+      "input": "租房提取需要什么材料",
+      "output": "结论：需无房证明与身份证，线上办理免提交纸质材料\n要点覆盖：无房。\n以上信息已核验，- 办理渠道见官方线上入口。",
+      "expected": "需无房证明与身份证，线上办理免提交纸质材料",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "c-15",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": "pass",
+      "meta": {
+        "mock": true,
+        "degraded": false
+      }
+    },
+    {
+      "case_id": "c-16",
+      "input": "上月华南销售额占比",
+      "output": "结论：上月华南销售额占比28.6%\n要点覆盖：28.6。\n以上信息已核验，- 办理渠道见官方线上入口。",
+      "expected": "上月华南销售额占比28.6%",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "c-16",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": "pass",
+      "meta": {
+        "mock": true,
+        "degraded": false
+      }
+    },
+    {
+      "case_id": "c-17",
+      "input": "公积金贷款最长年限",
+      "output": "结论：公积金贷款最长年限为30年\n要点覆盖：30。\n以上信息已核验，- 办理渠道见官方线上入口。",
+      "expected": "公积金贷款最长年限为30年",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "c-17",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": "pass",
+      "meta": {
+        "mock": true,
+        "degraded": false
+      }
+    },
+    {
+      "case_id": "c-18",
+      "input": "上月退货率是多少",
+      "output": "结论：上月退货率为3.8%，环比持平\n要点覆盖：3.8。\n以上信息已核验，- 办理渠道见官方线上入口。",
+      "expected": "上月退货率为3.8%，环比持平",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "c-18",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": "pass",
+      "meta": {
+        "mock": true,
+        "degraded": false
+      }
+    },
+    {
+      "case_id": "c-19",
+      "input": "上海公积金缴存基数上限",
+      "output": "结论：上海公积金月缴存基数上限为36549元\n要点覆盖：36549。\n以上信息已核验，- 办理渠道见官方线上入口。",
+      "expected": "上海公积金月缴存基数上限为36549元",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "c-19",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": "pass",
+      "meta": {
+        "mock": true,
+        "degraded": false
+      }
+    },
+    {
+      "case_id": "c-20",
+      "input": "上月新客数与客单价",
+      "output": "结论：上月新客8420人，客单价186元\n要点覆盖：8420、186。\n以上信息已核验，- 办理渠道见官方线上入口。",
+      "expected": "上月新客8420人，客单价186元",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "c-20",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": "pass",
+      "meta": {
+        "mock": true,
+        "degraded": false
+      }
+    },
+    {
+      "case_id": "c-21",
+      "input": "公积金对账单怎么打印",
+      "output": "结论：可在线上渠道下载电子对账单，每年1次免费\n要点覆盖：1。\n以上信息已核验，- 办理渠道见官方线上入口。",
+      "expected": "可在线上渠道下载电子对账单，每年1次免费",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "c-21",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": "pass",
+      "meta": {
+        "mock": true,
+        "degraded": false
+      }
+    },
+    {
+      "case_id": "c-22",
+      "input": "杭州公积金租房提取每年能提多少",
+      "output": "结论：杭州租房提取每年最高24000元\n要点覆盖：24000。\n以上信息已核验，- 办理渠道见官方线上入口。（补充说明）该答复同时给出办理渠道与注意事项，建议用户携带有效证件前往线下网点或通过线上服务渠道办理，如有疑问可再次询问。（补充说明）该答复同时给出办理渠道与注意事项，建议用户携带有效证件前往线下网点或通过线上服务渠道办理，如有疑问可再次询问。（补充说明）该答复同时给出办理渠道与注意事项，建议用户携带有效证件前往线下网点或通过线上服务渠道办理，如有疑问可再次询问。（补充说明）该答复同时给出办理渠道与注意事项，建议用户携带有效证件前往线下网点或通过线上服务渠道办理，如有疑问可再次询问。（补充说明）该答复同时给出办理渠道与注意事项，建议用户携带有效证件前往线下网点或通过线上服务渠道办理，如有疑问可再次询问。（补充说明）该答复同时给出办理渠道与注意事项，建议用户携带有效证件前往线下网点或通过线上服务渠道办理，如有疑问可再次询问。（补充说明）该答复同时给出办理渠道与注意事项，建议用户携带有效证件前往线下网点或通过线上服务渠道办理，如有疑问可再次询问。（补充说明）该答复同时给出办理渠道与注意事项，建议用户携带有效证件前往线下网点或通过线上服务渠道办理，如有疑问可再次询问。（补充说明）该答复同时给出办理渠道与注意事项，建议用户携带有效证件前往线下网点或通过线上服务渠道办理，如有疑问可再次询问。（补充说明）该答复同时给出办理渠道与注意事项，建议用户携带有效证件前往线下网点或通过线上服务渠道办理，如有疑问可再次询问。（补充说明）该答复同时给出办理渠道与注意事项，建议用户携带有效证件前往线下网点或通过线上服务渠道办理，如有疑问可再次询问。（补充说明）该答复同时给出办理渠道与注意事项，建议用户携带有效证件前往线下网点或通过线上服务渠道办理，如有疑问可再次询问。",
+      "expected": "杭州租房提取每年最高24000元",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "c-22",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": "pass",
+      "meta": {
+        "mock": true,
+        "degraded": false
+      }
+    },
+    {
+      "case_id": "c-23",
+      "input": "上月整体毛利率是多少",
+      "output": "结论：上月整体毛利率为21.7%\n要点覆盖：21.7。\n以上信息已核验，- 办理渠道见官方线上入口。（补充说明）该答复同时给出办理渠道与注意事项，建议用户携带有效证件前往线下网点或通过线上服务渠道办理，如有疑问可再次询问。（补充说明）该答复同时给出办理渠道与注意事项，建议用户携带有效证件前往线下网点或通过线上服务渠道办理，如有疑问可再次询问。（补充说明）该答复同时给出办理渠道与注意事项，建议用户携带有效证件前往线下网点或通过线上服务渠道办理，如有疑问可再次询问。（补充说明）该答复同时给出办理渠道与注意事项，建议用户携带有效证件前往线下网点或通过线上服务渠道办理，如有疑问可再次询问。（补充说明）该答复同时给出办理渠道与注意事项，建议用户携带有效证件前往线下网点或通过线上服务渠道办理，如有疑问可再次询问。（补充说明）该答复同时给出办理渠道与注意事项，建议用户携带有效证件前往线下网点或通过线上服务渠道办理，如有疑问可再次询问。（补充说明）该答复同时给出办理渠道与注意事项，建议用户携带有效证件前往线下网点或通过线上服务渠道办理，如有疑问可再次询问。（补充说明）该答复同时给出办理渠道与注意事项，建议用户携带有效证件前往线下网点或通过线上服务渠道办理，如有疑问可再次询问。（补充说明）该答复同时给出办理渠道与注意事项，建议用户携带有效证件前往线下网点或通过线上服务渠道办理，如有疑问可再次询问。（补充说明）该答复同时给出办理渠道与注意事项，建议用户携带有效证件前往线下网点或通过线上服务渠道办理，如有疑问可再次询问。（补充说明）该答复同时给出办理渠道与注意事项，建议用户携带有效证件前往线下网点或通过线上服务渠道办理，如有疑问可再次询问。（补充说明）该答复同时给出办理渠道与注意事项，建议用户携带有效证件前往线下网点或通过线上服务渠道办理，如有疑问可再次询问。",
+      "expected": "上月整体毛利率为21.7%",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "c-23",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": "pass",
+      "meta": {
+        "mock": true,
+        "degraded": false
+      }
+    },
+    {
+      "case_id": "c-24",
+      "input": "公积金异地转移需要什么材料",
+      "output": "结论：异地转移需原缴存地账号与身份证，线上可办\n要点覆盖：身份证。\n以上信息已核验，- 办理渠道见官方线上入口。（补充说明）该答复同时给出办理渠道与注意事项，建议用户携带有效证件前往线下网点或通过线上服务渠道办理，如有疑问可再次询问。（补充说明）该答复同时给出办理渠道与注意事项，建议用户携带有效证件前往线下网点或通过线上服务渠道办理，如有疑问可再次询问。（补充说明）该答复同时给出办理渠道与注意事项，建议用户携带有效证件前往线下网点或通过线上服务渠道办理，如有疑问可再次询问。（补充说明）该答复同时给出办理渠道与注意事项，建议用户携带有效证件前往线下网点或通过线上服务渠道办理，如有疑问可再次询问。（补充说明）该答复同时给出办理渠道与注意事项，建议用户携带有效证件前往线下网点或通过线上服务渠道办理，如有疑问可再次询问。（补充说明）该答复同时给出办理渠道与注意事项，建议用户携带有效证件前往线下网点或通过线上服务渠道办理，如有疑问可再次询问。（补充说明）该答复同时给出办理渠道与注意事项，建议用户携带有效证件前往线下网点或通过线上服务渠道办理，如有疑问可再次询问。（补充说明）该答复同时给出办理渠道与注意事项，建议用户携带有效证件前往线下网点或通过线上服务渠道办理，如有疑问可再次询问。（补充说明）该答复同时给出办理渠道与注意事项，建议用户携带有效证件前往线下网点或通过线上服务渠道办理，如有疑问可再次询问。（补充说明）该答复同时给出办理渠道与注意事项，建议用户携带有效证件前往线下网点或通过线上服务渠道办理，如有疑问可再次询问。（补充说明）该答复同时给出办理渠道与注意事项，建议用户携带有效证件前往线下网点或通过线上服务渠道办理，如有疑问可再次询问。（补充说明）该答复同时给出办理渠道与注意事项，建议用户携带有效证件前往线下网点或通过线上服务渠道办理，如有疑问可再次询问。",
+      "expected": "异地转移需原缴存地账号与身份证，线上可办",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "c-24",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": "pass",
+      "meta": {
+        "mock": true,
+        "degraded": false
+      }
+    },
+    {
+      "case_id": "c-25",
+      "input": "杭州公积金贷款条件有哪些",
+      "output": "结论：杭州公积金贷款：余额倍数15、缴存满6个月、最长30年、利率2.85%、最高100万\n要点覆盖：15、6、30、2.85、100。\n以上信息已核验，- 办理渠道见官方线上入口。",
+      "expected": "杭州公积金贷款：余额倍数15、缴存满6个月、最长30年、利率2.85%、最高100万",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "c-25",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": "fail",
+      "meta": {
+        "mock": true,
+        "degraded": false
+      }
+    },
+    {
+      "case_id": "c-26",
+      "input": "上月各区域销售额分布",
+      "output": "结论：华东42.1%、华南28.6%、华北18.3%\n要点覆盖：42.1。\n以上信息已核验，- 办理渠道见官方线上入口。",
+      "expected": "华东42.1%、华南28.6%、华北18.3%",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "c-26",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": "fail",
+      "meta": {
+        "mock": true,
+        "degraded": false
+      }
+    },
+    {
+      "case_id": "c-27",
+      "input": "上月利润总额是多少",
+      "output": "结论：上月利润总额为86万元，利润率12.4%\n要点覆盖：86。\n以上信息已核验，- 办理渠道见官方线上入口。",
+      "expected": "上月利润总额为86万元，利润率12.4%",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "c-27",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": "fail",
+      "meta": {
+        "mock": true,
+        "degraded": false
+      }
+    },
+    {
+      "case_id": "c-28",
+      "input": "北京公积金贷款最高额度",
+      "output": "结论：北京公积金贷款最高额度为120万\n要点覆盖：120。\n以上信息已核验，- 办理渠道见官方线上入口。",
+      "expected": "北京公积金贷款最高额度为120万",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "c-28",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": "fail",
+      "meta": {
+        "mock": true,
+        "degraded": false
+      }
+    },
+    {
+      "case_id": "c-29",
+      "input": "上月环比增长最快的是哪个渠道",
+      "output": "结论：直播渠道环比增长35.2%，增长最快\n要点覆盖：35.2。\n以上信息已核验，- 办理渠道见官方线上入口。",
+      "expected": "直播渠道环比增长35.2%，增长最快",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "c-29",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": "fail",
+      "meta": {
+        "mock": true,
+        "degraded": false
+      }
+    },
+    {
+      "case_id": "c-30",
+      "input": "对比上海和北京首套房公积金贷款额度",
+      "output": "结论：上海家庭最高100万，北京最高120万\n要点覆盖：100、120。\n以上信息已核验，- 办理渠道见官方线上入口。",
+      "expected": "上海家庭最高100万，北京最高120万",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "c-30",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": "fail",
+      "meta": {
+        "mock": true,
+        "degraded": false
+      }
+    }
+  ]
+}

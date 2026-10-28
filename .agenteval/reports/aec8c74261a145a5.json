@@ -1,0 +1,301 @@
+{
+  "run_id": "aec8c74261a145a5",
+  "name": "server-smoke",
+  "dataset": "policy_compass_smoke",
+  "dataset_version": "1.0.0",
+  "target": "mock_agent",
+  "judge": "mock",
+  "created_at": 1793039179.68746,
+  "metrics": {
+    "case_count": 10,
+    "error_count": 0,
+    "success_rate": 1.0,
+    "judge_pass_rate": 1.0,
+    "judge_mean": 5.0,
+    "latency_p50_ms": 0.0,
+    "latency_p95_ms": 0.01,
+    "total_tokens": 560
+  },
+  "cases": [
+    {
+      "case_id": "pc-001",
+      "input": "杭州公积金租房提取每个月最多能提多少",
+      "output": "结论：杭州无房职工租房提取每月最高2000元，一年最高24000元\n要点覆盖：2000。\n以上信息已核验，- 办理渠道见官方线上入口。",
+      "expected": "杭州无房职工租房提取每月最高2000元，一年最高24000元",
+      "error": null,
+      "latency_ms": 0.01,
+      "verdict": {
+        "case_id": "pc-001",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "mock": true,
+        "degraded": false
+      }
+    },
+    {
+      "case_id": "pc-002",
+      "input": "北京租房提取公积金每月限额是多少",
+      "output": "结论：北京租房提取每月最高2000元，季度集中支付\n要点覆盖：2000。\n以上信息已核验，- 办理渠道见官方线上入口。",
+      "expected": "北京租房提取每月最高2000元，季度集中支付",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "pc-002",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "mock": true,
+        "degraded": false
+      }
+    },
+    {
+      "case_id": "pc-003",
+      "input": "夫妻双方都在上海缴存公积金，买首套房最多能贷款多少",
+      "output": "结论：上海家庭首套房公积金贷款最高额度100万\n要点覆盖：100万。\n以上信息已核验，- 办理渠道见官方线上入口。",
+      "expected": "上海家庭首套房公积金贷款最高额度100万",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "pc-003",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "mock": true,
+        "degraded": false
+      }
+    },
+    {
+      "case_id": "pc-004",
+      "input": "公积金异地转移接续一般多少个工作日能办完",
+      "output": "结论：全国异地转移接续一般11个工作日内办结\n要点覆盖：11。\n以上信息已核验，- 办理渠道见官方线上入口。",
+      "expected": "全国异地转移接续一般11个工作日内办结",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "pc-004",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "mock": true,
+        "degraded": false
+      }
+    },
+    {
+      "case_id": "pc-005",
+      "input": "对比杭州和北京的租房提取公积金月限额",
+      "output": "结论：杭州和北京租房提取每月限额均为2000元，两地一致\n要点覆盖：2000、杭州、北京。\n以上信息已核验，- 办理渠道见官方线上入口。",
+      "expected": "杭州和北京租房提取每月限额均为2000元，两地一致",
+      "error": null,
+      "latency_ms": 0.01,
+      "verdict": {
+        "case_id": "pc-005",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "mock": true,
+        "degraded": false
+      }
+    },
+    {
+      "case_id": "pc-006",
+      "input": "离职后公积金账户里的钱怎么取出来",
+      "output": "结论：离职提取需满足封存满6个月且未再缴存等条件，可全额销户提取\n要点覆盖：销户、封存。\n以上信息已核验，- 办理渠道见官方线上入口。",
+      "expected": "离职提取需满足封存满6个月且未再缴存等条件，可全额销户提取",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "pc-006",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "mock": true,
+        "degraded": false
+      }
+    },
+    {
+      "case_id": "pc-007",
+      "input": "杭州公积金贷款额度按什么方法计算",
+      "output": "结论：按账户余额一定倍数、缴存基数、贷款成数三者取最低计算\n要点覆盖：余额、倍数。\n以上信息已核验，- 办理渠道见官方线上入口。",
+      "expected": "按账户余额一定倍数、缴存基数、贷款成数三者取最低计算",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "pc-007",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "mock": true,
+        "degraded": false
+      }
+    },
+    {
+      "case_id": "pc-008",
+      "input": "租房提取公积金需要准备哪些材料",
+      "output": "结论：需身份证、婚姻状况证明、无房证明等材料，线上可免提交\n要点覆盖：无房、材料。\n以上信息已核验，- 办理渠道见官方线上入口。",
+      "expected": "需身份证、婚姻状况证明、无房证明等材料，线上可免提交",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "pc-008",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "mock": true,
+        "degraded": false
+      }
+    },
+    {
+      "case_id": "pc-009",
+      "input": "杭州社保断缴三个月影响买房落户吗",
+      "output": "结论：该问题超出公积金政策知识库范围，应拒答并引导用户咨询社保部门\n要点覆盖：超出、社保。\n以上信息已核验，- 办理渠道见官方线上入口。",
+      "expected": "该问题超出公积金政策知识库范围，应拒答并引导用户咨询社保部门",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "pc-009",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "mock": true,
+        "degraded": false
+      }
+    },
+    {
+      "case_id": "pc-010",
+      "input": "上海公积金缴存基数上限现在是多少",
+      "output": "结论：上海公积金月缴存基数上限为36549元\n要点覆盖：36549。\n以上信息已核验，- 办理渠道见官方线上入口。",
+      "expected": "上海公积金月缴存基数上限为36549元",
+      "error": null,
+      "latency_ms": 0.0,
+      "verdict": {
+        "case_id": "pc-010",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "mock": true,
+        "degraded": false
+      }
+    }
+  ]
+}
