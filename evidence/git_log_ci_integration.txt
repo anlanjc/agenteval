@@ -1,0 +1,4 @@
+529be7c feat: CI 跨项目回归门禁真集成——ci_gate.sh（run→gate 一键，exit 1 挡合并）+ ci_fault_demo.py（8 错注入→FAIL→修复→PASS 双项目演示）+ docs/ci_integration.md + 9 项 CI 集成回归测试（pytest 95→104 绿）+ README/EVIDENCE/PROJECT_BOOK 同步 + evidence/ 归档（确定性验证/双项目演示/红线 pytest）
+f2ee974 feat: smoke 数据集 v2.0.0（10→30 条×2，对齐主项目 v2 评测集代表性子集）+ askbi 适配器 per-case role 透传 + 门禁基线入库——全量探测主项目 mock 服务后选例构建，keywords 逐条断言，askbi 30/30 与 PC 30/30 对活服务实测，基线环境=CI 环境（gen_data seed42 / FORCE_MOCK+BM25-only），新旧库输出逐字节一致
+926c2bb fix: CLI run 入口与打包修复（CI 集成消费暴露）——cmd_run TraceStore 未导入必 NameError、pyproject 缺 build-system/包声明致 pip install -e 失败；test_api 数据集条数改按数据集实际长度（v1 10/v2 30 两版皆准）
+104 passed, 1 warning in 1.35s
