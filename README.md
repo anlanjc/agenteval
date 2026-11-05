@@ -1,5 +1,19 @@
 # agenteval — 自研 Agent 评测与可观测平台
 
+[![CI](https://github.com/anlanjc/agenteval/actions/workflows/ci.yml/badge.svg)](https://github.com/anlanjc/agenteval/actions/workflows/ci.yml) [![tests](https://img.shields.io/badge/pytest-104%20passed-brightgreen)]() [![judge](https://img.shields.io/badge/LLM--judge-校准%20kappa%200.5455-blue)]() [![gate](https://img.shields.io/badge/CI%20回归门禁-exit%20拦截-blue)]()
+
+## 架构总览
+
+```mermaid
+flowchart LR
+    R{{runner<br/>驱动被测 agent<br/>mock/真模型双轨}}
+    R --> TS[(TraceStore<br/>全事件采集)]
+    TS --> J{{LLM-as-judge<br/>三维 rubric 评分}}
+    J --> CAL{{judge 校准<br/>kappa/混淆矩阵/阈值扫描}}
+    CAL --> G{{CI 回归门禁<br/>ci_gate exit 1 挡合并}}
+    G --> REP[报告 MD/HTML<br/>+ 观测台]
+```
+
 > 会做项目，更要会**量化**项目。这个仓库不接入 Langfuse / RAGAS / LangChain，
 > 从零实现了一个 Agent 评测平台的完整闭环：**trace 采集 → LLM-as-judge 评分 → judge 校准
 > （accuracy / Cohen's kappa / 混淆矩阵 / 阈值扫描）→ CI 回归门禁 → Markdown/HTML 报告 → 观测台**。
