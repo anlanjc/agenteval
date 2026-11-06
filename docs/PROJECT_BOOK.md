@@ -56,7 +56,7 @@ flowchart LR
 
 **一条评测的生命**：`Runner.run(dataset)`（runner.py run 方法）→ 逐 case 开 span → target 归一化输出 → judge 打分（无 judge 时 error=失败）→ metrics 聚合（success_rate/judge_pass_rate/judge_mean/P50/P95/token）→ RunReport 落 JSON → gate 对比基线 → 报告三格式。异常兜底：单 case 异常记 error 不崩 run（runner 的 _run_case 容错）。
 
-**judge 校准的生命**（selfeval.py）：build_cases() 构造 30 条 golden（故意埋 partial/vague/fabricated/swap 四类错误）→ v1 规则 judge 打分 → kappa/混淆矩阵 → 阈值扫描（t=3.6~4.6）→ 修订规则 → v2 复测。**真 judge 路径**：OpenAICompatibleJudge 同 golden 裸跑 → kappa 0.5455（fp=0/fn=6 严格偏置）——两次校准的对照是本仓库最深的一个叙事。
+**judge 校准的生命**（selfeval.py）：build_cases() 构造 30 条 golden（故意埋 partial/vague/fabricated/swap 四类错误）→ v1 规则 judge 打分 → kappa/混淆矩阵 → 阈值扫描（judge.py 默认网格 1.0~5.0）→ 修订规则 → v2 复测。**真 judge 路径**：OpenAICompatibleJudge 同 golden 裸跑 → kappa 0.5455（fp=0/fn=6 严格偏置）——两次校准的对照是本仓库最深的一个叙事。
 
 ## 4. 代码内化路线
 
@@ -86,6 +86,6 @@ flowchart LR
 
 ## 6. 边界与演进
 
-- 校准集规模/同源性（见上）；真 judge 未做阈值扫描二轮；POST /runs 同步执行（长评测需队列）；观测台无鉴权；askbi 适配器只解析 final/error 帧。
+- 校准集规模/同源性（见上）；POST /runs 同步执行（长评测需队列）；观测台无鉴权；askbi 适配器只解析 final/error 帧。
 - CI 门禁生效前提：agenteval 推送到与主项目同 owner 的 GitHub（yml 已就位）；门禁判的是 mock 口径下行为回归，语义等价的措辞变化会误报（keyword judge 已知边界，重出基线即可，见 docs/ci_integration.md §5）。
-- 下一版三条：真 judge 二轮校准（阈值扫描+rubric 修订）→ 评测并发执行 → Langfuse 格式导出。
+- 下一版两条：评测并发执行（POST /runs 已由同步改线程池，队列化待做）→ Langfuse 原生信封打包推送（现导出为语义对齐格式，见 export.py AGT-10 注）。

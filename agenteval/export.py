@@ -1,8 +1,10 @@
 """Trace 生态导出：把落库的 run 转成 Langfuse 兼容的事件 JSONL（ADR 下一版清单的落地）。
 
 Langfuse ingest 格式（简化版）：每行一个 JSON 对象，type=trace-create（根）或
-span-create（含 parentSpanID/startTime/endTime/level/metadata）——字段命名对齐
-Langfuse 的 ingestion API 约定，可直接被其 /api/public/ingestion 消费（或转 OTel）。
+span-create（含 parentSpanID/startTime/endTime/level/metadata）——**字段命名与语义
+对齐 Langfuse 的 ingestion API，但非其原生请求信封**（原生须 batch 数组 +
+{id,type,timestamp,body} 信封）：直接 POST 其 /api/public/ingestion 会被拒，需一层
+打包转换（AGT-10 修正，评审 2.0：原「可直接消费」主张被复核驳回）。
 
 用途：自研 trace 的可观测性不锁死——生产上接 Langfuse 只需这一层导出，评测的
 trace 语义（run→case→target.call→judge.score）在两家体系里同样可读。
@@ -78,14 +80,24 @@ def export_run(store: TraceStore, run_id: str, path: str | Path) -> dict[str, in
 
 
 def export_all(store: TraceStore, path: str | Path) -> dict[str, int]:
-    """导出库里全部 run（追加式 JSONL，带 trace-create 分隔）。"""
+    """导出库里全部 run（追加式 JSONL，带 trace-create 分隔）。
+
+    AGT-5 修复（评审 2.0）：曾用 list_runs 只取 runs 表——spans/events 恒空，
+    批量导出每 run 仅 1 行且静默丢失全部观测数据。改为逐 run load_run 完整装载，
+    total 与实际写入行数对账。
+    """
     total = {"events": 0, "runs": 0}
     out = Path(path)
     out.parent.mkdir(parents=True, exist_ok=True)
     with out.open("w", encoding="utf-8") as f:
-        for run in store.list_runs():
+        for meta in store.list_runs():
+            run = store.load_run(meta.run_id)
+            if run is None:
+                continue
+            written = 0
             for ev in trace_to_langfuse(run):
                 f.write(json.dumps(ev, ensure_ascii=False, default=str) + "\n")
-            total["events"] += 1 + len(run.spans) + len(run.events)
+                written += 1
+            total["events"] += written
             total["runs"] += 1
     return total

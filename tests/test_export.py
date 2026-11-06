@@ -4,7 +4,7 @@ import json
 import pytest
 
 from agenteval.export import export_all, export_run, trace_to_langfuse
-from agenteval.trace import Span, TraceRun, TraceStore
+from agenteval.trace import Event, Span, TraceRun, TraceStore
 
 
 def make_run() -> TraceRun:
@@ -63,3 +63,21 @@ def test_export_all_covers_every_run(tmp_path):
     ids = [json.loads(l)["id"] for l in out.read_text(encoding="utf-8").splitlines()
            if json.loads(l)["type"] == "trace-create"]
     assert ids == ["r1", "r2"]
+
+
+def test_export_all_includes_spans_and_events(tmp_path):
+    """AGT-5 回归（评审 2.0）：批量导出曾用 list_runs 丢全部 span/event——
+    现逐 run 完整装载，total 与实际行数对账。"""
+    store = TraceStore(str(tmp_path / "trace.db"))
+    run = make_run()
+    run.spans = [Span(span_id="sp1", name="root", started_at=1.0, ended_at=2.0,
+                      status="ok")]
+    run.events = [Event(event_id="ev1", run_id=run.run_id, span_id="sp1",
+                        name="started", ts=1.0)]
+    store.save_run(run)
+    out = tmp_path / "all.jsonl"
+    stats = export_all(store, out)
+    lines = out.read_text(encoding="utf-8").splitlines()
+    assert stats["events"] == len(lines) == 1 + 1 + 1  # trace-create + span + event(降级瞬时 span)
+    names = [json.loads(l).get("name", "") for l in lines]
+    assert "root" in names and "event.started" in names  # span 与事件都在，不再静默丢失

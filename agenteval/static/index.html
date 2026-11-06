@@ -49,6 +49,9 @@
 
 <script>
 async function j(url, opts) { const r = await fetch(url, opts); if (!r.ok) throw new Error(await r.text()); return r.json(); }
+// AGT-4 修复（评审 2.0）：用户可控字段（run 名/case id/错误与输出文本）一律转义后再入 innerHTML——
+// 曾可存储型 XSS（报告页已转义而观测台未做，同平台双标）。
+function esc(s) { return String(s ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch])); }
 
 async function refresh() {
   try {
@@ -58,8 +61,8 @@ async function refresh() {
     for (const r of runs) {
       const tr = document.createElement('tr');
       tr.onclick = () => showRun(r.run_id);
-      tr.innerHTML = `<td><code>${r.run_id}</code></td><td>${r.name}</td><td>${r.dataset}</td>
-        <td>${r.target}</td><td>${r.judge}</td>
+      tr.innerHTML = `<td><code>${esc(r.run_id)}</code></td><td>${esc(r.name)}</td><td>${esc(r.dataset)}</td>
+        <td>${esc(r.target)}</td><td>${esc(r.judge)}</td>
         <td>${(r.metrics.success_rate*100).toFixed(0)}%</td>
         <td>${r.metrics.judge_mean.toFixed(2)}</td>
         <td>${r.metrics.latency_p95_ms.toFixed(0)}</td>
@@ -83,10 +86,10 @@ async function showRun(id) {
       <div class="card"><div class="k">失败 case</div><div class="v ${fails?'bad':'ok'}">${fails} / ${m.case_count}</div></div>
     </div>
     <table><thead><tr><th>case</th><th>结果</th><th>均分</th><th>输出（截断）</th></tr></thead><tbody>
-    ${d.cases.map(c => `<tr><td>${c.case_id}</td>
+    ${d.cases.map(c => `<tr><td>${esc(c.case_id)}</td>
       <td class="${c.passed?'ok':'bad'}">${c.passed?'PASS':'FAIL'}</td>
-      <td>${c.verdict ? c.verdict.overall : '-'}</td>
-      <td class="muted">${(c.error || c.output || '').slice(0,80)}</td></tr>`).join('')}
+      <td>${c.verdict ? esc(c.verdict.overall) : '-'}</td>
+      <td class="muted">${esc((c.error || c.output || '').slice(0,80))}</td></tr>`).join('')}
     </tbody></table>
     <p><a href="/runs/${id}/report?format=html" target="_blank">查看完整 HTML 报告</a></p>`;
   const s = await j('/spans/' + id);
@@ -99,8 +102,8 @@ function renderNode(node) {
   if (!node) return '<div class="muted">（无 span）</div>';
   const cls = node.status === 'error' ? 'span-node err' : 'span-node';
   let html = `<div class="${cls}">
-    <span class="span-name">${node.name}</span>
-    <span class="span-meta"> ${node.duration_ms.toFixed(1)}ms ${node.error ? '· <span class=bad>'+node.error+'</span>' : ''}</span>`;
+    <span class="span-name">${esc(node.name)}</span>
+    <span class="span-meta"> ${node.duration_ms.toFixed(1)}ms ${node.error ? '· <span class=bad>'+esc(node.error)+'</span>' : ''}</span>`;
   for (const ch of (node.children || [])) html += renderNode(ch);
   return html + '</div>';
 }

@@ -15,6 +15,7 @@ import sys
 from pathlib import Path
 
 from .dataset import EvalDataset
+from .judge import JudgeError
 from .judge import MockJudge, OpenAICompatibleJudge
 from .mockagent import MockAgentTarget
 
@@ -42,7 +43,15 @@ def _build_target(args):
 def _build_judge(args):
     if args.judge == "mock":
         return MockJudge()
-    return OpenAICompatibleJudge()  # 缺 key 会在 score 时抛 MissingCredentialsError
+    judge = OpenAICompatibleJudge()
+    # AGT-9 修复（评审 2.0）：缺凭据曾不预检——30 条全 error 报告照常落盘且无条件
+    # exit 0，脚本化流水线带着全废数据继续走。与 API 侧 400 语义对齐，失败 exit 2。
+    try:
+        judge.require_credentials()
+    except JudgeError as exc:
+        print(f"[agenteval] judge 凭据缺失：{exc}", file=sys.stderr)
+        raise SystemExit(2)
+    return judge
 
 
 def cmd_run(args) -> int:

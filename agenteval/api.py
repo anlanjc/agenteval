@@ -14,12 +14,16 @@ AGENTEVAL_DATA_DIR 覆盖；测试用 create_app(data_dir=tmp) 注入独立目�
 
 from __future__ import annotations
 
+import ipaddress
 import json
 import os
+import re
+import socket
 import sqlite3
 import time
 from pathlib import Path
 from typing import Any, Literal
+from urllib.parse import urlparse
 
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import HTMLResponse, JSONResponse, PlainTextResponse
@@ -103,17 +107,62 @@ class RunRequest(BaseModel):
     limit: int | None = Field(default=None, ge=1)
 
 
-def resolve_dataset(spec: str) -> EvalDataset:
-    """支持 builtin:policy_compass_smoke / builtin:askbi_smoke / JSONL 文件路径。"""
+_DATASET_NAME_RE = re.compile(r"^[A-Za-z0-9_-]+$")
+# AGT-3：私有/环回目标放行开关（CI 与本地评测显式开启；API 默认拒绝内网目标）
+_ALLOW_PRIVATE_TARGETS = os.environ.get("AGENTEVAL_ALLOW_PRIVATE_TARGETS") == "1"
+
+
+def _validate_public_base_url(url: str) -> None:
+    """AGT-3 修复（评审 2.0）：base_url 曾无任何校验——未鉴权 API 可驱动服务器外联
+    内网（错误字符串差异构成 SSRF 探测预言机）。仅放行 http/https 且解析结果
+    不落在环回/私网/链路本地/保留段；AGENTEVAL_ALLOW_PRIVATE_TARGETS=1 显式放行
+    （CI/本地）。CLI 不经此校验。"""
+    parsed = urlparse(url)
+    if parsed.scheme not in ("http", "https") or not parsed.hostname:
+        raise HTTPException(status_code=422, detail="base_url 必须为合法 http/https URL")
+    try:
+        infos = socket.getaddrinfo(parsed.hostname, None)
+    except socket.gaierror:
+        raise HTTPException(status_code=422, detail="base_url 主机无法解析")
+    for info in infos:
+        ip = ipaddress.ip_address(info[4][0])
+        if (ip.is_loopback or ip.is_private or ip.is_link_local
+                or ip.is_reserved or ip.is_multicast):
+            raise HTTPException(status_code=422,
+                                detail="base_url 指向内网/保留地址，已拒绝（SSRF 防护）")
+
+
+def resolve_dataset(spec: str, extra_roots: tuple[Path, ...] = ()) -> EvalDataset:
+    """支持 builtin:policy_compass_smoke / builtin:askbi_smoke / JSONL 文件路径。
+
+    AGT-2 修复（评审 2.0）：API 路径曾接受任意文件系统路径——任意 JSONL 内容可被
+    外带到攻击者 target，且 404 detail 回显 spec 构成存在性探测。现限定：内置目录
+    （名字白名单）+ extra_roots（app 数据根）resolve 后校验；CLI 传 allow-any 语义
+    时直接传 expanded 路径并走 extra_roots 放行。
+    """
     if spec.startswith("builtin:"):
         name = spec.split(":", 1)[1]
-        path = _BUILTIN_DATASET_DIR / f"{name}.jsonl"
+        if not _DATASET_NAME_RE.fullmatch(name):
+            raise HTTPException(status_code=422, detail="内置数据集名仅允许字母数字与 _-")
+        path = (_BUILTIN_DATASET_DIR / f"{name}.jsonl").resolve()
+        if not path.is_relative_to(_BUILTIN_DATASET_DIR.resolve()):
+            raise HTTPException(status_code=422, detail="非法数据集路径")
         if not path.exists():
-            raise HTTPException(status_code=404, detail=f"内置数据集不存在: {name}")
+            raise HTTPException(status_code=404, detail="内置数据集不存在")
         return EvalDataset.load_jsonl(path, name=name)
     p = Path(spec)
+    if not p.is_absolute():
+        p = Path.cwd() / p
+    try:
+        p = p.resolve()
+    except OSError:
+        raise HTTPException(status_code=422, detail="非法数据集路径")
+    allowed_roots = [_BUILTIN_DATASET_DIR.resolve(), *(r.resolve() for r in extra_roots)]
+    if not any(p.is_relative_to(r) for r in allowed_roots):
+        raise HTTPException(status_code=422,
+                            detail="数据集路径越界：API 仅允许内置目录与数据根下的文件")
     if not p.exists():
-        raise HTTPException(status_code=404, detail=f"数据集文件不存在: {spec}")
+        raise HTTPException(status_code=404, detail="数据集文件不存在")
     return EvalDataset.load_jsonl(p)
 
 
@@ -156,10 +205,17 @@ def create_app(data_dir: str | Path | None = None) -> FastAPI:
         return HTMLResponse(static_file.read_text(encoding="utf-8"))
 
     @app.post("/runs")
-    async def create_run(req: RunRequest) -> dict[str, Any]:
-        dataset = resolve_dataset(req.dataset)
+    def create_run(req: RunRequest) -> dict[str, Any]:
+        # AGT-1 修复（评审 2.0）：曾为 async def 内同步跑完整场评测——事件循环被独占、
+        # 全端点（含 /health）冻结、存活探针超时杀进程致结果丢失。改同步 def，
+        # Starlette 自动调入线程池，评测期间其余端点照常服务。
+        dataset = resolve_dataset(req.dataset, extra_roots=(ctx.root,))
         if req.limit:
             dataset = dataset.sample(req.limit)
+        # AGT-3：非 mock 目标的 base_url 过 SSRF 防护（内网/保留地址拒绝）
+        if (req.target.type != "mock" and req.target.base_url
+                and not _ALLOW_PRIVATE_TARGETS):
+            _validate_public_base_url(req.target.base_url)
         target = build_target(req.target)
         if isinstance(target, MockAgentTarget):
             target.bind_dataset(dataset.ids())

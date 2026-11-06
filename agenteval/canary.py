@@ -12,6 +12,7 @@
 from __future__ import annotations
 
 import random
+import threading
 from collections import deque
 from dataclasses import dataclass, field
 from typing import Any, Callable
@@ -50,37 +51,53 @@ class CanaryMonitor:
         self.dataset = dataset.sample(cfg.sample_size, seed=cfg.seed)
         self.on_alert = on_alert
         self.state = CanaryState()
+        self._lock = threading.Lock()   # AGT-8：计数/判定/状态变更原子化
+        self._running = False           # AGT-8：singleflight 标记
 
     def canary_maybe(self) -> dict[str, Any] | None:
-        """生产调用后调用：计数到 K 触发金丝雀运行，返回本次运行结果或 None。"""
-        self.state.calls_since_run += 1
-        if self.state.calls_since_run < self.config.every_k_calls:
-            return None
-        self.state.calls_since_run = 0
-        return self.run_canary()
+        """生产调用后调用：计数到 K 触发金丝雀运行，返回本次运行结果或 None。
+
+        AGT-8 修复（评审 2.0）：计数 RMW 与 check-then-reset 曾全程无锁——并发下
+        更新丢失（金丝雀晚触发/不触发）或双跑双告警（双倍 judge 花费）。计数/判定/
+        重置在锁内原子完成，耗时的 runner.run 在锁外，singleflight 防重入。
+        """
+        with self._lock:
+            self.state.calls_since_run += 1
+            if self.state.calls_since_run < self.config.every_k_calls:
+                return None
+            if self._running:      # singleflight：上一场金丝雀仍在跑
+                return None
+            self.state.calls_since_run = 0
+            self._running = True
+        try:
+            return self.run_canary()
+        finally:
+            with self._lock:
+                self._running = False
 
     def run_canary(self) -> dict[str, Any]:
         report = self.runner.run(self.dataset, name=f"canary-{self.state.runs + 1}")
-        self.state.runs += 1
-        pass_rate = report.metrics.judge_pass_rate
-        self.state.window.append(pass_rate)
-        if len(self.state.window) > self.config.window_size:
-            self.state.window.popleft()
+        with self._lock:  # AGT-8：状态变更原子化（慢调用已在锁外）
+            self.state.runs += 1
+            pass_rate = report.metrics.judge_pass_rate
+            self.state.window.append(pass_rate)
+            if len(self.state.window) > self.config.window_size:
+                self.state.window.popleft()
 
-        baseline = self.config.baseline_pass_rate
-        if baseline is None and len(self.state.window) > 1:
-            baseline = sum(list(self.state.window)[:-1]) / (len(self.state.window) - 1)
-        alert = None
-        if baseline is not None and pass_rate < baseline - self.config.tolerance:
-            alert = {
-                "kind": "canary_degradation",
-                "pass_rate": pass_rate, "baseline": baseline,
-                "window": list(self.state.window),
-                "run_id": report.run_id,
-            }
-            self.state.alerts.append(alert)
-            if self.on_alert:
-                self.on_alert(alert)
+            baseline = self.config.baseline_pass_rate
+            if baseline is None and len(self.state.window) > 1:
+                baseline = sum(list(self.state.window)[:-1]) / (len(self.state.window) - 1)
+            alert = None
+            if baseline is not None and pass_rate < baseline - self.config.tolerance:
+                alert = {
+                    "kind": "canary_degradation",
+                    "pass_rate": pass_rate, "baseline": baseline,
+                    "window": list(self.state.window),
+                    "run_id": report.run_id,
+                }
+                self.state.alerts.append(alert)
+                if self.on_alert:
+                    self.on_alert(alert)
         return {"run_id": report.run_id, "pass_rate": pass_rate,
                 "baseline": baseline, "alert": alert}
 

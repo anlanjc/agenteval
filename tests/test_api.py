@@ -76,13 +76,21 @@ def test_api_judge_openai_without_key_is_400(client):
 
 
 def test_api_validation_and_404(client):
-    c, _ = client
+    c, data_dir = client
     assert c.get("/runs/does-not-exist").status_code == 404
     assert c.get("/spans/does-not-exist").status_code == 404
     assert c.post("/runs", json={"dataset": "builtin:nope"}).status_code == 404
-    assert c.post("/runs", json={"dataset": "Z:/definitely/missing.jsonl"}).status_code == 404
+    # AGT-2：API 数据集路径白名单——根外路径 422（曾 404 回显 spec 构成存在性探测）
+    assert c.post("/runs", json={"dataset": "Z:/definitely/missing.jsonl"}).status_code == 422
+    assert c.post("/runs", json={"dataset": "builtin:../nope"}).status_code == 422
+    # 数据根内的缺失文件仍是 404（detail 不回显 spec）
+    inside = (data_dir / "missing.jsonl").as_posix()
+    assert c.post("/runs", json={"dataset": inside}).status_code == 404
     # http target 缺 base_url → 422
     assert c.post("/runs", json={"target": {"type": "http"}}).status_code == 422
+    # AGT-3：SSRF 防护——内网/环回目标 422（显式开关可放行）
+    assert c.post("/runs", json={"dataset": "builtin:askbi_smoke",
+                                 "target": {"type": "http", "base_url": "http://127.0.0.1:9"}}).status_code == 422
     assert c.get("/health").json()["status"] == "ok"
 
 

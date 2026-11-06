@@ -310,11 +310,19 @@ def _row_to_event(row: sqlite3.Row) -> Event:
 
 
 class TraceStore:
-    """SQLite 持久化与查询。线程安全策略：每次操作独立连接（check_same_thread=False 无需）。"""
+    """SQLite 持久化与查询。
+
+    AGT-7 修复（评审 2.0）：docstring 曾声称「每次操作独立连接」，实现实为共享单连接
+    且跨线程即抛 sqlite3.ProgrammingError（CanaryMonitor 内嵌生产进程即触发）。
+    现如实声明并落实：共享连接 + threading.Lock 串行化全部读写。
+    """
 
     def __init__(self, path: str | Any):
         # path 可以是 ":memory:" 或文件路径
         self.path = str(path)
+        import threading
+
+        self._lock = threading.Lock()
         self._conn = sqlite3.connect(self.path)
         self._conn.row_factory = sqlite3.Row
         self._conn.executescript(_SCHEMA)
@@ -325,56 +333,61 @@ class TraceStore:
 
     # ---- 写入 --------------------------------------------------------------
     def save_run(self, run: TraceRun) -> None:
-        self._conn.execute(
-            "INSERT OR REPLACE INTO runs(run_id,name,created_at,status,attributes) VALUES(?,?,?,?,?)",
-            (run.run_id, run.name, run.created_at, run.status,
-             json.dumps(run.attributes, ensure_ascii=False)),
-        )
-        for sp in run.spans:
+        with self._lock:
             self._conn.execute(
-                "INSERT OR REPLACE INTO spans(span_id,run_id,parent_span_id,name,started_at,"
-                "ended_at,duration_ms,attributes,status,error) VALUES(?,?,?,?,?,?,?,?,?,?)",
-                (sp.span_id, run.run_id, sp.parent_span_id, sp.name, sp.started_at,
-                 sp.ended_at, sp.duration_ms,
-                 json.dumps(sp.attributes, ensure_ascii=False), sp.status, sp.error),
+                "INSERT OR REPLACE INTO runs(run_id,name,created_at,status,attributes) VALUES(?,?,?,?,?)",
+                (run.run_id, run.name, run.created_at, run.status,
+                 json.dumps(run.attributes, ensure_ascii=False)),
             )
-        for ev in run.events:
-            self._conn.execute(
-                "INSERT OR REPLACE INTO events(event_id,run_id,span_id,name,ts,attributes) "
-                "VALUES(?,?,?,?,?,?)",
-                (ev.event_id, ev.run_id, ev.span_id, ev.name, ev.ts,
-                 json.dumps(ev.attributes, ensure_ascii=False)),
-            )
-        self._conn.commit()
+            for sp in run.spans:
+                self._conn.execute(
+                    "INSERT OR REPLACE INTO spans(span_id,run_id,parent_span_id,name,started_at,"
+                    "ended_at,duration_ms,attributes,status,error) VALUES(?,?,?,?,?,?,?,?,?,?)",
+                    (sp.span_id, run.run_id, sp.parent_span_id, sp.name, sp.started_at,
+                     sp.ended_at, sp.duration_ms,
+                     json.dumps(sp.attributes, ensure_ascii=False), sp.status, sp.error),
+                )
+            for ev in run.events:
+                self._conn.execute(
+                    "INSERT OR REPLACE INTO events(event_id,run_id,span_id,name,ts,attributes) "
+                    "VALUES(?,?,?,?,?,?)",
+                    (ev.event_id, ev.run_id, ev.span_id, ev.name, ev.ts,
+                     json.dumps(ev.attributes, ensure_ascii=False)),
+                )
+            self._conn.commit()
 
     # ---- 查询 --------------------------------------------------------------
     def list_runs(self) -> list[TraceRun]:
-        rows = self._conn.execute("SELECT * FROM runs ORDER BY created_at DESC").fetchall()
-        return [_row_to_run(r) for r in rows]
+        with self._lock:
+            rows = self._conn.execute("SELECT * FROM runs ORDER BY created_at DESC").fetchall()
+            return [_row_to_run(r) for r in rows]
 
     def load_run(self, run_id: str) -> TraceRun | None:
-        row = self._conn.execute("SELECT * FROM runs WHERE run_id=?", (run_id,)).fetchone()
-        if row is None:
-            return None
-        run = _row_to_run(row)
-        spans = self._conn.execute(
-            "SELECT * FROM spans WHERE run_id=? ORDER BY started_at", (run_id,)
-        ).fetchall()
-        run.spans = [_row_to_span(r) for r in spans]
-        events = self._conn.execute(
-            "SELECT * FROM events WHERE run_id=? ORDER BY ts", (run_id,)
-        ).fetchall()
-        run.events = [_row_to_event(r) for r in events]
-        return run
+        with self._lock:
+            row = self._conn.execute("SELECT * FROM runs WHERE run_id=?", (run_id,)).fetchone()
+            if row is None:
+                return None
+            run = _row_to_run(row)
+            spans = self._conn.execute(
+                "SELECT * FROM spans WHERE run_id=? ORDER BY started_at", (run_id,)
+            ).fetchall()
+            run.spans = [_row_to_span(r) for r in spans]
+            events = self._conn.execute(
+                "SELECT * FROM events WHERE run_id=? ORDER BY ts", (run_id,)
+            ).fetchall()
+            run.events = [_row_to_event(r) for r in events]
+            return run
 
     def load_spans(self, run_id: str) -> list[Span]:
-        rows = self._conn.execute(
-            "SELECT * FROM spans WHERE run_id=? ORDER BY started_at", (run_id,)
-        ).fetchall()
-        return [_row_to_span(r) for r in rows]
+        with self._lock:
+            rows = self._conn.execute(
+                "SELECT * FROM spans WHERE run_id=? ORDER BY started_at", (run_id,)
+            ).fetchall()
+            return [_row_to_span(r) for r in rows]
 
     def load_events(self, run_id: str) -> list[Event]:
-        rows = self._conn.execute(
-            "SELECT * FROM events WHERE run_id=? ORDER BY ts", (run_id,)
-        ).fetchall()
-        return [_row_to_event(r) for r in rows]
+        with self._lock:
+            rows = self._conn.execute(
+                "SELECT * FROM events WHERE run_id=? ORDER BY ts", (run_id,)
+            ).fetchall()
+            return [_row_to_event(r) for r in rows]

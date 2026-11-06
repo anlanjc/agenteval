@@ -303,7 +303,7 @@ judge 上线的真实起点（mock v2 的 0.889 是同源拟合值，不可直�
 
 ## 生态导出（Langfuse 兼容 JSONL）
 
-自研 trace 不锁死：`agenteval/export.py` 把任意 run 导出为 Langfuse ingestion 兼容的事件流（trace-create/span-create，含父子链接、level、metadata；离散事件降级为瞬时 span）。5 项测试（全量 85 绿）。
+自研 trace 不锁死：`agenteval/export.py` 把任意 run 导出为 Langfuse 语义对齐的事件流（原生 ingestion 信封需一层打包转换）（trace-create/span-create，含父子链接、level、metadata；离散事件降级为瞬时 span）。5 项测试（全量 85 绿）。
 
 ## 金丝雀监控（线上静默劣化的唯一发现手段）
 

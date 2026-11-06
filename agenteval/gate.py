@@ -87,12 +87,19 @@ def compare_metrics(baseline: dict[str, Any], current: dict[str, Any],
                     thresholds: dict[str, float] | None = None) -> GateResult:
     """对同一组指标做方向感知的阈值比较。阈值可按指标覆盖，未配置的指标跳过。"""
     th = dict(DEFAULT_THRESHOLDS)
-    if thresholds:
-        th.update({k: float(v) for k, v in thresholds.items()})
-        # 显式传 -1 或 inf 可关闭某指标检查
+    explicit = {k: float(v) for k, v in (thresholds or {}).items()}
+    th.update(explicit)
+    # 显式传 -1 或 inf 可关闭某指标检查
     diffs: list[MetricDiff] = []
     for metric, limit in th.items():
         if metric not in baseline or metric not in current:
+            if metric in explicit:
+                # AGT-6 修复（评审 2.0）：调用方显式配置的阈值键未命中报告指标——
+                # 曾静默 continue 使 CI 假通过（键名写错=没配）。stderr 警告留痕。
+                import sys
+
+                print(f"[agenteval-gate] 警告：显式阈值键 {metric!r} 不在报告指标中，"
+                      f"该阈值未生效", file=sys.stderr)
             continue
         b = float(baseline[metric])
         c = float(current[metric])

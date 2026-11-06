@@ -94,6 +94,12 @@ class HTTPTarget:
         self.timeout = timeout
         self.name = name or f"http:{mode}"
         self._transport = transport
+        self._client: httpx.Client | None = None  # AGT-11：实例级连接池（惰性建）
+
+    def close(self) -> None:
+        if self._client is not None:
+            self._client.close()
+            self._client = None
 
     def _url(self) -> str:
         if self.mode == "openai":
@@ -119,10 +125,14 @@ class HTTPTarget:
             kwargs: dict[str, Any] = {}
             if self._transport is not None:
                 kwargs["transport"] = self._transport
-            with httpx.Client(timeout=self.timeout, **kwargs) as client:
-                resp = client.post(self._url(), json=self._payload(case))
-                resp.raise_for_status()
-                data = resp.json()
+            # AGT-11 修复（评审 2.0）：曾逐 case 新建 httpx.Client——TCP/TLS 握手成本
+            # 全数计入 latency_ms 并汇入 P50/P95（门禁按被连接噪声污染的指标比较）。
+            # 改实例级复用 keep-alive 连接池；close() 由 Runner 在评测结束时调用。
+            if self._client is None:
+                self._client = httpx.Client(timeout=self.timeout, **kwargs)
+            resp = self._client.post(self._url(), json=self._payload(case))
+            resp.raise_for_status()
+            data = resp.json()
             output = self._extract(data)
             latency = (time.perf_counter() - started) * 1000.0
             return TargetResult(output=output, meta={"raw_keys": list(data)}, latency_ms=latency)
@@ -312,16 +322,22 @@ class Runner:
                                "judge": self.judge.name if self.judge else "none"})
         cases: list[CaseResult] = []
         status = "ok"
-        with tracer.span(name, {"case_count": len(dataset.cases)}):
-            for case in dataset.cases:
-                try:
-                    cases.append(self._run_case(tracer, case))
-                except Exception as exc:  # target 抛异常也要兜住成 case 级 error
-                    status = "error"
-                    cases.append(CaseResult(
-                        case_id=case.id, input=case.input, output="", expected=case.expected,
-                        error=f"{type(exc).__name__}: {exc}", golden=case.golden,
-                    ))
+        try:
+            with tracer.span(name, {"case_count": len(dataset.cases)}):
+                for case in dataset.cases:
+                    try:
+                        cases.append(self._run_case(tracer, case))
+                    except Exception as exc:  # target 抛异常也要兜住成 case 级 error
+                        status = "error"
+                        cases.append(CaseResult(
+                            case_id=case.id, input=case.input, output="", expected=case.expected,
+                            error=f"{type(exc).__name__}: {exc}", golden=case.golden,
+                        ))
+        finally:
+            # AGT-11：评测结束归还 keep-alive 连接池
+            close = getattr(self.target, "close", None)
+            if callable(close):
+                close()
         run = tracer.finish(status=status)
         if self.store is not None:
             self.store.save_run(run)
