@@ -1,6 +1,6 @@
 # agenteval — 自研 Agent 评测与可观测平台
 
-[![CI](https://github.com/anlanjc/agenteval/actions/workflows/ci.yml/badge.svg)](https://github.com/anlanjc/agenteval/actions/workflows/ci.yml) [![tests](https://img.shields.io/badge/pytest-104%20passed-brightgreen)]() [![judge](https://img.shields.io/badge/LLM--judge-校准%20kappa%200.5455-blue)]() [![gate](https://img.shields.io/badge/CI%20回归门禁-exit%20拦截-blue)]()
+[![CI](https://github.com/anlanjc/agenteval/actions/workflows/ci.yml/badge.svg)](https://github.com/anlanjc/agenteval/actions/workflows/ci.yml) [![tests](https://img.shields.io/badge/pytest-105%20passed-brightgreen)]() [![judge](https://img.shields.io/badge/LLM--judge-校准%20kappa%200.5455-blue)]() [![gate](https://img.shields.io/badge/CI%20回归门禁-exit%20拦截-blue)]()
 
 ## 架构总览
 
@@ -84,10 +84,10 @@ python -m venv .venv
 .venv/Scripts/python -m pip install -i https://pypi.org/simple/ -r requirements.txt
 ```
 
-跑测试（不依赖网络与任何付费 API，104 个用例）：
+跑测试（不依赖网络与任何付费 API，105 个用例）：
 
 ```bash
-.venv/Scripts/python -m pytest tests/        # 104 passed
+.venv/Scripts/python -m pytest tests/        # 105 passed
 ```
 
 mock 模式自评测（judge 校准 + 回归门禁演示，产出 `.agenteval/selfeval/` 下的全部产物）：
@@ -268,7 +268,7 @@ agenteval/
 ├── baselines/            #   门禁基线（30/30 PASS 的 RunReport，与数据集版本配套）
 ├── scripts/              #   ci_gate.sh（CI 门禁入口）/ ci_fault_demo.py / build_smoke_v2.py / judge_variance.py
 ├── docs/                 #   PROJECT_BOOK / TAKEOVER / adr / ci_integration
-├── tests/                #   104 个测试，全部离线
+├── tests/                #   105 个测试，全部离线
 └── .agenteval/           # 运行产物（store.db / runs.db / reports/ / selfeval/）
 ```
 
