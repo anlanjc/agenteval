@@ -100,3 +100,112 @@ def test_api_serves_static_page(client):
     assert resp.status_code == 200
     assert "agenteval 观测台" in resp.text
     assert "/runs" in resp.text
+
+
+# ---------------------------------------------------------- AE-6（评审 4.0）
+
+@pytest.fixture()
+def client_no_raise(tmp_path, monkeypatch):
+    # 异常路径回归用：默认 TestClient 会把服务端异常重抛给测试（raise_server_exceptions=True），
+    # 这里要断言的是「异常 → 500 响应且连接已关」
+    monkeypatch.delenv("AGENTEVAL_LLM_API_KEY", raising=False)
+    app = create_app(data_dir=tmp_path / "data")
+    return TestClient(app, raise_server_exceptions=False), tmp_path / "data"
+
+
+def _spy_trace_store_close(monkeypatch):
+    """给 TraceStore.close 挂计数器（TraceStore 是普通 Python 类，可 setattr）。"""
+    from agenteval.trace import TraceStore
+    closes = {"n": 0}
+    orig = TraceStore.close
+
+    def spy(self):
+        closes["n"] += 1
+        orig(self)
+
+    monkeypatch.setattr(TraceStore, "close", spy)
+    return closes
+
+
+def _spy_registry_close(monkeypatch, fail_execute=False):
+    """给 registry() 返回的连接挂 close 计数器（sqlite3.Connection 不允许 setattr，
+    用 SimpleNamespace 代理端点实际用到的 execute/close 两成员）。"""
+    import sqlite3
+    import types
+
+    from agenteval.api import AppContext
+    closes = {"n": 0}
+    orig = AppContext.registry
+
+    def spy(self):
+        conn = orig(self)
+        if fail_execute:
+            def execute(*a, **k):
+                raise sqlite3.OperationalError("database is locked")
+        else:
+            execute = conn.execute
+
+        def close():
+            closes["n"] += 1
+            conn.close()
+
+        return types.SimpleNamespace(execute=execute, close=close)
+
+    monkeypatch.setattr(AppContext, "registry", spy)
+    return closes
+
+
+_RUN_BODY = {"name": "ae6", "dataset": "builtin:askbi_smoke",
+             "target": {"type": "mock"}, "judge": "mock"}
+
+
+def test_create_run_closes_trace_store(client, monkeypatch):
+    c, _ = client
+    closes = _spy_trace_store_close(monkeypatch)
+    resp = c.post("/runs", json=_RUN_BODY)
+    assert resp.status_code == 200
+    assert closes["n"] == 1                       # 每请求新建的 TraceStore 必须显式关闭
+
+
+def test_create_run_closes_trace_store_on_runner_failure(client_no_raise, monkeypatch):
+    # runner.run 异常路径连接也不滞留（GC 托付在 Windows 即 store.db 句柄滞留）
+    c, _ = client_no_raise
+    from agenteval.runner import Runner
+    closes = _spy_trace_store_close(monkeypatch)
+    monkeypatch.setattr(Runner, "run",
+                        lambda self, ds, name="eval": (_ for _ in ()).throw(RuntimeError("boom")))
+    resp = c.post("/runs", json=_RUN_BODY)
+    assert resp.status_code == 500
+    assert closes["n"] == 1
+
+
+def test_spans_closes_store_on_load_error(client_no_raise, monkeypatch):
+    c, _ = client_no_raise
+    from agenteval.trace import TraceStore
+    closes = _spy_trace_store_close(monkeypatch)
+    monkeypatch.setattr(TraceStore, "load_run",
+                        lambda self, run_id: (_ for _ in ()).throw(RuntimeError("boom")))
+    resp = c.get("/spans/no-such-run")
+    assert resp.status_code == 500
+    assert closes["n"] == 1                       # 裸 close 不在 try/finally 曾滞留
+
+
+def test_list_runs_closes_registry_on_execute_error(client_no_raise, monkeypatch):
+    c, _ = client_no_raise
+    closes = _spy_registry_close(monkeypatch, fail_execute=True)
+    resp = c.get("/runs")
+    assert resp.status_code == 500
+    assert closes["n"] == 1                       # sqlite busy 等异常路径连接不滞留
+
+
+def test_run_detail_closes_registry_on_parse_error(client_no_raise, monkeypatch):
+    c, _ = client_no_raise
+    from agenteval.report import RunReport
+    resp = c.post("/runs", json=_RUN_BODY)
+    run_id = resp.json()["run_id"]
+    closes = _spy_registry_close(monkeypatch)
+    monkeypatch.setattr(RunReport, "from_dict",
+                        classmethod(lambda cls, d: (_ for _ in ()).throw(RuntimeError("boom"))))
+    resp = c.get(f"/runs/{run_id}")
+    assert resp.status_code == 500
+    assert closes["n"] == 1

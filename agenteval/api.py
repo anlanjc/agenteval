@@ -69,16 +69,18 @@ class AppContext:
         (d / f"{report.run_id}.md").write_text(render_markdown(report), encoding="utf-8")
         (d / f"{report.run_id}.html").write_text(render_html(report), encoding="utf-8")
         conn = self.registry()
-        conn.execute(
-            "INSERT OR REPLACE INTO eval_runs(run_id,name,dataset,dataset_version,target,judge,"
-            "created_at,metrics_json,report_json) VALUES(?,?,?,?,?,?,?,?,?)",
-            (report.run_id, report.name, report.dataset, report.dataset_version,
-             report.target, report.judge, report.created_at,
-             json.dumps(report.metrics.to_dict(), ensure_ascii=False),
-             json.dumps(report.to_dict(), ensure_ascii=False)),
-        )
-        conn.commit()
-        conn.close()
+        try:
+            conn.execute(
+                "INSERT OR REPLACE INTO eval_runs(run_id,name,dataset,dataset_version,target,judge,"
+                "created_at,metrics_json,report_json) VALUES(?,?,?,?,?,?,?,?,?)",
+                (report.run_id, report.name, report.dataset, report.dataset_version,
+                 report.target, report.judge, report.created_at,
+                 json.dumps(report.metrics.to_dict(), ensure_ascii=False),
+                 json.dumps(report.to_dict(), ensure_ascii=False)),
+            )
+            conn.commit()
+        finally:
+            conn.close()
 
 
 def default_context() -> AppContext:
@@ -220,19 +222,28 @@ def create_app(data_dir: str | Path | None = None) -> FastAPI:
         if isinstance(target, MockAgentTarget):
             target.bind_dataset(dataset.ids())
         judge = build_judge(req.judge)
-        runner = Runner(target=target, judge=judge, store=ctx.trace_store(),
-                        judge_threshold=req.judge_threshold)
-        report = runner.run(dataset, name=req.name)
+        # AE-6 修复（评审 4.0）：每请求新建的 TraceStore 曾全程无 close（Runner.run 的
+        # finally 只关 target）——连接生命周期托付 GC，Windows 下即 store.db 句柄滞留，
+        # 且每次建连重跑 schema DDL。try/finally 显式关闭（评测成败都关）。
+        store = ctx.trace_store()
+        try:
+            runner = Runner(target=target, judge=judge, store=store,
+                            judge_threshold=req.judge_threshold)
+            report = runner.run(dataset, name=req.name)
+        finally:
+            store.close()
         ctx.save_report(report)
         return {"run_id": report.run_id, "metrics": report.metrics.to_dict()}
 
     @app.get("/runs")
     async def list_runs() -> list[dict[str, Any]]:
         conn = ctx.registry()
-        rows = conn.execute(
-            "SELECT run_id,name,dataset,dataset_version,target,judge,created_at,metrics_json "
-            "FROM eval_runs ORDER BY created_at DESC").fetchall()
-        conn.close()
+        try:
+            rows = conn.execute(
+                "SELECT run_id,name,dataset,dataset_version,target,judge,created_at,metrics_json "
+                "FROM eval_runs ORDER BY created_at DESC").fetchall()
+        finally:
+            conn.close()
         return [
             {**{k: r[k] for k in ("run_id", "name", "dataset", "dataset_version",
                                   "target", "judge", "created_at")},
@@ -242,9 +253,11 @@ def create_app(data_dir: str | Path | None = None) -> FastAPI:
 
     def _load(run_id: str) -> RunReport:
         conn = ctx.registry()
-        row = conn.execute("SELECT report_json FROM eval_runs WHERE run_id=?",
-                           (run_id,)).fetchone()
-        conn.close()
+        try:
+            row = conn.execute("SELECT report_json FROM eval_runs WHERE run_id=?",
+                               (run_id,)).fetchone()
+        finally:
+            conn.close()
         if row is None:
             raise HTTPException(status_code=404, detail=f"run 不存在: {run_id}")
         return RunReport.from_dict(json.loads(row["report_json"]))
@@ -265,8 +278,10 @@ def create_app(data_dir: str | Path | None = None) -> FastAPI:
     @app.get("/spans/{run_id}")
     async def spans(run_id: str) -> dict[str, Any]:
         store = ctx.trace_store()
-        run = store.load_run(run_id)
-        store.close()
+        try:
+            run = store.load_run(run_id)
+        finally:
+            store.close()
         if run is None:
             raise HTTPException(status_code=404, detail=f"trace 不存在: {run_id}")
         return {
