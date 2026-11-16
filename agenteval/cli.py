@@ -21,8 +21,31 @@ from .mockagent import MockAgentTarget
 
 
 def _resolve_dataset(spec: str) -> EvalDataset:
+    """CLI 侧 --dataset 解析。
+
+    AE-1 修复（评审 4.0）：AGT-2 数据集白名单（8a503eb）越界杀伤 CLI——这里曾直接
+    resolve_dataset(spec) 不传 extra_roots，builtin 目录外任意 JSONL 路径（--dataset
+    help 承诺的核心输入形态）一律 HTTPException 422 且以未捕获 traceback 退出。
+    修法按 api.resolve_dataset docstring 原设计：CLI 是可信本地方，路径 spec 以其
+    所在目录作 extra_root 放行（只放行用户显式指定的那份文件）；API 服务端仍严格
+    白名单（api.py:212 只传 app 数据根），两层语义分开。数据集不可用 → 干净的
+    stderr 报错 + 退出码 2（与 AGT-9 凭据预检同码），不再深栈 traceback。
+    """
+    from fastapi import HTTPException  # CLI 保持懒加载，与既有函数内 import 风格一致
+
     from .api import resolve_dataset
-    return resolve_dataset(spec)
+
+    extra_roots = ()
+    if not spec.startswith("builtin:"):
+        p = Path(spec)
+        if not p.is_absolute():
+            p = Path.cwd() / p
+        extra_roots = (p.parent,)
+    try:
+        return resolve_dataset(spec, extra_roots=extra_roots)
+    except HTTPException as exc:
+        print(f"[agenteval] 数据集不可用：{spec} → {exc.detail}", file=sys.stderr)
+        raise SystemExit(2)
 
 
 def _build_target(args):
