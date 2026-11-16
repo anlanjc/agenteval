@@ -30,6 +30,7 @@ class CanaryConfig:
     tolerance: float = 0.15         # 通过率相对基线下降超 15% → 告警
     baseline_pass_rate: float | None = None   # 缺省用首窗均值（首窗满后冻结——AE-3）
     seed: int = 42
+    max_alerts: int = 100           # 状态内保留的最近告警条数（AE-9：常驻防无界增长）
 
 
 @dataclass
@@ -39,6 +40,7 @@ class CanaryState:
     alerts: list[dict[str, Any]] = field(default_factory=list)
     runs: int = 0
     baseline_anchor: float | None = None   # AE-3：首窗均值，满窗后冻结不再吸收新值
+    alert_count: int = 0   # AE-9：累计告警数（alerts 封顶轮转后总量仍可查）
 
 
 class CanaryMonitor:
@@ -110,6 +112,14 @@ class CanaryMonitor:
                     "run_id": report.run_id,
                 }
                 self.state.alerts.append(alert)
+                # AE-9 修复（评审 4.0）：alerts 曾是无上限 list——canary 定位线上
+                # 常驻监控，持续劣化期间每窗 append 一条含 window 快照的 alert 永不
+                # 清理，驻留进程内存随时间无界增长。现封顶轮转只留最近 max_alerts 条
+                # （window 有界 popleft 的同款思路），累计总量单独记 alert_count，
+                # on_alert 回调通道不受影响（下游自行决定是否落盘全量）。
+                self.state.alert_count += 1
+                if len(self.state.alerts) > self.config.max_alerts:
+                    del self.state.alerts[0]
                 if self.on_alert:
                     self.on_alert(alert)
         return {"run_id": report.run_id, "pass_rate": pass_rate,
@@ -117,5 +127,6 @@ class CanaryMonitor:
 
     def stats(self) -> dict[str, Any]:
         return {"runs": self.state.runs, "calls_since_run": self.state.calls_since_run,
-                "window": list(self.state.window), "alerts": len(self.state.alerts),
+                "window": list(self.state.window), "alerts": self.state.alert_count,
+                "alerts_retained": len(self.state.alerts),
                 "canary_size": len(self.dataset)}
