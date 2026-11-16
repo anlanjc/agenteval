@@ -132,11 +132,45 @@ def load_report(path: str | Path) -> dict[str, Any]:
     return data
 
 
+class ReportMismatchError(ValueError):
+    """基线/当前报告口径不一致（dataset/dataset_version/case_count 错位）。"""
+
+
+def _consistency_mismatches(base: dict[str, Any], cur: dict[str, Any]) -> list[str]:
+    """AE-5 修复（评审 4.0）：校验两份报告的评测口径三元组一致。
+
+    门禁按指标键互比前必须确认比的是同一数据集的同一版本同一 case 数——
+    改数据集不重出基线时曾静默拿不同 case 集互比（拦截信号失真，fail-open）。
+    字段取自 RunReport.to_dict 形态：dataset/dataset_version 顶层、case_count 在
+    metrics 内（baselines/*.json 头部现成）。一边缺字段则该项跳过（不比较不存在
+    的口径；两侧均缺的最小历史报告不误伤）。
+    """
+    mismatches: list[str] = []
+    pairs = [
+        ("dataset", base.get("dataset"), cur.get("dataset")),
+        ("dataset_version", base.get("dataset_version"), cur.get("dataset_version")),
+        ("case_count", base.get("metrics", {}).get("case_count"),
+         cur.get("metrics", {}).get("case_count")),
+    ]
+    for key, b, c in pairs:
+        if b is None or c is None:
+            continue
+        if b != c:
+            mismatches.append(f"{key}: baseline={b!r} vs current={c!r}")
+    return mismatches
+
+
 def compare_reports(baseline_path: str | Path, current_path: str | Path,
                     thresholds: dict[str, float] | None = None) -> GateResult:
-    """读两份 RunReport JSON 做门禁比较。"""
+    """读两份 RunReport JSON 做门禁比较。口径三元组不一致 → ReportMismatchError。"""
     base = load_report(baseline_path)
     cur = load_report(current_path)
+    mismatches = _consistency_mismatches(base, cur)
+    if mismatches:
+        raise ReportMismatchError(
+            "基线/当前报告口径不一致，拒绝比较（fail-closed，门禁信号失真防护）："
+            + "；".join(mismatches)
+            + "——改数据集后必须重新生成基线（见 docs/ci_integration.md §2）")
     result = compare_metrics(base["metrics"], cur["metrics"], thresholds)
     result.baseline_name = str(base.get("run_id", baseline_path))
     result.current_name = str(cur.get("run_id", current_path))
@@ -146,9 +180,13 @@ def compare_reports(baseline_path: str | Path, current_path: str | Path,
 def gate(baseline_path: str | Path, current_path: str | Path,
          thresholds: dict[str, float] | None = None,
          stream: Any = sys.stdout) -> int:
-    """CLI 入口：打印差异表，返回退出码（0=通过，1=拦截）。"""
+    """CLI 入口：打印差异表，返回退出码（0=通过，1=拦截，2=读取/口径错误）。"""
     try:
         result = compare_reports(baseline_path, current_path, thresholds)
+    except ReportMismatchError as exc:
+        # 与 AGT-6 同哲学但更硬：门禁信号失真比漏报更危险，直接 fail-closed
+        print(f"[agenteval-gate] 错误：{exc}", file=sys.stderr)
+        return 2
     except Exception as exc:
         print(f"[gate] 报告读取失败: {exc}", file=sys.stderr)
         return 2

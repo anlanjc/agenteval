@@ -29,7 +29,9 @@ CI 共享机噪声误拦；可追加位置参数 `metric=value` 收紧。
 - agenteval 仓库推送到 GitHub，且与两个主项目**同 owner**（CI 里
   `repository: ${{ github.repository_owner }}/agenteval`）；分支 main。
 - 基线（`baselines/*.json`）与数据集版本（`_version: 2.0.0`）配套——改 smoke 数据集
-  必须重新生成基线（见 §4），否则 gate 数字口径错位。
+  必须重新生成基线（见 §4），否则 gate 数字口径错位。（AE-5：此配套不再纯靠人工纪律——
+  gate 现会比较前校验两份报告的 dataset/dataset_version/case_count 三元组，
+  不一致 stderr 报错并 exit 2 硬失败。）
 - askbi 基线生成环境 = CI 环境（LLM_PROVIDER=mock、PROFILE=conservative、
   gen_data seed 42）；policy-compass 同理（POLICY_COMPASS_FORCE_MOCK=1、
   EMBED_ENABLED=false、RERANK_ENABLED=false、ingest 确定性切句）。换任何一项都要重出基线。
