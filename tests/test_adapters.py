@@ -150,3 +150,63 @@ def test_adapters_work_end_to_end_with_runner():
     report = Runner(target=adapter).run(ds.sample(3))
     assert report.target == "policy_compass"
     assert report.metrics.success_rate == 1.0
+
+
+# ---------------------------------------------------------- AE-8（评审 4.0）
+
+def _pc_handler(calls):
+    def handler(request):
+        calls["n"] += 1
+        return httpx.Response(200, json={"answer": "每月最高2000元", "refusal": False,
+                                         "sources": [], "trace_id": "t", "latency_ms": 1})
+    return handler
+
+
+def test_policy_compass_adapter_reuses_client_across_cases():
+    calls = {"n": 0}
+    adapter = PolicyCompassAdapter("http://mock.local",
+                                   transport=httpx.MockTransport(_pc_handler(calls)))
+    adapter(_case("q1"))
+    adapter(_case("q2"))
+    assert calls["n"] == 2
+    assert adapter._client is not None           # 连接池实例级保留（AE-8 前逐 case 新建销毁）
+    first = adapter._client
+    adapter(_case("q3"))
+    assert adapter._client is first              # 同一 Client 复用，不逐 case 重建
+    adapter.close()
+    assert adapter._client is None
+
+
+def test_askbi_adapter_reuses_client_and_close():
+    calls = {"n": 0}
+
+    def handler(request):
+        calls["n"] += 1
+        return httpx.Response(200, json={"answer": {"kind": "query", "message": "结论"},
+                                         "elapsed_ms": 5, "task_id": "t1"})
+
+    adapter = AskBIAdapter("http://mock.local", transport=httpx.MockTransport(handler))
+    adapter(_case("q1"))
+    adapter(_case("q2"))
+    assert calls["n"] == 2
+    first = adapter._client
+    assert first is not None
+    adapter(_case("q3"))
+    assert adapter._client is first
+    adapter.close()
+    assert adapter._client is None
+
+
+def test_runner_closes_adapter_after_run():
+    """Runner.run 的 finally 通道（AGT-11）对适配器同样生效：评测结束归还连接池。"""
+    from pathlib import Path
+
+    from agenteval.dataset import EvalDataset
+    from agenteval.runner import Runner
+    adapter = PolicyCompassAdapter("http://mock.local", transport=httpx.MockTransport(
+        lambda r: httpx.Response(200, json={"answer": "每月最高2000元", "refusal": False,
+                                            "sources": [], "trace_id": "t", "latency_ms": 1})))
+    ds_path = Path(__file__).parent.parent / "agenteval" / "datasets" / "policy_compass_smoke.jsonl"
+    ds = EvalDataset.load_jsonl(ds_path)
+    Runner(target=adapter).run(ds.sample(2))
+    assert adapter._client is None               # Runner finally 已调 adapter.close()
