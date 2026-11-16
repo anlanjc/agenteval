@@ -6,7 +6,8 @@
 设计：
 1. 金丝雀集：从正式评测集抽样 N 条（固定 seed 保证可比），带 golden 标注；
 2. 每 K 次生产调用触发一次金丝雀运行（caller 只需在请求后调 canary_maybe()）；
-3. 滑动窗口记录通过率，低于基线（首窗或显式设定）容差 → 告警回调；
+3. 滑动窗口记录通过率，低于基线容差 → 告警回调；基线缺省为首窗均值
+   （首窗满即冻结锚点，此后不随窗口吸收新值——AE-3），或显式设定；
 4. 与 gate 同源的方向感知判定——**线上监控与离线门禁一套口径**。
 """
 from __future__ import annotations
@@ -27,7 +28,7 @@ class CanaryConfig:
     every_k_calls: int = 20         # 每 K 次生产调用触发一次
     window_size: int = 6            # 滑动窗口保留的最近运行数
     tolerance: float = 0.15         # 通过率相对基线下降超 15% → 告警
-    baseline_pass_rate: float | None = None   # 缺省用首窗均值
+    baseline_pass_rate: float | None = None   # 缺省用首窗均值（首窗满后冻结——AE-3）
     seed: int = 42
 
 
@@ -37,6 +38,7 @@ class CanaryState:
     window: deque = field(default_factory=deque)   # 每次运行的通过率
     alerts: list[dict[str, Any]] = field(default_factory=list)
     runs: int = 0
+    baseline_anchor: float | None = None   # AE-3：首窗均值，满窗后冻结不再吸收新值
 
 
 class CanaryMonitor:
@@ -85,8 +87,20 @@ class CanaryMonitor:
                 self.state.window.popleft()
 
             baseline = self.config.baseline_pass_rate
-            if baseline is None and len(self.state.window) > 1:
-                baseline = sum(list(self.state.window)[:-1]) / (len(self.state.window) - 1)
+            if baseline is None:
+                # AE-3 修复（评审 4.0）：旧实现为『窗口去掉当前值的尾随均值』——
+                # 基线随窗口逐步吸收已劣化数据，持续劣化约 window_size 次后
+                # 0.5 < baseline-0.15 不再成立，告警永久停止（模块在『持续劣化』
+                # 这一核心场景下失明）。现首窗满时冻结基线锚点，此后不再吸收新值；
+                # 锚点未冻结（前 window_size-1 窗）沿用去当前值的均值作临时基线，
+                # 保持早期告警能力。显式 baseline_pass_rate 恒优先于锚点。
+                if self.state.baseline_anchor is not None:
+                    baseline = self.state.baseline_anchor
+                elif len(self.state.window) >= self.config.window_size:
+                    self.state.baseline_anchor = baseline = (
+                        sum(self.state.window) / len(self.state.window))
+                elif len(self.state.window) > 1:
+                    baseline = sum(list(self.state.window)[:-1]) / (len(self.state.window) - 1)
             alert = None
             if baseline is not None and pass_rate < baseline - self.config.tolerance:
                 alert = {

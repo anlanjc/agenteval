@@ -1,4 +1,6 @@
 """金丝雀监控测试：触发节律、滑动窗口基线、劣化告警、恒定通过不告警。"""
+import pytest
+
 from agenteval.canary import CanaryConfig, CanaryMonitor
 from agenteval.dataset import EvalDataset
 from agenteval.judge import JudgeVerdict
@@ -83,3 +85,22 @@ def test_explicit_baseline(tmp_path):
     mon.config.baseline_pass_rate = 0.95   # 显式基线：第一窗 1/3 即应告警
     runs = _drive(mon, 4)
     assert len(alerts) >= 1
+
+
+def test_sustained_degradation_keeps_alerting(tmp_path):
+    """AE-3 回归（评审 4.0）：基线曾实现为『窗口去掉当前值的尾随均值』——随窗口
+    吸收已劣化数据，持续劣化约 window_size 次后 0.5 < baseline-0.15 不再成立，
+    告警永久停止（模块在『持续劣化』这一核心场景下失明）。修复后首窗满即冻结
+    基线锚点，持续劣化第 10+ 次仍告警。"""
+    # 评审场景复刻：前 5 次运行全过（1.0），随后 20 次持续劣化（每次 3 case 全 fail
+    # → 0.0），window_size=6、tolerance=0.15 均默认
+    mon, alerts = make_monitor(tmp_path, 3, ["pass"] * 15 + ["fail"] * 60)
+    runs = _drive(mon, 50)                 # 25 次金丝雀运行
+    assert len(runs) == 25
+    # 首窗（第 6 次）满冻结基线 = (5×1.0 + 0.0)/6，此后每次运行都告警
+    assert len(alerts) == 20
+    frozen = 5.0 / 6
+    assert all(a["baseline"] == pytest.approx(frozen) for a in alerts)
+    # 第 10 次及以后的运行仍告警（旧实现第 10 次起永久静默）
+    alert_ids = {a["run_id"] for a in alerts}
+    assert all(r["run_id"] in alert_ids for r in runs[9:])
