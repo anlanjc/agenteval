@@ -126,7 +126,14 @@ def parse_verdict_json(text: str) -> dict[str, Any]:
     start, end = cleaned.find("{"), cleaned.rfind("}")
     if start == -1 or end == -1:
         raise JudgeError(f"judge 回复中未找到 JSON：{text[:120]!r}")
-    data = json.loads(cleaned[start:end + 1])
+    try:
+        data = json.loads(cleaned[start:end + 1])
+    except json.JSONDecodeError as exc:
+        # AE-7 修复（评审 4.0）：JSONDecodeError 不是 JudgeError，曾落 score() 的
+        # except Exception 直接判死不重试——『解析失败重试一次』对 JSON 截断
+        # （模型回复常见失败形态）不生效，重试是否生效取决于输出坏掉的形态
+        # 而非故障类型。解析类失败统一包装成 JudgeError 走重试分支。
+        raise JudgeError(f"judge 回复 JSON 解析失败（截断或非法）: {exc}") from exc
     for dim in DIMENSIONS:
         v = data.get(dim)
         if not isinstance(v, (int, float)) or not 1 <= v <= 5:

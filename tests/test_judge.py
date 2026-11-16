@@ -209,3 +209,30 @@ def test_calibration_report_render():
                                      "fail->pass": 1, "fail->fail": 1},
                           notes="x")
     assert "0.7500" in r.markdown() and "0.4000" in r.markdown()
+
+
+# ---------------------------------------------------------- AE-7（评审 4.0）
+
+def test_openai_judge_truncated_json_retries_then_succeeds(monkeypatch):
+    # 截断 JSON（有花括号但内部非法——模型回复常见失败形态）必须吃到设计中的那次重试；
+    # AE-7 前 JSONDecodeError 不是 JudgeError，落 except Exception 直接判死不重试
+    monkeypatch.setenv("AGENTEVAL_LLM_API_KEY", "test-key")
+    calls = {"n": 0}
+
+    def handler(request):
+        calls["n"] += 1
+        content = ('{"correctness": 4, "faithfulness": 4, "format": }' if calls["n"] == 1
+                   else '{"correctness": 4, "faithfulness": 4, "format": 4, "reasoning": "ok"}')
+        return httpx.Response(200, json={"choices": [{"message": {"content": content}}]})
+
+    client = httpx.Client(transport=httpx.MockTransport(handler))
+    j = OpenAICompatibleJudge(client=client)
+    v = j.score(_case(), GOOD)
+    assert calls["n"] == 2                       # 解析失败自动重试一次
+    assert v.passed is True
+
+
+def test_parse_verdict_json_truncated_raises_judge_error():
+    # 解析类失败统一是 JudgeError（score 的重试分支只认 JudgeError）
+    with pytest.raises(JudgeError, match="解析失败"):
+        parse_verdict_json('{"correctness": 4, "faithfulness": 4, "format": }')
