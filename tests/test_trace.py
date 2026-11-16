@@ -72,6 +72,36 @@ def test_store_roundtrip_spans_and_events(tmp_path):
     store.close()
 
 
+def test_store_cross_thread_save_and_load(tmp_path):
+    """AE-2 回归（评审 4.0）：AGT-7 修复不完整——只加 threading.Lock 未传
+    check_same_thread=False，锁只串行化调用，不解除 sqlite3 连接『仅创建线程可用』
+    硬限制；跨线程 save_run/load_run 仍抛 ProgrammingError（CanaryMonitor 嵌入
+    生产进程即触发：run_canary 在调用者线程 save_run）。"""
+    import threading
+
+    store = TraceStore(tmp_path / "t.db")
+    tracer = Tracer("cross-thread")
+    with tracer.span("root"):
+        pass
+    run = tracer.finish()
+    errors: list[Exception] = []
+
+    def worker():
+        try:
+            store.save_run(run)                    # 子线程写
+            loaded = store.load_run(run.run_id)    # 子线程读
+            assert loaded is not None and loaded.name == "cross-thread"
+            assert loaded.spans[0].name == "root"
+        except Exception as exc:  # noqa: BLE001  捕获给主线程断言，线程内异常不逃逸
+            errors.append(exc)
+
+    th = threading.Thread(target=worker)
+    th.start()
+    th.join()
+    store.close()
+    assert errors == []
+
+
 def test_store_list_and_missing(tmp_path):
     store = TraceStore(tmp_path / "t.db")
     for i in range(3):

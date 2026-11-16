@@ -315,6 +315,10 @@ class TraceStore:
     AGT-7 修复（评审 2.0）：docstring 曾声称「每次操作独立连接」，实现实为共享单连接
     且跨线程即抛 sqlite3.ProgrammingError（CanaryMonitor 内嵌生产进程即触发）。
     现如实声明并落实：共享连接 + threading.Lock 串行化全部读写。
+    AE-2 修复（评审 4.0）：AGT-7 只加了 Lock 未传 check_same_thread=False——锁只
+    串行化调用，不解除 sqlite3 连接「仅创建线程可用」的硬限制，跨线程 save_run/
+    load_run 仍抛 ProgrammingError。现补 check_same_thread=False（所有读写本就在
+    Lock 内串行执行，串行化语义不变，仅解除线程绑定）。
     """
 
     def __init__(self, path: str | Any):
@@ -323,7 +327,8 @@ class TraceStore:
         import threading
 
         self._lock = threading.Lock()
-        self._conn = sqlite3.connect(self.path)
+        # check_same_thread=False：共享连接跨线程使用（调用已由 _lock 串行化）
+        self._conn = sqlite3.connect(self.path, check_same_thread=False)
         self._conn.row_factory = sqlite3.Row
         self._conn.executescript(_SCHEMA)
         self._conn.commit()
