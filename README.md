@@ -178,19 +178,33 @@ job——起主项目 mock 模式服务 → agenteval 打真 HTTP 跑 30 条 smo
 
 ### ② 回归门禁演示
 
+> **数据来源（AE-4 核真，下两表同一轮运行、逐项可溯源）**：`.agenteval/selfeval/reports/`
+> 下同一轮三份报告——baseline=`60df011e7bdb4e1a.json`、current-healthy=`193c258383784929.json`、
+> current-degraded=`33021574e03a452f.json`（selfeval-mock v1.0.0，case_count=30）。
+> 差异表为 `python -m agenteval gate --baseline <baseline.json> --current <current.json>`
+> 对该轮两份报告的 CLI 实际输出原文。（旧版差异表曾误贴 v1 十条 CLI 演示的
+> 3.91/-0.5——数据集已被 v2 取代，与场景表并非同一次运行，已删。）
+
 | 场景 | judge 均分 | judge 通过率 | 门禁结论 | 退出码 |
 | --- | --- | --- | --- | --- |
 | baseline（mock agent 全对） | 5.000 | 100% | — | — |
 | current-healthy（同配置重跑） | 5.000 | 100% | PASS ✅ | 0 |
 | current-degraded（8/30 注入错误输出） | 4.3167 | 73.33% | **FAIL ❌** | **1** |
 
-门禁差异表（CLI 实际输出，judge_mean 降 1.09 > 阈值 0.3、judge_pass_rate 降 0.5 > 阈值 0.05）：
+门禁差异表（baseline vs current-degraded，CLI 实际输出：judge_mean 降 0.6833 > 阈值 0.3、
+judge_pass_rate 降 0.2667 > 阈值 0.05，均 FAIL → 退出码 1 CI 拦截；healthy 对同一 baseline
+差异表全 ok → 退出码 0）：
 
 ```
 metric                baseline     current       delta        阈值  结果
-judge_pass_rate              1         0.5        -0.5      0.05  FAIL
-judge_mean                   5        3.91       -1.09       0.3  FAIL
-门禁结论: FAIL ❌ 存在超阈值回归，禁止合入      → 退出码 1（CI 拦截）
+success_rate                 1           1          +0      0.02  ok
+judge_pass_rate              1      0.7333     -0.2667      0.05  FAIL
+judge_mean                   5       4.317     -0.6833       0.3  FAIL
+latency_p95_ms               0           0          +0      2000  ok
+latency_p50_ms               0           0          +0      1000  ok
+error_count                  0           0          +0         0  ok
+--------------------------------------------------------------------
+门禁结论: FAIL ❌ 存在超阈值回归，禁止合入
 ```
 
 ### ③ 冒烟数据集（内置，v2.0.0 各 30 条，对齐两主项目各自 v2 评测集的代表性子集）
