@@ -1,6 +1,6 @@
 # agenteval — 自研 Agent 评测与可观测平台
 
-[![CI](https://github.com/anlanjc/agenteval/actions/workflows/ci.yml/badge.svg)](https://github.com/anlanjc/agenteval/actions/workflows/ci.yml) [![tests](https://img.shields.io/badge/pytest-105%20passed-brightgreen)]() [![judge](https://img.shields.io/badge/LLM--judge-校准%20kappa%200.5455-blue)]() [![gate](https://img.shields.io/badge/CI%20回归门禁-exit%20拦截-blue)]()
+[![CI](https://github.com/anlanjc/agenteval/actions/workflows/ci.yml/badge.svg)](https://github.com/anlanjc/agenteval/actions/workflows/ci.yml) [![tests](https://img.shields.io/badge/pytest-126%20passed-brightgreen)]() [![judge](https://img.shields.io/badge/LLM--judge-校准%20kappa%200.5455-blue)]() [![gate](https://img.shields.io/badge/CI%20回归门禁-exit%20拦截-blue)]()
 
 ## 架构总览
 
@@ -84,10 +84,10 @@ python -m venv .venv
 .venv/Scripts/python -m pip install -i https://pypi.org/simple/ -r requirements.txt
 ```
 
-跑测试（不依赖网络与任何付费 API，105 个用例）：
+跑测试（不依赖网络与任何付费 API，126 个用例——口径：pytest 实跑 collected 数，含 parametrize 展开）：
 
 ```bash
-.venv/Scripts/python -m pytest tests/        # 105 passed
+.venv/Scripts/python -m pytest tests/        # 126 passed
 ```
 
 mock 模式自评测（judge 校准 + 回归门禁演示，产出 `.agenteval/selfeval/` 下的全部产物）：
@@ -129,6 +129,15 @@ export AGENTEVAL_LLM_BASE_URL=https://dashscope.aliyuncs.com/compatible-mode/v1
 export AGENTEVAL_LLM_API_KEY=sk-...
 export AGENTEVAL_LLM_MODEL=qwen-plus
 # 缺 key 时抛 MissingCredentialsError 并提示 --judge mock 降级，而不是崩
+```
+
+接内网/私有 Agent 服务（自建观测台把评测指向内网）：观测台 API 默认开启 SSRF 防护
+（base_url 解析落在环回/私网/链路本地/保留段即 422 拒绝）；唯一放行开关：
+
+```bash
+export AGENTEVAL_ALLOW_PRIVATE_TARGETS=1
+# 仅影响 API 端 POST /runs 的 base_url 校验（CLI 不经此校验）；
+# 风险提示：开启后未鉴权 API 可驱动服务器外联内网（SSRF 探测面），只在可信网络/CI 开启
 ```
 
 接同工作区的两个 Agent 项目（只读对接，绝不修改它们；测试用 MockTransport 模拟其响应）：
@@ -305,7 +314,7 @@ rep = compare_runs(baseline_report, candidate_report)
 print(rep.render_markdown()); rep.save("eval/compare_v1_v2")
 ```
 
-9 项测试（全量 80 绿）；设计决策（含"输出漂移"为什么是最有价值的信号）见 `docs/compare_adr.md`。
+9 项测试（全量 126 绿）；设计决策（含"输出漂移"为什么是最有价值的信号）见 `docs/compare_adr.md`。
 
 ## 真 LLM judge 校准（deepseek-v4-flash，2026-10-28）
 
@@ -313,12 +322,12 @@ print(rep.render_markdown()); rep.save("eval/compare_v1_v2")
 ——从不放过坏答案、错杀 6 个好答案的**严格偏置**，与 mock judge v1（kappa 0.51）失败模式
 同构。结论：judge 偏严是 LLM-as-judge 的系统性倾向，校准流程可跨模型迁移；0.546 是新
 judge 上线的真实起点（mock v2 的 0.889 是同源拟合值，不可直接比大小）。完整分析见
-`.agenteval/real_judge_calibration.md`。**二轮校准（judge_round2.py）**：阈值扫描证明真 judge 主因是阈值错配（t=3.0 即 kappa 0.889，但贴边缘脆弱）→ rubric 修订后 v2 @4.0 **kappa 0.8889、FN 8→0**（代价：partial 类 fp 0→1，t=4.4 可归零）；运行间有波动（0.4444 vs 0.5455），单次裸跑不可当稳定基线——**跨模型教训：mock 校准的归因结论不能外推**。
+`.agenteval/real_judge_calibration.md`。**二轮校准（2026-10-28）**：阈值扫描证明真 judge 主因是阈值错配（t=3.0 即 kappa 0.889，但贴边缘脆弱）→ rubric 修订后 v2 @4.0 **kappa 0.8889、FN 8→0**（代价：partial 类 fp 0→1，t=4.4 可归零）；运行间有波动（0.4444 vs 0.5455），单次裸跑不可当稳定基线——**跨模型教训：mock 校准的归因结论不能外推**。（复现性注记 AE-10：执行脚本 scripts/judge_round2.py 为一次性校准脚本，未提交入库、本地无残留——本节数字属历史口径，不可由仓库复跑；逐条分数/kappa 曲线已留档 `.agenteval/real_judge_calibration.md`，rubric v1→v2 改动行记录见工作区黑板 PROGRESS.md 2026-10-28 第二会话条目〔仓库外文件〕。）
 
 ## 生态导出（Langfuse 兼容 JSONL）
 
-自研 trace 不锁死：`agenteval/export.py` 把任意 run 导出为 Langfuse 语义对齐的事件流（原生 ingestion 信封需一层打包转换）（trace-create/span-create，含父子链接、level、metadata；离散事件降级为瞬时 span）。5 项测试（全量 85 绿）。
+自研 trace 不锁死：`agenteval/export.py` 把任意 run 导出为 Langfuse 语义对齐的事件流（原生 ingestion 信封需一层打包转换）（trace-create/span-create，含父子链接、level、metadata；离散事件降级为瞬时 span）。5 项测试（全量 126 绿）。
 
 ## 金丝雀监控（线上静默劣化的唯一发现手段）
 
-`agenteval/canary.py`：每 K 次生产调用自动跑一次 N 条抽样评测，滑动窗口通过率 vs 基线，劣化即告警回调——与离线门禁同源的方向感知口径。基线缺省为首窗均值、首窗满即冻结（AE-3：不随窗口吸收已劣化数据，持续劣化永不静默）。6 项测试（全量 110 绿）。
+`agenteval/canary.py`：每 K 次生产调用自动跑一次 N 条抽样评测，滑动窗口通过率 vs 基线，劣化即告警回调——与离线门禁同源的方向感知口径。基线缺省为首窗均值、首窗满即冻结（AE-3：不随窗口吸收已劣化数据，持续劣化永不静默）。6 项测试（全量 126 绿）。

@@ -16,7 +16,7 @@
 
 - 数据流：`dataset.jsonl → Runner → RunReport(json) → gate / report / api`
 - 观测流：`Runner → Tracer(span 树+事件) → TraceStore(SQLite runs/spans/events) → GET /spans/{run_id}`
-- 一切离线可跑：`MockAgentTarget` + `MockJudge` + `MockSimulator`，pytest 71 个用例不碰网络。
+- 一切离线可跑：`MockAgentTarget` + `MockJudge` + `MockSimulator`，pytest 126 个用例不碰网络（口径：pytest 实跑 collected 数，含 parametrize 展开——AE-10 前此处记 71/PROJECT_BOOK 记 104，均已随增补漂移，统一到实跑口径）。
 
 ## 1. 模块白板重写清单
 
@@ -37,7 +37,8 @@
 - 维度加权 overall：correctness 0.5 / faithfulness 0.3 / format 0.2。**决策与解释分离**：
   分维度打分，加权汇总，pass = overall ≥ threshold。
 - `OpenAICompatibleJudge`：base_url/key/model 全走环境变量
-  （`AGENTEVAL_LLM_BASE_URL/AGENTEVAL_LLM_API_KEY/AGENTEVAL_LLM_MODEL`）；
+  （`AGENTEVAL_LLM_BASE_URL/AGENTEVAL_LLM_API_KEY/AGENTEVAL_LLM_MODEL`；
+  API 端另有唯一 SSRF 放行开关 `AGENTEVAL_ALLOW_PRIVATE_TARGETS`，见 §4）；
   **缺 key 必须 fail-fast**（`score()` 第一行就 `require_credentials()`），否则会被
   重试逻辑吞掉变成含糊的"两次尝试均失败"。
 - 校准四件套（重写时按此顺序）：
@@ -112,6 +113,10 @@
 
 - Windows + Git Bash；装依赖必须 `-i https://pypi.org/simple/`（默认清华源 403）。
 - 跑测试前 `tests/conftest.py` 会把 `AGENTEVAL_DATA_DIR` 指到临时目录，别删它。
+- API 的 SSRF 防护默认拒绝内网/环回/保留地址目标（AGT-3）；唯一放行开关是环境变量
+  `AGENTEVAL_ALLOW_PRIVATE_TARGETS=1`——仅影响 API 端 POST /runs 的 base_url 校验
+  （CLI 不经此校验）。风险：开启后未鉴权 API 可驱动服务器外联内网（SSRF 探测面），
+  只在可信网络/CI 开启（AE-10 补记：此前该变量全仓零文档）。
 - 不要 git init、不要动工作区其他项目（policy-compass / askbi / miniagent 只读）。
 - `.agenteval/` 是运行产物目录，可随时删除重建（selfeval 会重新生成）。
 - 校准数字的可复现性依赖两个固定 seed：`build_cases` 的固定用例表与
