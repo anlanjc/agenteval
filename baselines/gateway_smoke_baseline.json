@@ -1,0 +1,952 @@
+{
+  "run_id": "1a364ee3b4934776",
+  "name": "gateway-smoke-baseline",
+  "dataset": "gateway_smoke",
+  "dataset_version": "2.0.0",
+  "target": "agentgate_go",
+  "judge": "mock",
+  "created_at": 1794937688.7309103,
+  "metrics": {
+    "case_count": 30,
+    "error_count": 0,
+    "success_rate": 1.0,
+    "judge_pass_rate": 1.0,
+    "judge_mean": 5.0,
+    "latency_p50_ms": 1.23,
+    "latency_p95_ms": 1.49,
+    "total_tokens": 1235
+  },
+  "cases": [
+    {
+      "case_id": "gw-001",
+      "input": "网关的幂等键是怎么工作的",
+      "output": "结论：网关的幂等键是怎么工作的——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "expected": "结论：网关的幂等键是怎么工作的——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "error": null,
+      "latency_ms": 836.97,
+      "verdict": {
+        "case_id": "gw-001",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "gateway_model": "gateway-smoke-mock",
+        "finish_reason": "stop",
+        "usage_total_tokens": 138,
+        "x_cache": null,
+        "request_id": null
+      }
+    },
+    {
+      "case_id": "gw-002",
+      "input": "虚拟密钥和租户是什么关系",
+      "output": "结论：虚拟密钥和租户是什么关系——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "expected": "结论：虚拟密钥和租户是什么关系——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "error": null,
+      "latency_ms": 1.46,
+      "verdict": {
+        "case_id": "gw-002",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "gateway_model": "gateway-smoke-mock",
+        "finish_reason": "stop",
+        "usage_total_tokens": 138,
+        "x_cache": null,
+        "request_id": null
+      }
+    },
+    {
+      "case_id": "gw-003",
+      "input": "限流桶的令牌是怎么补充的",
+      "output": "结论：限流桶的令牌是怎么补充的——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "expected": "结论：限流桶的令牌是怎么补充的——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "error": null,
+      "latency_ms": 1.28,
+      "verdict": {
+        "case_id": "gw-003",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "gateway_model": "gateway-smoke-mock",
+        "finish_reason": "stop",
+        "usage_total_tokens": 138,
+        "x_cache": null,
+        "request_id": null
+      }
+    },
+    {
+      "case_id": "gw-004",
+      "input": "预算扣减发生在请求前还是请求后",
+      "output": "结论：预算扣减发生在请求前还是请求后——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "expected": "结论：预算扣减发生在请求前还是请求后——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "error": null,
+      "latency_ms": 1.08,
+      "verdict": {
+        "case_id": "gw-004",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "gateway_model": "gateway-smoke-mock",
+        "finish_reason": "stop",
+        "usage_total_tokens": 144,
+        "x_cache": null,
+        "request_id": null
+      }
+    },
+    {
+      "case_id": "gw-005",
+      "input": "并发槽位满的时候网关返回什么",
+      "output": "结论：并发槽位满的时候网关返回什么——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "expected": "结论：并发槽位满的时候网关返回什么——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "error": null,
+      "latency_ms": 1.07,
+      "verdict": {
+        "case_id": "gw-005",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "gateway_model": "gateway-smoke-mock",
+        "finish_reason": "stop",
+        "usage_total_tokens": 142,
+        "x_cache": null,
+        "request_id": null
+      }
+    },
+    {
+      "case_id": "gw-006",
+      "input": "记账流水的投递是同步的还是异步的",
+      "output": "结论：记账流水的投递是同步的还是异步的——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "expected": "结论：记账流水的投递是同步的还是异步的——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "error": null,
+      "latency_ms": 1.15,
+      "verdict": {
+        "case_id": "gw-006",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "gateway_model": "gateway-smoke-mock",
+        "finish_reason": "stop",
+        "usage_total_tokens": 146,
+        "x_cache": null,
+        "request_id": null
+      }
+    },
+    {
+      "case_id": "gw-007",
+      "input": "死信队列里的消息最后去哪里",
+      "output": "结论：死信队列里的消息最后去哪里——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "expected": "结论：死信队列里的消息最后去哪里——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "error": null,
+      "latency_ms": 1.09,
+      "verdict": {
+        "case_id": "gw-007",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "gateway_model": "gateway-smoke-mock",
+        "finish_reason": "stop",
+        "usage_total_tokens": 140,
+        "x_cache": null,
+        "request_id": null
+      }
+    },
+    {
+      "case_id": "gw-008",
+      "input": "链路追踪的上下文是怎么传播的",
+      "output": "结论：链路追踪的上下文是怎么传播的——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "expected": "结论：链路追踪的上下文是怎么传播的——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "error": null,
+      "latency_ms": 1.39,
+      "verdict": {
+        "case_id": "gw-008",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "gateway_model": "gateway-smoke-mock",
+        "finish_reason": "stop",
+        "usage_total_tokens": 142,
+        "x_cache": null,
+        "request_id": null
+      }
+    },
+    {
+      "case_id": "gw-009",
+      "input": "响应缓存为什么只缓存确定性请求",
+      "output": "结论：响应缓存为什么只缓存确定性请求——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "expected": "结论：响应缓存为什么只缓存确定性请求——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "error": null,
+      "latency_ms": 1.09,
+      "verdict": {
+        "case_id": "gw-009",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "gateway_model": "gateway-smoke-mock",
+        "finish_reason": "stop",
+        "usage_total_tokens": 144,
+        "x_cache": null,
+        "request_id": null
+      }
+    },
+    {
+      "case_id": "gw-010",
+      "input": "语义缓存的向量是怎么计算的",
+      "output": "结论：语义缓存的向量是怎么计算的——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "expected": "结论：语义缓存的向量是怎么计算的——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "error": null,
+      "latency_ms": 0.99,
+      "verdict": {
+        "case_id": "gw-010",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "gateway_model": "gateway-smoke-mock",
+        "finish_reason": "stop",
+        "usage_total_tokens": 140,
+        "x_cache": null,
+        "request_id": null
+      }
+    },
+    {
+      "case_id": "gw-011",
+      "input": "管理面的密钥吊销为什么立即生效",
+      "output": "结论：管理面的密钥吊销为什么立即生效——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "expected": "结论：管理面的密钥吊销为什么立即生效——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "error": null,
+      "latency_ms": 1.04,
+      "verdict": {
+        "case_id": "gw-011",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "gateway_model": "gateway-smoke-mock",
+        "finish_reason": "stop",
+        "usage_total_tokens": 144,
+        "x_cache": null,
+        "request_id": null
+      }
+    },
+    {
+      "case_id": "gw-012",
+      "input": "审计日志为什么不能被匿名清除",
+      "output": "结论：审计日志为什么不能被匿名清除——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "expected": "结论：审计日志为什么不能被匿名清除——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "error": null,
+      "latency_ms": 1.04,
+      "verdict": {
+        "case_id": "gw-012",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "gateway_model": "gateway-smoke-mock",
+        "finish_reason": "stop",
+        "usage_total_tokens": 142,
+        "x_cache": null,
+        "request_id": null
+      }
+    },
+    {
+      "case_id": "gw-013",
+      "input": "回调通知的签名是怎么防重放的",
+      "output": "结论：回调通知的签名是怎么防重放的——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "expected": "结论：回调通知的签名是怎么防重放的——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "error": null,
+      "latency_ms": 1.24,
+      "verdict": {
+        "case_id": "gw-013",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "gateway_model": "gateway-smoke-mock",
+        "finish_reason": "stop",
+        "usage_total_tokens": 142,
+        "x_cache": null,
+        "request_id": null
+      }
+    },
+    {
+      "case_id": "gw-014",
+      "input": "出箱补投的宽限期是做什么用的",
+      "output": "结论：出箱补投的宽限期是做什么用的——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "expected": "结论：出箱补投的宽限期是做什么用的——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "error": null,
+      "latency_ms": 1.27,
+      "verdict": {
+        "case_id": "gw-014",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "gateway_model": "gateway-smoke-mock",
+        "finish_reason": "stop",
+        "usage_total_tokens": 142,
+        "x_cache": null,
+        "request_id": null
+      }
+    },
+    {
+      "case_id": "gw-015",
+      "input": "单飞锁为什么能防缓存击穿",
+      "output": "结论：单飞锁为什么能防缓存击穿——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "expected": "结论：单飞锁为什么能防缓存击穿——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "error": null,
+      "latency_ms": 1.21,
+      "verdict": {
+        "case_id": "gw-015",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "gateway_model": "gateway-smoke-mock",
+        "finish_reason": "stop",
+        "usage_total_tokens": 138,
+        "x_cache": null,
+        "request_id": null
+      }
+    },
+    {
+      "case_id": "gw-016",
+      "input": "数据版本门是怎么做全量失效的",
+      "output": "结论：数据版本门是怎么做全量失效的——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "expected": "结论：数据版本门是怎么做全量失效的——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "error": null,
+      "latency_ms": 1.11,
+      "verdict": {
+        "case_id": "gw-016",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "gateway_model": "gateway-smoke-mock",
+        "finish_reason": "stop",
+        "usage_total_tokens": 142,
+        "x_cache": null,
+        "request_id": null
+      }
+    },
+    {
+      "case_id": "gw-017",
+      "input": "账行的时间延迟为什么可以接受",
+      "output": "结论：账行的时间延迟为什么可以接受——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "expected": "结论：账行的时间延迟为什么可以接受——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "error": null,
+      "latency_ms": 1.46,
+      "verdict": {
+        "case_id": "gw-017",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "gateway_model": "gateway-smoke-mock",
+        "finish_reason": "stop",
+        "usage_total_tokens": 142,
+        "x_cache": null,
+        "request_id": null
+      }
+    },
+    {
+      "case_id": "gw-018",
+      "input": "配额计量依赖上游返回的什么字段",
+      "output": "结论：配额计量依赖上游返回的什么字段——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "expected": "结论：配额计量依赖上游返回的什么字段——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "error": null,
+      "latency_ms": 1.29,
+      "verdict": {
+        "case_id": "gw-018",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "gateway_model": "gateway-smoke-mock",
+        "finish_reason": "stop",
+        "usage_total_tokens": 144,
+        "x_cache": null,
+        "request_id": null
+      }
+    },
+    {
+      "case_id": "gw-019",
+      "input": "模型白名单是在哪一步校验的",
+      "output": "结论：模型白名单是在哪一步校验的——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "expected": "结论：模型白名单是在哪一步校验的——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "error": null,
+      "latency_ms": 1.04,
+      "verdict": {
+        "case_id": "gw-019",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "gateway_model": "gateway-smoke-mock",
+        "finish_reason": "stop",
+        "usage_total_tokens": 140,
+        "x_cache": null,
+        "request_id": null
+      }
+    },
+    {
+      "case_id": "gw-020",
+      "input": "健康检查为什么在无依赖时也要诚实声明",
+      "output": "结论：健康检查为什么在无依赖时也要诚实声明——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "expected": "结论：健康检查为什么在无依赖时也要诚实声明——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "error": null,
+      "latency_ms": 1.19,
+      "verdict": {
+        "case_id": "gw-020",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "gateway_model": "gateway-smoke-mock",
+        "finish_reason": "stop",
+        "usage_total_tokens": 150,
+        "x_cache": null,
+        "request_id": null
+      }
+    },
+    {
+      "case_id": "gw-021",
+      "input": "混沌演练为什么要按端口先清场",
+      "output": "结论：混沌演练为什么要按端口先清场——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "expected": "结论：混沌演练为什么要按端口先清场——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "error": null,
+      "latency_ms": 1.35,
+      "verdict": {
+        "case_id": "gw-021",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "gateway_model": "gateway-smoke-mock",
+        "finish_reason": "stop",
+        "usage_total_tokens": 142,
+        "x_cache": null,
+        "request_id": null
+      }
+    },
+    {
+      "case_id": "gw-022",
+      "input": "评测门禁为什么对错误数新增零容忍",
+      "output": "结论：评测门禁为什么对错误数新增零容忍——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "expected": "结论：评测门禁为什么对错误数新增零容忍——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "error": null,
+      "latency_ms": 1.49,
+      "verdict": {
+        "case_id": "gw-022",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "gateway_model": "gateway-smoke-mock",
+        "finish_reason": "stop",
+        "usage_total_tokens": 146,
+        "x_cache": null,
+        "request_id": null
+      }
+    },
+    {
+      "case_id": "gw-023",
+      "input": "基线对比为什么校验数据集三元组",
+      "output": "结论：基线对比为什么校验数据集三元组——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "expected": "结论：基线对比为什么校验数据集三元组——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "error": null,
+      "latency_ms": 1.37,
+      "verdict": {
+        "case_id": "gw-023",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "gateway_model": "gateway-smoke-mock",
+        "finish_reason": "stop",
+        "usage_total_tokens": 144,
+        "x_cache": null,
+        "request_id": null
+      }
+    },
+    {
+      "case_id": "gw-024",
+      "input": "劣化注入是怎么模拟主项目回归的",
+      "output": "结论：劣化注入是怎么模拟主项目回归的——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "expected": "结论：劣化注入是怎么模拟主项目回归的——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "error": null,
+      "latency_ms": 1.29,
+      "verdict": {
+        "case_id": "gw-024",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "gateway_model": "gateway-smoke-mock",
+        "finish_reason": "stop",
+        "usage_total_tokens": 144,
+        "x_cache": null,
+        "request_id": null
+      }
+    },
+    {
+      "case_id": "gw-025",
+      "input": "评测报告里时延分位为什么不进门禁信号",
+      "output": "结论：评测报告里时延分位为什么不进门禁信号——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "expected": "结论：评测报告里时延分位为什么不进门禁信号——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "error": null,
+      "latency_ms": 1.0,
+      "verdict": {
+        "case_id": "gw-025",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "gateway_model": "gateway-smoke-mock",
+        "finish_reason": "stop",
+        "usage_total_tokens": 150,
+        "x_cache": null,
+        "request_id": null
+      }
+    },
+    {
+      "case_id": "gw-026",
+      "input": "适配器为什么要复用连接池",
+      "output": "结论：适配器为什么要复用连接池——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "expected": "结论：适配器为什么要复用连接池——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "error": null,
+      "latency_ms": 1.23,
+      "verdict": {
+        "case_id": "gw-026",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "gateway_model": "gateway-smoke-mock",
+        "finish_reason": "stop",
+        "usage_total_tokens": 138,
+        "x_cache": null,
+        "request_id": null
+      }
+    },
+    {
+      "case_id": "gw-027",
+      "input": "评测平台的确定性判分是怎么做的",
+      "output": "结论：评测平台的确定性判分是怎么做的——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "expected": "结论：评测平台的确定性判分是怎么做的——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "error": null,
+      "latency_ms": 1.4,
+      "verdict": {
+        "case_id": "gw-027",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "gateway_model": "gateway-smoke-mock",
+        "finish_reason": "stop",
+        "usage_total_tokens": 144,
+        "x_cache": null,
+        "request_id": null
+      }
+    },
+    {
+      "case_id": "gw-028",
+      "input": "冒烟数据集的版本号起什么作用",
+      "output": "结论：冒烟数据集的版本号起什么作用——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "expected": "结论：冒烟数据集的版本号起什么作用——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "error": null,
+      "latency_ms": 1.48,
+      "verdict": {
+        "case_id": "gw-028",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "gateway_model": "gateway-smoke-mock",
+        "finish_reason": "stop",
+        "usage_total_tokens": 142,
+        "x_cache": null,
+        "request_id": null
+      }
+    },
+    {
+      "case_id": "gw-029",
+      "input": "网关把失败请求重试几次才放弃",
+      "output": "结论：网关把失败请求重试几次才放弃——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "expected": "结论：网关把失败请求重试几次才放弃——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "error": null,
+      "latency_ms": 1.43,
+      "verdict": {
+        "case_id": "gw-029",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "gateway_model": "gateway-smoke-mock",
+        "finish_reason": "stop",
+        "usage_total_tokens": 142,
+        "x_cache": null,
+        "request_id": null
+      }
+    },
+    {
+      "case_id": "gw-030",
+      "input": "指标面暴露的是哪几种计数器",
+      "output": "结论：指标面暴露的是哪几种计数器——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "expected": "结论：网关把失败请求重试几次才放弃——已由 agentgate-go 网关转发至 mock 上游返回（gateway-smoke-echo）。",
+      "error": null,
+      "latency_ms": 1.07,
+      "verdict": {
+        "case_id": "gw-030",
+        "scores": {
+          "correctness": 5.0,
+          "faithfulness": 5.0,
+          "format": 5.0
+        },
+        "overall": 5.0,
+        "passed": true,
+        "threshold": 4.0,
+        "reasoning": "关键词命中=1.0, 捏造数字=[], 格式标记=True",
+        "judge_name": "mock",
+        "error": null
+      },
+      "passed": true,
+      "golden": null,
+      "meta": {
+        "gateway_model": "gateway-smoke-mock",
+        "finish_reason": "stop",
+        "usage_total_tokens": 140,
+        "x_cache": null,
+        "request_id": null
+      }
+    }
+  ],
+  "caliber": "mock upstream（echo 回显口径，scripts/gateway_mock_upstream.py）/ 本机单进程（agentgate-go 网关+echo 上游+便携 redis 同机，REDIS_ADDR 准入开启、LEDGER/M3 缓存默认关）；judge=MockJudge 确定性规则；时延不是门禁信号（本机口径噪声大，ci_gate 惯例放大阈值）。vk: ag-smoke（budget/tpm 不限额, concurrency=8）。生成：python -m agenteval run --dataset builtin:gateway_smoke --target http --adapter agentgate_go --base-url http://127.0.0.1:8092 --judge mock（2026-11-18）。"
+}

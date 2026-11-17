@@ -7,7 +7,7 @@
 
 ## 0. 一页定位
 
-**是什么**：自研的 Agent 评测与可观测平台——数据集版本化、评测 runner、LLM-as-judge **校准**、CI 回归门禁、τ-bench 式用户模拟器、trace 落库、**多版本对比评测**。126 项 pytest 全绿（口径：pytest 实跑 collected 数，含 parametrize 展开，随测试增补更新）；mock 全链路零成本可复现，真模型数字已升级（真 judge 校准 kappa 0.5455 见 §5）。
+**是什么**：自研的 Agent 评测与可观测平台——数据集版本化、评测 runner、LLM-as-judge **校准**、CI 回归门禁、τ-bench 式用户模拟器、trace 落库、**多版本对比评测**。131 项 pytest 全绿（口径：pytest 实跑 collected 数，含 parametrize 展开，随测试增补更新）；mock 全链路零成本可复现，真模型数字已升级（真 judge 校准 kappa 0.5455 见 §5）。
 
 **回答哪道面试必答题**：2026 面经"eval pipeline 怎么搭"成必问、"你说优化了，优化了多少怎么测"是追问焦点、腾讯/小红书 JD 明写"评测体系/质量建设"。这个仓库是这三道题的**平台级答案**，且已真接 policy-compass/askbi 的 GitHub Actions 回归门禁（eval-gate job：mock 服务 → 30 条 smoke 打真 HTTP → gate exit 1 挡合并，零 key）——它评测的是我自己的项目，且 CI 会自动拦回归。
 

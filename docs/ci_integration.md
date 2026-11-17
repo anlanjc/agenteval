@@ -98,3 +98,26 @@ python agenteval/scripts/build_smoke_v2.py --probe-askbi <重探> --probe-pc <�
 | 旧 smoke 数据集从未对活服务验证 | 10 条用真适配器打真 mock 服务仅 10% 通过（keywords 拍脑袋、faithfulness 误杀） | v2.0.0 全量探测后构建，30/30 双项目实测通过 |
 
 这三条是"评测平台被真实消费后才暴露"的问题——正是本次集成的价值之一。
+
+## 7. agentgate-go 网关接入（[1B4-SM] AE-11/AE-12，2026-11-18）
+
+- **适配器**：`agenteval/adapters/agentgate_go.py`——POST `/v1/chat/completions`
+  （OpenAI 兼容），`Authorization: Bearer <vk>`，解析 `choices[0].message.content`；
+  `usage.total_tokens` / `x-cache`（M3 响应缓存命中标记）/ `x-request-id` / finish_reason
+  进 meta 留痕。实例级惰性 Client + `close()`（Runner.run finally 通道）——AE-8 先例
+  逐字对齐。冒烟集 `builtin:gateway_smoke`（30 条，v2.0.0，与适配器名不同构，属有意命名：
+  gateway_smoke 指"网关冒烟"口径，适配器键 `agentgate_go` 指实现文件）。
+- **本地演练已自洽**（全记录 `evidence/gateway_gate_demo_20261118.md`）：便携 redis +
+  echo mock 上游（`scripts/gateway_mock_upstream.py`，回显"结论：…"模板供 MockJudge
+  确定性打分；与 agentgate-go 自带的压测口径 mock_upstream.py 互不替代）+ 网关三进程
+  同机拉起 → seed vk（适配器默认 key `ag-smoke`，budget/tpm 不限额）→ 基线
+  `baselines/gateway_smoke_baseline.json`（30/30，judge_mean 5.000，文件内含口径字段）→
+  gate PASS exit 0 → FaultTarget 劣化注入 8 条 → 四指标 FAIL exit 1 → 修复 PASS exit 0 →
+  真网关级故障（杀上游）30 错 FAIL exit 1 → 恢复 PASS exit 0。
+- **CI 常驻口径（留档，未实施）**：CI 上跑这套门禁需要三个常驻服务位——①redis
+  （service 容器或 `redis-server --port`，demo 口径 6392）②echo/压测 mock 上游
+  （python 服务，端口自定）③agentgate-go（job 内 `go build ./...` 出二进制后直接跑，
+  `REDIS_ADDR/UPSTREAM_1_URL/PORT` 注入）；vk 预置步骤（redis-cli SET vk:<sha256>）
+  放网关启动后、评测前。本机排错实录：Windows 控制台 curl 发中文 body 是 GBK 编码，
+  网关转发原字节会让上游解码 500 并触发通道冷却——评测链路走 httpx（UTF-8）无此问题；
+  网关级故障恢复后通道冷却 60s 且被失败请求刷新，对账前需静默期。

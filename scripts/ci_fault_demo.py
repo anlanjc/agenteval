@@ -34,6 +34,9 @@ DEFAULT_FAULTS: dict[str, dict[str, str]] = {
     | {f"ab-{i:03d}": "wrong" for i in range(7, 12)},
     "policy_compass": {f"pc-{i:03d}": "error" for i in range(4, 7)}
     | {f"pc-{i:03d}": "wrong" for i in range(7, 12)},
+    # [1B4-SM] AE-12：agentgate-go 冒烟集（builtin:gateway_smoke，30 条）同款手法
+    "agentgate_go": {f"gw-{i:03d}": "error" for i in range(4, 7)}
+    | {f"gw-{i:03d}": "wrong" for i in range(7, 12)},
 }
 
 LATENCY_THRESHOLDS = {"latency_p50_ms": 1000000.0, "latency_p95_ms": 1000000.0}
@@ -74,9 +77,13 @@ def main() -> int:
     ap.add_argument("--adapter", required=True, choices=sorted(DEFAULT_FAULTS))
     ap.add_argument("--base-url", required=True)
     ap.add_argument("--baseline", required=True)
+    # [1B4-SM] AE-12：agentgate_go 的冒烟集名（gateway_smoke）与适配器名不同构，
+    # 允许显式指定数据集 spec；缺省维持 builtin:<adapter>_smoke 既有约定。
+    ap.add_argument("--dataset", default=None,
+                    help="覆盖数据集 spec（缺省 builtin:<adapter>_smoke）")
     args = ap.parse_args()
 
-    dataset_spec = f"builtin:{args.adapter}_smoke"
+    dataset_spec = args.dataset or f"builtin:{args.adapter}_smoke"
     faults = DEFAULT_FAULTS[args.adapter]
     adapter = get_adapter(args.adapter, args.base_url)
     ok = True

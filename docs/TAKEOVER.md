@@ -16,7 +16,7 @@
 
 - 数据流：`dataset.jsonl → Runner → RunReport(json) → gate / report / api`
 - 观测流：`Runner → Tracer(span 树+事件) → TraceStore(SQLite runs/spans/events) → GET /spans/{run_id}`
-- 一切离线可跑：`MockAgentTarget` + `MockJudge` + `MockSimulator`，pytest 126 个用例不碰网络（口径：pytest 实跑 collected 数，含 parametrize 展开——AE-10 前此处记 71/PROJECT_BOOK 记 104，均已随增补漂移，统一到实跑口径）。
+- 一切离线可跑：`MockAgentTarget` + `MockJudge` + `MockSimulator`，pytest 131 个用例不碰网络（口径：pytest 实跑 collected 数，含 parametrize 展开——AE-10 前此处记 71/PROJECT_BOOK 记 104，均已随增补漂移，统一到实跑口径）。
 
 ## 1. 模块白板重写清单
 

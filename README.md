@@ -1,6 +1,6 @@
 # agenteval — 自研 Agent 评测与可观测平台
 
-[![CI](https://github.com/anlanjc/agenteval/actions/workflows/ci.yml/badge.svg)](https://github.com/anlanjc/agenteval/actions/workflows/ci.yml) [![tests](https://img.shields.io/badge/pytest-126%20passed-brightgreen)]() [![judge](https://img.shields.io/badge/LLM--judge-校准%20kappa%200.5455-blue)]() [![gate](https://img.shields.io/badge/CI%20回归门禁-exit%20拦截-blue)]()
+[![CI](https://github.com/anlanjc/agenteval/actions/workflows/ci.yml/badge.svg)](https://github.com/anlanjc/agenteval/actions/workflows/ci.yml) [![tests](https://img.shields.io/badge/pytest-131%20passed-brightgreen)]() [![judge](https://img.shields.io/badge/LLM--judge-校准%20kappa%200.5455-blue)]() [![gate](https://img.shields.io/badge/CI%20回归门禁-exit%20拦截-blue)]()
 
 ## 架构总览
 
@@ -34,7 +34,7 @@ flowchart LR
     subgraph 被测对象
         T1[CallableTarget]
         T2[HTTPTarget<br/>openai 兼容 / raw /chat]
-        T3[adapters/<br/>policy_compass / askbi]
+        T3[adapters/<br/>policy_compass / askbi / agentgate_go]
         T4[simulator.py<br/>τ-bench 式用户模拟<br/>persona + 隐藏 policy]
     end
     subgraph 评测执行
@@ -84,10 +84,10 @@ python -m venv .venv
 .venv/Scripts/python -m pip install -i https://pypi.org/simple/ -r requirements.txt
 ```
 
-跑测试（不依赖网络与任何付费 API，126 个用例——口径：pytest 实跑 collected 数，含 parametrize 展开）：
+跑测试（不依赖网络与任何付费 API，131 个用例——口径：pytest 实跑 collected 数，含 parametrize 展开）：
 
 ```bash
-.venv/Scripts/python -m pytest tests/        # 126 passed
+.venv/Scripts/python -m pytest tests/        # 131 passed
 ```
 
 mock 模式自评测（judge 校准 + 回归门禁演示，产出 `.agenteval/selfeval/` 下的全部产物）：
@@ -146,6 +146,10 @@ export AGENTEVAL_ALLOW_PRIVATE_TARGETS=1
 python -m agenteval run --dataset builtin:policy_compass_smoke \
     --target http --adapter policy_compass --base-url http://127.0.0.1:8001  # POST /api/chat
 # askbi 走 SSE：agenteval/adapters/askbi.py 解析 /api/ask 的 final 事件（role 可按用例透传）
+# [1B4-SM] agentgate-go：agenteval/adapters/agentgate_go.py POST /v1/chat/completions
+#   （OpenAI 兼容 + Bearer vk，实例级 Client 复用对齐 AE-8 先例），冒烟集 builtin:gateway_smoke
+#   + 基线 baselines/gateway_smoke_baseline.json + 演练记录 evidence/gateway_gate_demo_20261118.md
+#   （口径：mock upstream/本机单进程；echo mock 上游 scripts/gateway_mock_upstream.py）
 ```
 
 ## CI 跨项目回归门禁（真集成，2026-10-29）
@@ -285,7 +289,7 @@ agenteval/
 │   ├── mockagent.py      #   确定性 mock 被测 Agent
 │   ├── selfeval.py       #   mock 模式自评测（校准 + 门禁演示的入口）
 │   ├── cli.py            #   run / gate / report / calibrate
-│   ├── adapters/         #   policy_compass.py、askbi.py（HTTP 契约对接，askbi 支持 per-case role）
+│   ├── adapters/         #   policy_compass.py、askbi.py、agentgate_go.py（HTTP 契约对接，askbi 支持 per-case role）
 │   ├── datasets/         #   两份 smoke JSONL（v2.0.0 各 30 条，对齐主项目 v2 评测集）
 │   └── static/index.html #   单文件观测台
 ├── baselines/            #   门禁基线（30/30 PASS 的 RunReport，与数据集版本配套）
@@ -314,7 +318,7 @@ rep = compare_runs(baseline_report, candidate_report)
 print(rep.render_markdown()); rep.save("eval/compare_v1_v2")
 ```
 
-9 项测试（全量 126 绿）；设计决策（含"输出漂移"为什么是最有价值的信号）见 `docs/compare_adr.md`。
+9 项测试（全量 131 绿）；设计决策（含"输出漂移"为什么是最有价值的信号）见 `docs/compare_adr.md`。
 
 ## 真 LLM judge 校准（deepseek-v4-flash，2026-10-28）
 
@@ -326,8 +330,8 @@ judge 上线的真实起点（mock v2 的 0.889 是同源拟合值，不可直�
 
 ## 生态导出（Langfuse 兼容 JSONL）
 
-自研 trace 不锁死：`agenteval/export.py` 把任意 run 导出为 Langfuse 语义对齐的事件流（原生 ingestion 信封需一层打包转换）（trace-create/span-create，含父子链接、level、metadata；离散事件降级为瞬时 span）。5 项测试（全量 126 绿）。
+自研 trace 不锁死：`agenteval/export.py` 把任意 run 导出为 Langfuse 语义对齐的事件流（原生 ingestion 信封需一层打包转换）（trace-create/span-create，含父子链接、level、metadata；离散事件降级为瞬时 span）。5 项测试（全量 131 绿）。
 
 ## 金丝雀监控（线上静默劣化的唯一发现手段）
 
-`agenteval/canary.py`：每 K 次生产调用自动跑一次 N 条抽样评测，滑动窗口通过率 vs 基线，劣化即告警回调——与离线门禁同源的方向感知口径。基线缺省为首窗均值、首窗满即冻结（AE-3：不随窗口吸收已劣化数据，持续劣化永不静默）。6 项测试（全量 126 绿）。
+`agenteval/canary.py`：每 K 次生产调用自动跑一次 N 条抽样评测，滑动窗口通过率 vs 基线，劣化即告警回调——与离线门禁同源的方向感知口径。基线缺省为首窗均值、首窗满即冻结（AE-3：不随窗口吸收已劣化数据，持续劣化永不静默）。6 项测试（全量 131 绿）。
