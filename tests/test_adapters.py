@@ -5,6 +5,7 @@ import pytest
 
 from agenteval.adapters import get_adapter
 from agenteval.adapters.askbi import AskBIAdapter, _answer_to_text, _parse_sse
+from agenteval.adapters.agentgate_go import AgentGateGoAdapter
 from agenteval.adapters.policy_compass import PolicyCompassAdapter
 from agenteval.dataset import EvalCase
 
@@ -210,3 +211,108 @@ def test_runner_closes_adapter_after_run():
     ds = EvalDataset.load_jsonl(ds_path)
     Runner(target=adapter).run(ds.sample(2))
     assert adapter._client is None               # Runner finally 已调 adapter.close()
+
+
+# ---------------------------------------------------------------- agentgate-go（[1B4-SM] AE-11）
+
+def _gw_response(content="结论：已按网关口径返回。", total=30):
+    return httpx.Response(200, json={
+        "id": "cmpl-gw", "model": "gateway-smoke-mock",
+        "choices": [{"message": {"role": "assistant", "content": content},
+                     "finish_reason": "stop"}],
+        "usage": {"prompt_tokens": 10, "completion_tokens": 20, "total_tokens": total},
+    }, headers={"x-cache": "MISS", "x-request-id": "req-1"})
+
+
+def test_agentgate_go_adapter_contract():
+    """OpenAI 兼容契约：POST /v1/chat/completions + Bearer vk + messages 形状；解析 content 与账面。"""
+    captured = {}
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        captured["url"] = str(request.url)
+        captured["auth"] = request.headers.get("authorization")
+        import json
+        captured["body"] = json.loads(request.content)
+        return _gw_response(content="结论：已收到问题并返回。")
+
+    adapter = AgentGateGoAdapter("http://mock.local/", api_key="ag-test",
+                                 transport=httpx.MockTransport(handler))
+    result = adapter(_case("网关冒烟问题"))
+    assert result.error is None
+    assert result.output == "结论：已收到问题并返回。"
+    assert captured["url"].endswith("/v1/chat/completions")
+    assert captured["auth"] == "Bearer ag-test"
+    assert captured["body"]["model"] == "gateway-smoke-mock"
+    assert captured["body"]["stream"] is False
+    assert captured["body"]["messages"] == [{"role": "user", "content": "网关冒烟问题"}]
+    assert result.meta["usage_total_tokens"] == 30
+    assert result.meta["x_cache"] == "MISS"
+    assert result.meta["request_id"] == "req-1"
+    assert result.meta["finish_reason"] == "stop"
+
+
+def test_agentgate_go_case_level_model_overrides():
+    """用例级 metadata.model 优先于构造默认（对齐 askbi 的 case 级 role 覆盖手法）。"""
+    captured = {}
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        import json
+        captured["body"] = json.loads(request.content)
+        return _gw_response()
+
+    adapter = AgentGateGoAdapter("http://mock.local", model="default-model",
+                                 transport=httpx.MockTransport(handler))
+    case = EvalCase(id="gw-001", input="q", expected="e",
+                    metadata={"model": "case-model"})
+    adapter(case)
+    assert captured["body"]["model"] == "case-model"
+
+
+def test_agentgate_go_adapter_error_paths():
+    """HTTP 5xx / 缺 choices 两种失败都收敛为 TargetResult.error（不抛穿透）。"""
+    adapter = AgentGateGoAdapter("http://mock.local",
+                                 transport=httpx.MockTransport(lambda r: httpx.Response(502)))
+    result = adapter(_case())
+    assert result.error and "502" in result.error
+
+    def empty(request):
+        return httpx.Response(200, json={"id": "x", "choices": []})
+    adapter2 = AgentGateGoAdapter("http://mock.local",
+                                  transport=httpx.MockTransport(empty))
+    result2 = adapter2(_case())
+    assert result2.error and "choices" in result2.error
+
+
+def test_agentgate_go_client_reused_and_closed():
+    """AE-8 先例：跨 case 复用同一实例级 Client；close() 置 None。"""
+    adapter = AgentGateGoAdapter("http://mock.local",
+                                 transport=httpx.MockTransport(lambda r: _gw_response()))
+    adapter(_case("q1"))
+    first = adapter._client
+    assert first is not None
+    adapter(_case("q2"))
+    assert adapter._client is first          # 同一实例（keep-alive 复用）
+    adapter.close()
+    assert adapter._client is None
+
+
+def test_runner_closes_agentgate_go_adapter(tmp_path):
+    """Runner.run 的 finally 关闭通道对 agentgate_go 适配器生效（AE-8 同款钉子）。"""
+    import json as _json
+
+    from agenteval.judge import MockJudge
+    from agenteval.runner import Runner
+
+    calls = {"n": 0}
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        calls["n"] += 1
+        return _gw_response()
+
+    adapter = AgentGateGoAdapter("http://mock.local",
+                                 transport=httpx.MockTransport(handler))
+    runner = Runner(target=adapter, judge=MockJudge())
+    from agenteval.dataset import EvalDataset
+    runner.run(EvalDataset(name="gw-smoke", version="2.0.0", cases=[_case("q")]), name="gw-close-check")
+    assert calls["n"] == 1
+    assert adapter._client is None           # finally 通道已归还连接池
